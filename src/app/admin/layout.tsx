@@ -30,14 +30,14 @@ export default async function AdminLayout({
   const adminToken = cookieStore.get('admin_session')?.value;
   const expectedToken = process.env.ADMIN_SESSION_TOKEN;
 
-  // If no token at all, redirect
+  // No session cookie → send to login
   if (!adminToken) {
-    redirect('/');
+    redirect('/?auth=required');
   }
 
-  // If expected token is set, verify it matches
+  // Token mismatch → send to login
   if (expectedToken && adminToken !== expectedToken) {
-    redirect('/');
+    redirect('/?auth=expired');
   }
 
   return (
