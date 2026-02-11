@@ -1,0 +1,501 @@
+/* =================================================
+   ADMIN SOW PAGE - Scope of Work Tracker
+   Using admin design tokens
+   ================================================= */
+
+.page {
+  max-width: 1400px;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--admin-space-6);
+  gap: var(--admin-space-4);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-3);
+}
+
+.headerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  border-radius: var(--admin-radius-xl);
+  color: white;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.title {
+  font-size: var(--admin-text-2xl);
+  font-weight: var(--admin-font-bold);
+  color: var(--admin-text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--admin-text-sm);
+  color: var(--admin-text-secondary);
+  margin: 2px 0 0;
+  display: flex;
+  align-items: center;
+}
+
+.liveIndicator {
+  font-size: var(--admin-text-xs);
+  color: #10B981;
+  margin-left: var(--admin-space-2);
+}
+
+.docLink {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-1);
+  padding: var(--admin-space-2) var(--admin-space-3);
+  background: transparent;
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-secondary);
+  font-size: var(--admin-text-base);
+  text-decoration: none;
+  transition: all var(--admin-transition-base);
+}
+
+.docLink:hover {
+  background: var(--admin-bg-subtle);
+  color: var(--admin-text-primary);
+  border-color: var(--admin-border-strong);
+}
+
+.refreshButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-secondary);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.refreshButton:hover {
+  background: var(--admin-bg-subtle);
+  color: var(--admin-text-primary);
+}
+
+/* ========================================
+   OVERVIEW CARD
+   ======================================== */
+
+.overviewCard {
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-xl);
+  padding: var(--admin-space-6);
+  margin-bottom: var(--admin-space-6);
+  box-shadow: var(--admin-shadow-sm);
+}
+
+.overviewStats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--admin-space-8);
+  margin-bottom: var(--admin-space-5);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--admin-space-1);
+}
+
+.statValue {
+  font-size: var(--admin-text-3xl);
+  font-weight: var(--admin-font-bold);
+  color: var(--admin-interactive-primary);
+}
+
+.statLabel {
+  font-size: var(--admin-text-xs);
+  color: var(--admin-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statDivider {
+  width: 1px;
+  height: 40px;
+  background: var(--admin-border-default);
+}
+
+.overviewProgress {
+  height: 8px;
+  background: var(--admin-bg-muted);
+  border-radius: var(--admin-radius-sm);
+  overflow: hidden;
+}
+
+.overviewProgressFill {
+  height: 100%;
+  background: var(--admin-interactive-primary);
+  border-radius: var(--admin-radius-sm);
+  transition: width 0.5s ease;
+}
+
+/* ========================================
+   PHASES GRID
+   ======================================== */
+
+.phasesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--admin-space-4);
+  margin-bottom: var(--admin-space-8);
+}
+
+.phaseCard {
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  padding: var(--admin-space-4);
+  transition: all var(--admin-transition-base);
+  box-shadow: var(--admin-shadow-sm);
+}
+
+.phaseCard:hover {
+  border-color: var(--admin-border-strong);
+  box-shadow: var(--admin-shadow-md);
+}
+
+.phase_complete,
+.phase_in_progress,
+.phase_blocked,
+.phase_pending {
+  /* Clean look - status indicated by badge only */
+}
+
+.phaseHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--admin-space-2);
+}
+
+.phaseNumber {
+  font-size: var(--admin-text-xs);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.phaseBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--admin-space-1);
+  padding: 3px var(--admin-space-2);
+  border-radius: var(--admin-radius-sm);
+  font-size: 10px;
+  font-weight: var(--admin-font-semibold);
+  text-transform: uppercase;
+}
+
+.badge_complete {
+  background: var(--admin-status-success-muted);
+  color: var(--admin-status-success);
+}
+
+.badge_in_progress {
+  background: var(--admin-status-warning-muted);
+  color: var(--admin-status-warning);
+}
+
+.badge_blocked {
+  background: var(--admin-status-error-muted);
+  color: var(--admin-status-error);
+}
+
+.badge_pending {
+  background: var(--admin-bg-muted);
+  color: var(--admin-text-secondary);
+}
+
+.phaseName {
+  font-size: var(--admin-text-md);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-primary);
+  margin: 0 0 var(--admin-space-3);
+}
+
+.phaseProgress {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+  margin-bottom: var(--admin-space-3);
+}
+
+.phaseProgressBar {
+  flex: 1;
+  height: 4px;
+  background: var(--admin-bg-muted);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.phaseProgressFill {
+  height: 100%;
+  background: var(--admin-interactive-primary);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.phaseProgressText {
+  font-size: var(--admin-text-xs);
+  color: var(--admin-text-tertiary);
+  min-width: 32px;
+  text-align: right;
+}
+
+/* ========================================
+   DELIVERABLES LIST
+   ======================================== */
+
+.deliverablesList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-1);
+}
+
+.deliverable {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--admin-space-2);
+  padding: var(--admin-space-1) var(--admin-space-2);
+  background: var(--admin-bg-subtle);
+  border-radius: var(--admin-radius-md);
+  font-size: var(--admin-text-sm);
+  line-height: var(--admin-leading-snug);
+}
+
+.deliverableIcon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.deliverable_complete .deliverableIcon {
+  color: var(--admin-status-success);
+}
+
+.deliverable_in_progress .deliverableIcon {
+  color: var(--admin-status-warning);
+}
+
+.deliverable_blocked .deliverableIcon {
+  color: var(--admin-status-error);
+}
+
+.deliverable_pending .deliverableIcon {
+  color: var(--admin-text-disabled);
+}
+
+.deliverableName {
+  flex: 1;
+  color: var(--admin-gray-600);
+}
+
+.deliverable_complete .deliverableName {
+  color: var(--admin-text-secondary);
+}
+
+.deliverableNote {
+  font-size: 10px;
+  color: var(--admin-text-tertiary);
+  background: var(--admin-bg-muted);
+  padding: 2px var(--admin-space-1);
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+/* ========================================
+   BLOCKERS SECTION
+   ======================================== */
+
+.blockersSection {
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  padding: var(--admin-space-5);
+  box-shadow: var(--admin-shadow-sm);
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+  font-size: var(--admin-text-md);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-status-error);
+  margin: 0 0 var(--admin-space-4);
+}
+
+.blockersTable {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  overflow: hidden;
+}
+
+.blockersHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: var(--admin-space-4);
+  padding: var(--admin-space-2) var(--admin-space-3);
+  background: var(--admin-bg-subtle);
+  font-size: var(--admin-text-xs);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.blockerRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: var(--admin-space-4);
+  padding: var(--admin-space-3);
+  background: var(--admin-bg-card);
+  font-size: var(--admin-text-base);
+  transition: background var(--admin-transition-base);
+}
+
+.blockerRow:hover {
+  background: var(--admin-bg-subtle);
+}
+
+.blockerItem {
+  color: var(--admin-text-primary);
+  font-weight: var(--admin-font-medium);
+}
+
+.blockerOwner {
+  color: var(--admin-status-warning);
+  font-weight: var(--admin-font-medium);
+}
+
+.blockerImpact {
+  color: var(--admin-text-secondary);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+  .overviewStats {
+    flex-wrap: wrap;
+    gap: var(--admin-space-5);
+  }
+
+  .statDivider {
+    display: none;
+  }
+
+  .phasesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .blockersHeader,
+  .blockerRow {
+    grid-template-columns: 1fr;
+    gap: var(--admin-space-1);
+  }
+
+  .blockersHeader span:not(:first-child),
+  .blockerRow span:not(:first-child) {
+    padding-left: var(--admin-space-3);
+  }
+}
+
+/* ========================================
+   SHARE BUTTONS
+   ======================================== */
+
+.shareButtons {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+  flex-shrink: 0;
+}
+
+.shareBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--admin-interactive-primary);
+  border: none;
+  border-radius: var(--admin-radius-md);
+  color: white;
+  font-size: var(--admin-text-xs);
+  font-weight: var(--admin-font-medium);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.shareBtn:hover {
+  background: var(--admin-interactive-primary-hover);
+  transform: translateY(-1px);
+}
+
+.shareBtn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.shareBtnSuccess {
+  background: #10B981;
+}
+
+.shareBtnSuccess:hover {
+  background: #059669;
+}
+
+.openBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.openBtn:hover {
+  background: var(--admin-bg-hover);
+  color: var(--admin-text-primary);
+  border-color: var(--admin-border-strong);
+}

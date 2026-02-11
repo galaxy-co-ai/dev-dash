@@ -1,0 +1,481 @@
+/* =================================================
+   ADMIN NOTES PAGE
+   Using admin design tokens
+   ================================================= */
+
+.page {
+  max-width: 1000px;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--admin-space-6);
+  gap: var(--admin-space-4);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-3);
+}
+
+.headerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%);
+  border-radius: var(--admin-radius-xl);
+  color: white;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
+.title {
+  font-size: var(--admin-text-2xl);
+  font-weight: var(--admin-font-bold);
+  color: var(--admin-text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--admin-text-sm);
+  color: var(--admin-text-secondary);
+  margin: 2px 0 0;
+}
+
+.headerActions {
+  display: flex;
+  gap: var(--admin-space-2);
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-1);
+  padding: var(--admin-space-2) var(--admin-space-3);
+  background: var(--admin-interactive-primary);
+  border: none;
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-interactive-primary-text);
+  font-size: var(--admin-text-base);
+  font-weight: var(--admin-font-medium);
+  cursor: pointer;
+  transition: background var(--admin-transition-base);
+}
+
+.addButton:hover {
+  background: var(--admin-interactive-primary-hover);
+}
+
+.refreshButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-secondary);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.refreshButton:hover {
+  background: var(--admin-bg-subtle);
+  color: var(--admin-text-primary);
+}
+
+/* ========================================
+   FILTERS
+   ======================================== */
+
+.filters {
+  margin-bottom: var(--admin-space-6);
+}
+
+.filterSelect {
+  padding: var(--admin-space-2) var(--admin-space-3);
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-primary);
+  font-size: var(--admin-text-base);
+  cursor: pointer;
+  min-width: 160px;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--admin-border-focus);
+  box-shadow: var(--admin-shadow-focus);
+}
+
+/* ========================================
+   STATES
+   ======================================== */
+
+.loading,
+.error,
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--admin-space-2);
+  padding: var(--admin-space-12);
+  color: var(--admin-text-secondary);
+  font-size: var(--admin-text-md);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  color: var(--admin-status-error);
+}
+
+.empty span {
+  font-size: var(--admin-text-sm);
+  color: var(--admin-text-tertiary);
+}
+
+/* ========================================
+   MODAL
+   ======================================== */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--admin-z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 17, 21, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.noteForm {
+  width: 520px;
+  max-width: calc(100vw - var(--admin-space-8));
+  max-height: calc(100vh - var(--admin-space-16));
+  overflow-y: auto;
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-xl);
+  padding: var(--admin-space-6);
+  box-shadow: var(--admin-shadow-xl);
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--admin-space-5);
+}
+
+.formHeader h2 {
+  font-size: var(--admin-text-lg);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-primary);
+  margin: 0;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-secondary);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.closeButton:hover {
+  background: var(--admin-bg-hover);
+  color: var(--admin-text-primary);
+}
+
+.formField {
+  margin-bottom: var(--admin-space-4);
+}
+
+.formField label {
+  display: block;
+  font-size: var(--admin-text-sm);
+  font-weight: var(--admin-font-medium);
+  color: var(--admin-text-secondary);
+  margin-bottom: var(--admin-space-1);
+}
+
+.formField input,
+.formField textarea,
+.formField select {
+  width: 100%;
+  padding: var(--admin-space-2) var(--admin-space-3);
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-primary);
+  font-family: inherit;
+  font-size: var(--admin-text-md);
+}
+
+.formField input:focus,
+.formField textarea:focus,
+.formField select:focus {
+  outline: none;
+  border-color: var(--admin-border-focus);
+  box-shadow: var(--admin-shadow-focus);
+}
+
+.formField textarea {
+  resize: vertical;
+  min-height: 160px;
+  line-height: var(--admin-leading-relaxed);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--admin-space-3);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+  padding: var(--admin-space-2) 0;
+  font-size: var(--admin-text-md) !important;
+  font-weight: var(--admin-font-normal) !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  color: var(--admin-text-secondary) !important;
+  cursor: pointer;
+}
+
+.checkboxLabel input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--admin-interactive-primary);
+}
+
+.formActions {
+  display: flex;
+  gap: var(--admin-space-3);
+  margin-top: var(--admin-space-5);
+}
+
+.cancelButton {
+  flex: 1;
+  padding: var(--admin-space-2);
+  background: transparent;
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-secondary);
+  font-size: var(--admin-text-md);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.cancelButton:hover {
+  background: var(--admin-bg-subtle);
+  color: var(--admin-text-primary);
+}
+
+.submitButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--admin-space-1);
+  padding: var(--admin-space-2);
+  background: var(--admin-interactive-primary);
+  border: none;
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-interactive-primary-text);
+  font-size: var(--admin-text-md);
+  font-weight: var(--admin-font-medium);
+  cursor: pointer;
+  transition: background var(--admin-transition-base);
+}
+
+.submitButton:hover:not(:disabled) {
+  background: var(--admin-interactive-primary-hover);
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   SECTIONS
+   ======================================== */
+
+.section {
+  margin-bottom: var(--admin-space-8);
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+  font-size: var(--admin-text-sm);
+  font-weight: var(--admin-font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--admin-text-secondary);
+  margin: 0 0 var(--admin-space-4);
+}
+
+.sectionTitle svg {
+  color: var(--admin-interactive-primary);
+}
+
+/* ========================================
+   NOTES GRID
+   ======================================== */
+
+.notesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--admin-space-4);
+}
+
+/* ========================================
+   NOTE CARD
+   ======================================== */
+
+.noteCard {
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  padding: var(--admin-space-4);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--admin-transition-base);
+  box-shadow: var(--admin-shadow-sm);
+}
+
+.noteCard:hover {
+  border-color: var(--admin-border-strong);
+  box-shadow: var(--admin-shadow-md);
+}
+
+.noteHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--admin-space-3);
+}
+
+.categoryBadge {
+  padding: var(--admin-space-1) var(--admin-space-2);
+  border-radius: var(--admin-radius-sm);
+  font-size: var(--admin-text-xs);
+  font-weight: var(--admin-font-semibold);
+}
+
+.noteActions {
+  display: flex;
+  gap: var(--admin-space-1);
+  opacity: 0;
+  transition: opacity var(--admin-transition-base);
+}
+
+.noteCard:hover .noteActions {
+  opacity: 1;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-tertiary);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.actionButton:hover {
+  background: var(--admin-bg-subtle);
+  color: var(--admin-text-primary);
+}
+
+.actionButton.pinned {
+  color: var(--admin-interactive-primary);
+  border-color: var(--admin-interactive-primary);
+}
+
+.actionButton.deleteAction:hover {
+  background: var(--admin-interactive-destructive-muted);
+  border-color: var(--admin-interactive-destructive);
+  color: var(--admin-interactive-destructive);
+}
+
+.noteTitle {
+  font-size: var(--admin-text-md);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-primary);
+  margin: 0 0 var(--admin-space-2);
+  line-height: var(--admin-leading-snug);
+}
+
+.noteContent {
+  font-size: var(--admin-text-base);
+  color: var(--admin-text-secondary);
+  line-height: var(--admin-leading-relaxed);
+  margin: 0;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+
+.noteFooter {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+  margin-top: var(--admin-space-3);
+  padding-top: var(--admin-space-3);
+  border-top: 1px solid var(--admin-border-default);
+  font-size: var(--admin-text-xs);
+  color: var(--admin-text-tertiary);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 640px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .notesGrid {
+    grid-template-columns: 1fr;
+  }
+}

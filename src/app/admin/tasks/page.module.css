@@ -1,0 +1,1288 @@
+/* =================================================
+   ADMIN TASKS PAGE - Kanban Board
+   Using admin design tokens
+   ================================================= */
+
+.page {
+  max-width: 100%;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--admin-space-4);
+  margin-bottom: var(--admin-space-4);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-3);
+}
+
+.headerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+  border-radius: var(--admin-radius-xl);
+  color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.title {
+  font-size: var(--admin-text-2xl);
+  font-weight: var(--admin-font-bold);
+  color: var(--admin-text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--admin-text-sm);
+  color: var(--admin-text-secondary);
+  margin: 2px 0 0;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-1);
+  padding: var(--admin-space-2) var(--admin-space-3);
+  background: var(--admin-interactive-primary);
+  border: none;
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-interactive-primary-text);
+  font-size: var(--admin-text-base);
+  font-weight: var(--admin-font-medium);
+  cursor: pointer;
+  transition: background var(--admin-transition-base);
+}
+
+.addButton:hover {
+  background: var(--admin-interactive-primary-hover);
+}
+
+/* ========================================
+   STATES
+   ======================================== */
+
+.loading,
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--admin-space-2);
+  padding: var(--admin-space-12);
+  color: var(--admin-text-secondary);
+  font-size: var(--admin-text-md);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  color: var(--admin-status-error);
+}
+
+/* ========================================
+   ADD TASK MODAL
+   ======================================== */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--admin-z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 17, 21, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.addForm {
+  width: 440px;
+  max-width: calc(100vw - var(--admin-space-8));
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-xl);
+  padding: var(--admin-space-6);
+  box-shadow: var(--admin-shadow-xl);
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--admin-space-5);
+}
+
+.formHeader h2 {
+  font-size: var(--admin-text-lg);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-primary);
+  margin: 0;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-secondary);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.closeButton:hover {
+  background: var(--admin-bg-hover);
+  color: var(--admin-text-primary);
+}
+
+.formField {
+  margin-bottom: var(--admin-space-4);
+}
+
+.formField label {
+  display: block;
+  font-size: var(--admin-text-sm);
+  font-weight: var(--admin-font-medium);
+  color: var(--admin-text-secondary);
+  margin-bottom: var(--admin-space-1);
+}
+
+.formField input,
+.formField textarea,
+.formField select {
+  width: 100%;
+  padding: var(--admin-space-2) var(--admin-space-3);
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-primary);
+  font-family: inherit;
+  font-size: var(--admin-text-md);
+}
+
+.formField input:focus,
+.formField textarea:focus,
+.formField select:focus {
+  outline: none;
+  border-color: var(--admin-border-focus);
+  box-shadow: var(--admin-shadow-focus);
+}
+
+.formField textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--admin-space-3);
+}
+
+.formActions {
+  display: flex;
+  gap: var(--admin-space-3);
+  margin-top: var(--admin-space-5);
+}
+
+.cancelButton {
+  flex: 1;
+  padding: var(--admin-space-2);
+  background: transparent;
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-secondary);
+  font-size: var(--admin-text-md);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.cancelButton:hover {
+  background: var(--admin-bg-subtle);
+  color: var(--admin-text-primary);
+}
+
+.submitButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--admin-space-1);
+  padding: var(--admin-space-2);
+  background: var(--admin-interactive-primary);
+  border: none;
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-interactive-primary-text);
+  font-size: var(--admin-text-md);
+  font-weight: var(--admin-font-medium);
+  cursor: pointer;
+  transition: background var(--admin-transition-base);
+}
+
+.submitButton:hover:not(:disabled) {
+  background: var(--admin-interactive-primary-hover);
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   KANBAN BOARD
+   ======================================== */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--admin-space-4);
+  min-height: 500px;
+}
+
+@media (max-width: 1200px) {
+  .board {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .board {
+    grid-template-columns: 1fr;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  overflow: hidden;
+}
+
+.columnHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+  padding: var(--admin-space-3);
+  border-bottom: 1px solid var(--admin-border-default);
+  background: var(--admin-bg-subtle);
+}
+
+.columnDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--admin-radius-full);
+}
+
+.columnLabel {
+  font-size: var(--admin-text-base);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-primary);
+}
+
+.columnCount {
+  margin-left: auto;
+  font-size: var(--admin-text-xs);
+  color: var(--admin-text-secondary);
+  background: var(--admin-bg-muted);
+  padding: 2px var(--admin-space-2);
+  border-radius: var(--admin-radius-sm);
+}
+
+.columnContent {
+  flex: 1;
+  padding: var(--admin-space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-2);
+  overflow-y: auto;
+  max-height: 600px;
+  background: var(--admin-bg-subtle);
+}
+
+.emptyColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  font-size: var(--admin-text-sm);
+  color: var(--admin-text-tertiary);
+  border: 2px dashed var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  background: var(--admin-bg-subtle);
+}
+
+/* ========================================
+   TASK CARD
+   ======================================== */
+
+.taskCard {
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  padding: var(--admin-space-2);
+  transition: all var(--admin-transition-base);
+  box-shadow: var(--admin-shadow-sm);
+  cursor: default;
+}
+
+.taskCard:hover {
+  border-color: var(--admin-border-strong);
+  box-shadow: var(--admin-shadow-md);
+}
+
+.taskCardDragging {
+  opacity: 0.5;
+}
+
+.taskCardOverlay {
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-focus);
+  border-radius: var(--admin-radius-lg);
+  padding: var(--admin-space-2);
+  box-shadow: var(--admin-shadow-lg);
+  transform: rotate(2deg);
+  cursor: grabbing;
+}
+
+.taskCardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-1);
+  margin-bottom: var(--admin-space-2);
+}
+
+.dragHandle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  border-radius: var(--admin-radius-sm);
+  color: var(--admin-text-disabled);
+  cursor: grab;
+  transition: all var(--admin-transition-base);
+  flex-shrink: 0;
+}
+
+.dragHandle:hover {
+  background: var(--admin-bg-hover);
+  color: var(--admin-text-secondary);
+}
+
+.dragHandle:active {
+  cursor: grabbing;
+  color: var(--admin-interactive-primary);
+}
+
+.taskBadges {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-1);
+  flex: 1;
+  min-width: 0;
+}
+
+.priorityBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px var(--admin-space-1);
+  border-radius: var(--admin-radius-md);
+  font-size: var(--admin-text-xs);
+  font-weight: var(--admin-font-semibold);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.categoryBadge {
+  padding: 2px var(--admin-space-1);
+  background: var(--admin-bg-muted);
+  border-radius: var(--admin-radius-md);
+  font-size: var(--admin-text-xs);
+  color: var(--admin-text-secondary);
+  white-space: nowrap;
+}
+
+.taskTitle {
+  font-size: var(--admin-text-base);
+  font-weight: var(--admin-font-medium);
+  color: var(--admin-text-primary);
+  margin: 0;
+  line-height: var(--admin-leading-snug);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.expandButton {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-1);
+  margin-top: var(--admin-space-2);
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--admin-transition-base);
+}
+
+.expandButton:hover {
+  opacity: 0.7;
+}
+
+.taskDescription {
+  font-size: var(--admin-text-sm);
+  color: var(--admin-text-secondary);
+  margin: var(--admin-space-2) 0 0;
+  padding: var(--admin-space-2);
+  background: var(--admin-bg-subtle);
+  border-radius: var(--admin-radius-md);
+  line-height: var(--admin-leading-normal);
+}
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  border-radius: var(--admin-radius-sm);
+  color: var(--admin-text-disabled);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+  flex-shrink: 0;
+}
+
+.deleteButton:hover {
+  background: var(--admin-interactive-destructive-muted);
+  color: var(--admin-interactive-destructive);
+}
+
+.checklistBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px var(--admin-space-1);
+  background: var(--admin-bg-muted);
+  border-radius: var(--admin-radius-md);
+  font-size: var(--admin-text-xs);
+  color: var(--admin-text-secondary);
+  white-space: nowrap;
+}
+
+/* ========================================
+   HEADER CONTROLS
+   ======================================== */
+
+.headerControls {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-3);
+}
+
+/* ========================================
+   ACTIVE SPRINT BUTTON + PANEL
+   ======================================== */
+
+.sprintTrigger {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-1);
+  padding: var(--admin-space-2) var(--admin-space-2);
+  background: var(--admin-status-success);
+  border: 1px solid var(--admin-status-success);
+  border-radius: var(--admin-radius-lg);
+  font-size: var(--admin-text-xs);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-inverse);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+  white-space: nowrap;
+  box-shadow: var(--admin-shadow-sm);
+}
+
+.sprintTrigger:hover {
+  background: #16A34A;
+  border-color: #16A34A;
+}
+
+.sprintBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 var(--admin-space-1);
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: var(--admin-radius-lg);
+  font-size: 10px;
+  font-weight: var(--admin-font-bold);
+  color: var(--admin-text-inverse);
+}
+
+.sprintProgress {
+  width: 28px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.sprintProgressFill {
+  height: 100%;
+  background: var(--admin-text-inverse);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.sprintBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: var(--admin-z-overlay);
+}
+
+.sprintPanel {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 560px;
+  max-height: calc(100vh - 160px);
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-xl);
+  box-shadow: var(--admin-shadow-2xl);
+  z-index: var(--admin-z-modal);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sprintPanelHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+  padding: var(--admin-space-4) var(--admin-space-5);
+  border-bottom: 1px solid var(--admin-border-default);
+  background: var(--admin-bg-subtle);
+}
+
+.sprintClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-secondary);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.sprintClose:hover {
+  background: var(--admin-bg-hover);
+  color: var(--admin-text-primary);
+}
+
+.sprintPanelContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--admin-space-4) var(--admin-space-5);
+}
+
+.emptySprintState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--admin-space-8);
+  text-align: center;
+}
+
+.activeTasksList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-4);
+  padding-top: var(--admin-space-4);
+  margin-top: var(--admin-space-3);
+  border-top: 1px solid var(--admin-border-default);
+}
+
+.activeTaskItem {
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  padding: var(--admin-space-3);
+  box-shadow: var(--admin-shadow-sm);
+}
+
+.activeTaskHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+  margin-bottom: var(--admin-space-3);
+}
+
+.statusIndicator {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--admin-radius-full);
+  flex-shrink: 0;
+}
+
+.phaseBadge {
+  padding: 2px var(--admin-space-1);
+  background: var(--admin-blue-100);
+  border-radius: var(--admin-radius-sm);
+  font-size: var(--admin-text-xs);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-blue-600);
+  white-space: nowrap;
+}
+
+.activeTaskTitle {
+  font-size: var(--admin-text-md);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-primary);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progressPill {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-1);
+  padding: var(--admin-space-1) var(--admin-space-2);
+  background: var(--admin-bg-subtle);
+  border-radius: var(--admin-radius-full);
+  flex-shrink: 0;
+}
+
+.checklistContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-1);
+}
+
+.checklistItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--admin-space-2);
+  padding: var(--admin-space-2) var(--admin-space-2);
+  background: var(--admin-bg-subtle);
+  border: 1px solid transparent;
+  border-radius: var(--admin-radius-lg);
+  font-size: var(--admin-text-base);
+  color: var(--admin-text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+  line-height: var(--admin-leading-snug);
+}
+
+.checklistItem:hover {
+  background: var(--admin-bg-hover);
+  border-color: var(--admin-border-default);
+}
+
+.checklistItemCompleted {
+  background: var(--admin-status-success-muted);
+  border-color: transparent;
+}
+
+.checklistItemCompleted:hover {
+  background: #BBF7D0;
+}
+
+.addChecklistButton {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-1);
+  padding: var(--admin-space-2) var(--admin-space-2);
+  background: transparent;
+  border: 1px dashed var(--admin-border-strong);
+  border-radius: var(--admin-radius-lg);
+  font-size: var(--admin-text-sm);
+  color: var(--admin-text-secondary);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.addChecklistButton:hover {
+  background: var(--admin-bg-subtle);
+  border-color: var(--admin-border-focus);
+  color: var(--admin-text-link);
+}
+
+.addItemForm {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+}
+
+.addItemInput {
+  flex: 1;
+  padding: var(--admin-space-2) var(--admin-space-2);
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  font-size: var(--admin-text-base);
+  color: var(--admin-text-primary);
+}
+
+.addItemInput:focus {
+  outline: none;
+  border-color: var(--admin-border-focus);
+  box-shadow: var(--admin-shadow-focus);
+}
+
+.addItemSubmit {
+  padding: var(--admin-space-2) var(--admin-space-3);
+  background: var(--admin-interactive-primary);
+  border: none;
+  border-radius: var(--admin-radius-md);
+  font-size: var(--admin-text-sm);
+  font-weight: var(--admin-font-medium);
+  color: var(--admin-interactive-primary-text);
+  cursor: pointer;
+  transition: background var(--admin-transition-base);
+}
+
+.addItemSubmit:hover:not(:disabled) {
+  background: var(--admin-interactive-primary-hover);
+}
+
+.addItemSubmit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.addItemCancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-secondary);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.addItemCancel:hover {
+  background: var(--admin-bg-hover);
+  border-color: var(--admin-border-strong);
+}
+
+/* ========================================
+   TAB BAR
+   ======================================== */
+
+.tabBar {
+  display: flex;
+  gap: var(--admin-space-1);
+  background: var(--admin-bg-subtle);
+  padding: var(--admin-space-1);
+  border-radius: var(--admin-radius-lg);
+  margin-bottom: var(--admin-space-6);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+  padding: var(--admin-space-2) var(--admin-space-4);
+  background: transparent;
+  border: none;
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-secondary);
+  font-size: var(--admin-text-sm);
+  font-weight: var(--admin-font-medium);
+  cursor: pointer;
+  transition: all var(--admin-transition-fast);
+}
+
+.tab:hover {
+  color: var(--admin-text-primary);
+  background: var(--admin-bg-card);
+}
+
+.tabActive {
+  background: var(--admin-bg-card);
+  color: var(--admin-text-primary);
+  box-shadow: var(--admin-shadow-sm);
+}
+
+.tabBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 var(--admin-space-1);
+  background: var(--admin-primary);
+  color: white;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: var(--admin-font-semibold);
+}
+
+/* ========================================
+   LIST VIEW
+   ======================================== */
+
+.listView {
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  overflow: hidden;
+}
+
+.listHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-3);
+  padding: var(--admin-space-3) var(--admin-space-4);
+  background: var(--admin-bg-subtle);
+  border-bottom: 1px solid var(--admin-border-default);
+}
+
+.listHeaderCell {
+  flex: 1;
+  font-size: var(--admin-text-xs);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.listBody {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.listRow {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-3);
+  padding: var(--admin-space-3) var(--admin-space-4);
+  border-bottom: 1px solid var(--admin-border-default);
+  transition: background var(--admin-transition-base);
+}
+
+.listRow:hover {
+  background: var(--admin-bg-subtle);
+}
+
+.listRow:last-child {
+  border-bottom: none;
+}
+
+.listCell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.listTaskTitle {
+  font-size: var(--admin-text-md);
+  font-weight: var(--admin-font-medium);
+  color: var(--admin-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.listTaskDesc {
+  display: block;
+  font-size: var(--admin-text-sm);
+  color: var(--admin-text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.listSelect {
+  padding: var(--admin-space-1) var(--admin-space-2);
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  font-size: var(--admin-text-sm);
+  color: var(--admin-text-primary);
+  cursor: pointer;
+}
+
+.listSelect:focus {
+  outline: none;
+  border-color: var(--admin-border-focus);
+}
+
+.listDeleteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-tertiary);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.listDeleteBtn:hover {
+  background: var(--admin-interactive-destructive-muted);
+  color: var(--admin-interactive-destructive);
+}
+
+.listEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--admin-space-12);
+  color: var(--admin-text-tertiary);
+  font-size: var(--admin-text-sm);
+}
+
+/* ========================================
+   PAGINATION
+   ======================================== */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--admin-space-3) var(--admin-space-4);
+  border-top: 1px solid var(--admin-border-default);
+  background: var(--admin-bg-subtle);
+}
+
+.paginationBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-1);
+  padding: var(--admin-space-2) var(--admin-space-3);
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-md);
+  color: var(--admin-text-primary);
+  font-size: var(--admin-text-sm);
+  font-weight: var(--admin-font-medium);
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.paginationBtn:hover:not(:disabled) {
+  background: var(--admin-bg-hover);
+  border-color: var(--admin-border-strong);
+}
+
+.paginationBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.paginationInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+  font-size: var(--admin-text-sm);
+}
+
+.paginationCurrent {
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-primary);
+}
+
+.paginationTotal {
+  color: var(--admin-text-secondary);
+}
+
+.paginationCount {
+  color: var(--admin-text-tertiary);
+  font-size: var(--admin-text-xs);
+}
+
+/* ========================================
+   SPRINT VIEW (Full Page)
+   ======================================== */
+
+.sprintView {
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-6);
+}
+
+.sprintEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--admin-space-16);
+  text-align: center;
+}
+
+.sprintEmptyIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #22C55E 0%, #10B981 100%);
+  border-radius: 50%;
+  color: white;
+  margin-bottom: var(--admin-space-4);
+}
+
+.sprintEmpty h3 {
+  font-size: var(--admin-text-lg);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-primary);
+  margin: 0 0 var(--admin-space-2);
+}
+
+.sprintEmpty p {
+  font-size: var(--admin-text-sm);
+  color: var(--admin-text-secondary);
+  max-width: 320px;
+  margin: 0;
+}
+
+.sprintStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--admin-space-4);
+}
+
+@media (max-width: 640px) {
+  .sprintStats {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sprintStatCard {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-3);
+  padding: var(--admin-space-4);
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+}
+
+.sprintStatCard > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.sprintStatValue {
+  font-size: var(--admin-text-2xl);
+  font-weight: var(--admin-font-bold);
+  color: var(--admin-text-primary);
+}
+
+.sprintStatLabel {
+  font-size: var(--admin-text-xs);
+  color: var(--admin-text-secondary);
+}
+
+.sprintSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-4);
+}
+
+.sprintSectionTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-2);
+  font-size: var(--admin-text-md);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-primary);
+  margin: 0;
+}
+
+.sprintTaskGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--admin-space-4);
+}
+
+.sprintTaskCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-2);
+  padding: var(--admin-space-3);
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sprintTaskCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  border-color: var(--admin-border-strong);
+}
+
+.sprintTaskCard:active {
+  transform: translateY(0) scale(0.995);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: all 0.05s ease;
+}
+
+.sprintTaskCardTodo {
+  /* No left border styling needed anymore */
+}
+
+.sprintTaskHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-1);
+  flex-wrap: nowrap;
+}
+
+.sprintTaskTitle {
+  flex: 1;
+  font-size: var(--admin-text-sm);
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-primary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sprintTaskDesc {
+  font-size: var(--admin-text-xs);
+  color: var(--admin-text-tertiary);
+  margin: 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sprintChecklist {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: var(--admin-space-1);
+}
+
+.progressPillBar {
+  width: 48px;
+  height: 4px;
+  background: var(--admin-bg-muted);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressPillFill {
+  height: 100%;
+  background: #22C55E;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.progressPillText {
+  font-size: 10px;
+  font-weight: var(--admin-font-semibold);
+  color: var(--admin-text-secondary);
+  margin-left: var(--admin-space-1);
+}
+
+.markDoneBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px var(--admin-space-2);
+  background: #22C55E;
+  border: none;
+  border-radius: var(--admin-radius-md);
+  color: white;
+  font-size: var(--admin-text-xs);
+  font-weight: var(--admin-font-semibold);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.markDoneBtn:hover {
+  background: #16A34A;
+}
+
+.markDoneBtn:active {
+  transform: scale(0.95);
+}
+
+.startTaskBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px var(--admin-space-2);
+  background: var(--admin-interactive-primary);
+  border: none;
+  border-radius: var(--admin-radius-md);
+  color: white;
+  font-size: var(--admin-text-xs);
+  font-weight: var(--admin-font-semibold);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.startTaskBtn:hover {
+  background: var(--admin-interactive-primary-hover);
+}
+
+.startTaskBtn:active {
+  transform: scale(0.95);
+}

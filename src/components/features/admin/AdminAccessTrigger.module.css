@@ -1,0 +1,219 @@
+/* =================================================
+   ADMIN ACCESS TRIGGER - Hidden password modal
+   ================================================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  position: relative;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 32px 24px 24px;
+  
+  text-align: center;
+  
+  animation: slideUp 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: #666;
+  
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.closeButton:hover {
+  background: #2a2a2a;
+  color: #999;
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid #C4A77D;
+  outline-offset: 2px;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  
+  background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
+  border: 1px solid #333;
+  border-radius: 14px;
+  
+  color: #C4A77D;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #F5F0E8;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  font-size: 0.8125rem;
+  color: #888;
+  margin: 0 0 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  
+  background: #0f0f0f;
+  border: 1px solid #333;
+  border-radius: 10px;
+  
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.9375rem;
+  color: #F5F0E8;
+  
+  transition: border-color 0.15s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #C4A77D;
+}
+
+.input::placeholder {
+  color: #555;
+}
+
+.input:disabled {
+  opacity: 0.5;
+}
+
+.error {
+  font-size: 0.8125rem;
+  color: #ef4444;
+  margin: 0;
+  padding: 8px 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 6px;
+}
+
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  
+  background: #C4A77D;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 10px;
+  
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #d4b78d;
+}
+
+.submitButton:focus-visible {
+  outline: 2px solid #C4A77D;
+  outline-offset: 2px;
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hint {
+  font-size: 0.6875rem;
+  color: #555;
+  margin: 16px 0 0;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .modal,
+  .spinner {
+    animation: none;
+  }
+}
