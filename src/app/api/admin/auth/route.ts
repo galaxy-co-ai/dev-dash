@@ -1,7 +1,6 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { cookies } from 'next/headers';
 import { randomBytes } from 'crypto';
 import { createRateLimiter, getRequestIdentifier, rateLimitHeaders } from '@/lib/api/rate-limit';
 
@@ -57,9 +56,9 @@ export async function POST(request: NextRequest) {
     const sessionToken = process.env.ADMIN_SESSION_TOKEN ||
       randomBytes(32).toString('hex');
 
-    // Set secure cookie (secure only in production)
-    const cookieStore = await cookies();
-    cookieStore.set('admin_session', sessionToken, {
+    // Set secure cookie on the response (cookies().set() is read-only in Route Handlers)
+    const response = NextResponse.json({ success: true });
+    response.cookies.set('admin_session', sessionToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
@@ -67,7 +66,7 @@ export async function POST(request: NextRequest) {
       path: '/',
     });
 
-    return NextResponse.json({ success: true });
+    return response;
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
@@ -88,10 +87,10 @@ export async function POST(request: NextRequest) {
  */
 export async function DELETE() {
   try {
-    const cookieStore = await cookies();
-    cookieStore.delete('admin_session');
+    const response = NextResponse.json({ success: true });
+    response.cookies.delete('admin_session');
 
-    return NextResponse.json({ success: true });
+    return response;
   } catch {
     return NextResponse.json(
       { error: 'Logout failed' },
