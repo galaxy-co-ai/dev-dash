@@ -31,10 +31,10 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  background: var(--page-accent-gradient);
   border-radius: var(--admin-radius-xl);
-  color: white;
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  color: var(--admin-text-inverse);
+  box-shadow: var(--page-accent-glow);
 }
 
 .title {
@@ -127,8 +127,8 @@
   min-width: 20px;
   height: 20px;
   padding: 0 var(--admin-space-1);
-  background: var(--admin-primary);
-  color: white;
+  background: var(--admin-interactive-primary);
+  color: var(--admin-interactive-primary-text);
   border-radius: 10px;
   font-size: 11px;
   font-weight: var(--admin-font-semibold);
@@ -226,7 +226,7 @@
   margin-top: var(--admin-space-2);
   padding: var(--admin-space-2) var(--admin-space-4);
   background: var(--admin-status-error);
-  color: white;
+  color: var(--admin-text-inverse);
   border: none;
   border-radius: var(--admin-radius-md);
   cursor: pointer;
@@ -247,9 +247,9 @@
   justify-content: center;
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, var(--admin-primary) 0%, #8B5CF6 100%);
+  background: linear-gradient(135deg, var(--admin-interactive-primary) 0%, var(--ops-accent-messaging) 100%);
   border-radius: 50%;
-  color: white;
+  color: var(--admin-text-inverse);
   margin-bottom: var(--admin-space-4);
 }
 
@@ -517,15 +517,15 @@
   align-items: center;
   gap: var(--admin-space-2);
   padding: var(--admin-space-3) var(--admin-space-4);
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--ops-accent-messaging) 10%, transparent) 0%, color-mix(in srgb, var(--admin-status-info) 10%, transparent) 100%);
+  border: 1px solid color-mix(in srgb, var(--ops-accent-messaging) 20%, transparent);
   border-radius: var(--admin-radius-md);
   color: var(--admin-text-secondary);
   font-size: var(--admin-text-sm);
 }
 
 .aiNotice svg {
-  color: #8B5CF6;
+  color: var(--ops-accent-messaging);
   flex-shrink: 0;
 }
 
@@ -666,9 +666,9 @@
 }
 
 .todoStartBtn:hover {
-  background: var(--admin-primary);
-  border-color: var(--admin-primary);
-  color: white;
+  background: var(--admin-interactive-primary);
+  border-color: var(--admin-interactive-primary);
+  color: var(--admin-interactive-primary-text);
 }
 
 /* ========================================
@@ -686,9 +686,9 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--admin-space-3) var(--admin-space-4);
-  background: var(--admin-primary);
+  background: var(--admin-interactive-primary);
   border-radius: var(--admin-radius-md);
-  color: white;
+  color: var(--admin-interactive-primary-text);
   font-size: var(--admin-text-sm);
 }
 
@@ -699,17 +699,17 @@
 
 .bulkActions button {
   padding: var(--admin-space-1) var(--admin-space-3);
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: var(--admin-overlay-inverse);
+  border: 1px solid var(--admin-overlay-inverse-strong);
   border-radius: var(--admin-radius-sm);
-  color: white;
+  color: var(--admin-text-inverse);
   font-size: var(--admin-text-xs);
   cursor: pointer;
   transition: background var(--admin-transition-fast);
 }
 
 .bulkActions button:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--admin-overlay-inverse-strong);
 }
 
 .categorySection {
@@ -815,7 +815,7 @@
 }
 
 .ticketCheckbox:hover {
-  color: var(--admin-primary);
+  color: var(--admin-interactive-primary);
 }
 
 .ticketMain {
@@ -860,8 +860,8 @@
   align-items: center;
   gap: 3px;
   padding: 1px 6px;
-  background: rgba(139, 92, 246, 0.1);
-  color: #8B5CF6;
+  background: color-mix(in srgb, var(--ops-accent-messaging) 10%, transparent);
+  color: var(--ops-accent-messaging);
   border-radius: var(--admin-radius-sm);
   font-size: 10px;
 }
@@ -914,7 +914,7 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: var(--admin-primary);
+  color: var(--admin-interactive-primary);
   font-weight: var(--admin-font-medium);
   text-transform: none;
   letter-spacing: normal;
@@ -941,7 +941,7 @@
   display: block;
   padding: var(--admin-space-3);
   background: var(--admin-gray-900);
-  color: #22D3EE;
+  color: var(--admin-syntax-highlight);
   border-radius: var(--admin-radius-md);
   font-family: var(--admin-font-mono);
   font-size: var(--admin-text-xs);
@@ -1044,7 +1044,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--admin-space-1);
-  color: var(--admin-primary);
+  color: var(--admin-text-link);
   font-size: var(--admin-text-sm);
   text-decoration: none;
   transition: opacity var(--admin-transition-fast);
@@ -1087,8 +1087,8 @@
 
 .pagination button {
   padding: var(--admin-space-2) var(--admin-space-4);
-  background: var(--admin-primary);
-  color: white;
+  background: var(--admin-interactive-primary);
+  color: var(--admin-interactive-primary-text);
   border: none;
   border-radius: var(--admin-radius-md);
   font-size: var(--admin-text-sm);

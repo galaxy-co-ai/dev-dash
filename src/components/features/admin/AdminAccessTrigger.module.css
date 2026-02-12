@@ -1,20 +1,20 @@
 /* =================================================
-   ADMIN ACCESS TRIGGER - Hidden password modal
+   ADMIN ACCESS TRIGGER - Dark theme modal
    ================================================= */
 
 .overlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  background: rgba(0, 0, 0, 0.85);
+
+  background: var(--admin-dark-overlay);
   backdrop-filter: blur(8px);
-  
-  animation: fadeIn 0.2s ease;
+
+  animation: fadeIn var(--admin-duration-normal) var(--admin-ease-out);
 }
 
 @keyframes fadeIn {
@@ -30,15 +30,15 @@
   position: relative;
   width: 320px;
   max-width: calc(100vw - 32px);
-  
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 16px;
-  padding: 32px 24px 24px;
-  
+
+  background: var(--admin-dark-bg-card);
+  border: 1px solid var(--admin-dark-border);
+  border-radius: var(--admin-radius-xl);
+  padding: var(--admin-space-8) var(--admin-space-6) var(--admin-space-6);
+
   text-align: center;
-  
-  animation: slideUp 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  animation: slideUp var(--admin-duration-normal) var(--admin-ease-in-out);
 }
 
 @keyframes slideUp {
@@ -54,31 +54,31 @@
 
 .closeButton {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  
+  top: var(--admin-space-3);
+  right: var(--admin-space-3);
+
   display: flex;
   align-items: center;
   justify-content: center;
   width: 32px;
   height: 32px;
-  
+
   background: transparent;
   border: none;
-  border-radius: 8px;
-  color: #666;
-  
+  border-radius: var(--admin-radius-lg);
+  color: var(--admin-dark-text-hint);
+
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .closeButton:hover {
-  background: #2a2a2a;
-  color: #999;
+  background: var(--admin-dark-hover);
+  color: var(--admin-dark-text-secondary);
 }
 
 .closeButton:focus-visible {
-  outline: 2px solid #C4A77D;
+  outline: 2px solid var(--admin-dark-focus-ring);
   outline-offset: 2px;
 }
 
@@ -88,33 +88,33 @@
   justify-content: center;
   width: 56px;
   height: 56px;
-  margin: 0 auto 16px;
-  
-  background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
-  border: 1px solid #333;
+  margin: 0 auto var(--admin-space-4);
+
+  background: linear-gradient(135deg, var(--admin-dark-icon-gradient-from), var(--admin-dark-icon-gradient-to));
+  border: 1px solid var(--admin-dark-border);
   border-radius: 14px;
-  
-  color: #C4A77D;
+
+  color: var(--admin-dark-accent);
 }
 
 .title {
   font-size: 1.125rem;
   font-weight: 600;
-  color: #F5F0E8;
+  color: var(--admin-dark-text-primary);
   margin: 0 0 4px;
   letter-spacing: -0.01em;
 }
 
 .subtitle {
   font-size: 0.8125rem;
-  color: #888;
-  margin: 0 0 20px;
+  color: var(--admin-dark-text-secondary);
+  margin: 0 0 var(--admin-space-5);
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--admin-space-3);
 }
 
 .inputWrapper {
@@ -123,26 +123,26 @@
 
 .input {
   width: 100%;
-  padding: 12px 16px;
-  
-  background: #0f0f0f;
-  border: 1px solid #333;
+  padding: var(--admin-space-3) var(--admin-space-4);
+
+  background: var(--admin-dark-bg-input);
+  border: 1px solid var(--admin-dark-border);
   border-radius: 10px;
-  
+
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.9375rem;
-  color: #F5F0E8;
-  
-  transition: border-color 0.15s ease;
+  color: var(--admin-dark-text-primary);
+
+  transition: border-color var(--admin-transition-hover);
 }
 
 .input:focus {
   outline: none;
-  border-color: #C4A77D;
+  border-color: var(--admin-dark-accent);
 }
 
 .input::placeholder {
-  color: #555;
+  color: var(--admin-dark-text-muted);
 }
 
 .input:disabled {
@@ -151,40 +151,40 @@
 
 .error {
   font-size: 0.8125rem;
-  color: #ef4444;
+  color: var(--admin-dark-text-error);
   margin: 0;
-  padding: 8px 12px;
-  background: rgba(239, 68, 68, 0.1);
-  border-radius: 6px;
+  padding: var(--admin-space-2) var(--admin-space-3);
+  background: var(--admin-status-error-muted);
+  border-radius: var(--admin-radius-md);
 }
 
 .submitButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: var(--admin-space-2);
   width: 100%;
-  padding: 12px 16px;
-  
-  background: #C4A77D;
-  color: #1a1a1a;
+  padding: var(--admin-space-3) var(--admin-space-4);
+
+  background: var(--admin-dark-accent);
+  color: var(--admin-dark-bg-card);
   border: none;
   border-radius: 10px;
-  
+
   font-family: inherit;
   font-size: 0.9375rem;
   font-weight: 600;
-  
+
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .submitButton:hover:not(:disabled) {
-  background: #d4b78d;
+  background: var(--admin-dark-accent-hover);
 }
 
 .submitButton:focus-visible {
-  outline: 2px solid #C4A77D;
+  outline: 2px solid var(--admin-dark-focus-ring);
   outline-offset: 2px;
 }
 
@@ -205,8 +205,8 @@
 
 .hint {
   font-size: 0.6875rem;
-  color: #555;
-  margin: 16px 0 0;
+  color: var(--admin-dark-text-muted);
+  margin: var(--admin-space-4) 0 0;
 }
 
 /* Reduced motion */

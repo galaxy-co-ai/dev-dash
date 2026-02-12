@@ -1,5 +1,5 @@
 /* =================================================
-   LOGIN PAGE
+   LOGIN PAGE — Dark theme via admin-dark-* tokens
    ================================================= */
 
 .container {
@@ -7,18 +7,18 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #0a0a0a;
+  background: var(--admin-dark-bg-page);
 }
 
 .card {
   width: 340px;
   max-width: calc(100vw - 32px);
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 16px;
-  padding: 32px 24px 24px;
+  background: var(--admin-dark-bg-card);
+  border: 1px solid var(--admin-dark-border);
+  border-radius: var(--admin-radius-xl);
+  padding: var(--admin-space-8) var(--admin-space-6) var(--admin-space-6);
   text-align: center;
-  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideUp var(--admin-duration-smooth) var(--admin-ease-in-out);
 }
 
 @keyframes slideUp {
@@ -38,52 +38,52 @@
   justify-content: center;
   width: 56px;
   height: 56px;
-  margin: 0 auto 16px;
-  background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
-  border: 1px solid #333;
+  margin: 0 auto var(--admin-space-4);
+  background: linear-gradient(135deg, var(--admin-dark-icon-gradient-from), var(--admin-dark-icon-gradient-to));
+  border: 1px solid var(--admin-dark-border);
   border-radius: 14px;
-  color: #C4A77D;
+  color: var(--admin-dark-accent);
 }
 
 .title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #F5F0E8;
+  color: var(--admin-dark-text-primary);
   margin: 0 0 4px;
   letter-spacing: -0.02em;
 }
 
 .subtitle {
   font-size: 0.8125rem;
-  color: #888;
-  margin: 0 0 20px;
+  color: var(--admin-dark-text-secondary);
+  margin: 0 0 var(--admin-space-5);
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--admin-space-3);
 }
 
 .input {
   width: 100%;
-  padding: 12px 16px;
-  background: #0f0f0f;
-  border: 1px solid #333;
+  padding: var(--admin-space-3) var(--admin-space-4);
+  background: var(--admin-dark-bg-input);
+  border: 1px solid var(--admin-dark-border);
   border-radius: 10px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.9375rem;
-  color: #F5F0E8;
-  transition: border-color 0.15s ease;
+  color: var(--admin-dark-text-primary);
+  transition: border-color var(--admin-transition-hover);
 }
 
 .input:focus {
   outline: none;
-  border-color: #C4A77D;
+  border-color: var(--admin-dark-accent);
 }
 
 .input::placeholder {
-  color: #555;
+  color: var(--admin-dark-text-muted);
 }
 
 .input:disabled {
@@ -92,37 +92,37 @@
 
 .error {
   font-size: 0.8125rem;
-  color: #ef4444;
+  color: var(--admin-dark-text-error);
   margin: 0;
-  padding: 8px 12px;
-  background: rgba(239, 68, 68, 0.1);
-  border-radius: 6px;
+  padding: var(--admin-space-2) var(--admin-space-3);
+  background: var(--admin-status-error-muted);
+  border-radius: var(--admin-radius-md);
 }
 
 .submitButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: var(--admin-space-2);
   width: 100%;
-  padding: 12px 16px;
-  background: #C4A77D;
-  color: #1a1a1a;
+  padding: var(--admin-space-3) var(--admin-space-4);
+  background: var(--admin-dark-accent);
+  color: var(--admin-dark-bg-card);
   border: none;
   border-radius: 10px;
   font-family: inherit;
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .submitButton:hover:not(:disabled) {
-  background: #d4b78d;
+  background: var(--admin-dark-accent-hover);
 }
 
 .submitButton:focus-visible {
-  outline: 2px solid #C4A77D;
+  outline: 2px solid var(--admin-dark-focus-ring);
   outline-offset: 2px;
 }
 

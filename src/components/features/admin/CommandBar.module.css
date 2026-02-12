@@ -158,7 +158,7 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--admin-overlay-inverse);
   border: none;
   border-radius: var(--admin-radius-md);
   color: var(--admin-text-inverse);
@@ -167,7 +167,7 @@
 }
 
 .chatHeaderBtn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--admin-overlay-inverse-strong);
 }
 
 .chatMessages {
@@ -461,7 +461,7 @@
 
 .resultSuggestions {
   background: var(--admin-status-warning-muted);
-  border: 1px solid #FDE68A;
+  border: 1px solid var(--admin-status-warning-border);
 }
 
 .resultSuggestions .resultList li::before {

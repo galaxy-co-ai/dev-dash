@@ -31,10 +31,10 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+  background: var(--page-accent-gradient);
   border-radius: var(--admin-radius-xl);
-  color: white;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  color: var(--admin-text-inverse);
+  box-shadow: var(--page-accent-glow);
 }
 
 .title {

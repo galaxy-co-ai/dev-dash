@@ -31,10 +31,10 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+  background: var(--page-accent-gradient);
   border-radius: var(--admin-radius-xl);
-  color: white;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  color: var(--admin-text-inverse);
+  box-shadow: var(--page-accent-glow);
 }
 
 .title {
@@ -62,7 +62,7 @@
   font-weight: var(--admin-font-medium);
   color: var(--admin-text-secondary);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .refreshButton:hover:not(:disabled) {
@@ -116,13 +116,13 @@
   background: var(--admin-bg-card);
   border: 1px solid var(--admin-border-default);
   border-radius: var(--admin-radius-xl);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  transition: all 0.15s ease;
+  box-shadow: var(--admin-shadow-sm);
+  transition: all var(--admin-transition-hover);
 }
 
 .statCard:hover {
   border-color: var(--admin-border-strong);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--admin-shadow-lg);
 }
 
 .statIcon {
@@ -191,14 +191,14 @@
   border-radius: var(--admin-radius-lg);
   background: var(--admin-bg-subtle);
   color: var(--admin-text-primary);
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .searchInput:focus {
   outline: none;
   border-color: var(--admin-border-focus);
   background: var(--admin-bg-card);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: var(--admin-shadow-focus);
 }
 
 .searchInput::placeholder {
@@ -219,7 +219,7 @@
   color: var(--admin-text-tertiary);
   font-size: 14px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .clearSearch:hover {
@@ -245,7 +245,7 @@
   font-weight: var(--admin-font-medium);
   color: var(--admin-text-secondary);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .filterPill:hover {
@@ -256,7 +256,7 @@
 .filterPillActive {
   background: var(--admin-interactive-primary);
   border-color: var(--admin-interactive-primary);
-  color: white;
+  color: var(--admin-interactive-primary-text);
 }
 
 .filterPillActive:hover {
@@ -271,7 +271,7 @@
   min-width: 18px;
   height: 18px;
   padding: 0 5px;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--admin-overlay-inverse);
   border-radius: 9px;
   font-size: 10px;
 }
@@ -304,7 +304,7 @@
   border: 1px solid var(--admin-border-default);
   border-radius: var(--admin-radius-lg);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
   margin-bottom: var(--admin-space-3);
 }
 
@@ -351,7 +351,7 @@
 
 .collapseIcon {
   color: var(--admin-text-tertiary);
-  transition: transform 0.2s ease;
+  transition: transform var(--admin-transition-move);
 }
 
 .collapseIcon.collapsed {
@@ -380,21 +380,21 @@
   background: var(--admin-bg-card);
   border: 1px solid var(--admin-border-default);
   border-radius: var(--admin-radius-xl);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  transition: all 0.15s ease;
+  box-shadow: var(--admin-surface-1-shadow);
+  transition: all var(--admin-transition-hover);
   overflow: hidden;
 }
 
 .tableCard:hover {
   border-color: var(--admin-border-strong);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--admin-shadow-xl);
   transform: translateY(-2px);
 }
 
 .tableCard:active {
   transform: translateY(0) scale(0.995);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: all 0.05s ease;
+  box-shadow: var(--admin-shadow-md);
+  transition: all var(--admin-transition-fast);
 }
 
 .tableCardLink {
@@ -466,18 +466,18 @@
 }
 
 .health_healthy {
-  background: #22C55E;
-  box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+  background: var(--admin-status-success);
+  box-shadow: var(--admin-glow-success);
 }
 
 .health_active {
-  background: #3B82F6;
-  box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
+  background: var(--admin-status-info);
+  box-shadow: var(--admin-glow-info);
 }
 
 .health_empty {
-  background: #F59E0B;
-  box-shadow: 0 0 6px rgba(245, 158, 11, 0.4);
+  background: var(--admin-status-warning);
+  box-shadow: var(--admin-glow-warning);
 }
 
 .recordCount {
@@ -492,7 +492,7 @@
 
 .viewIcon {
   color: var(--admin-text-tertiary);
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .tableCard:hover .viewIcon {
@@ -508,7 +508,7 @@
   display: flex;
   gap: 4px;
   opacity: 0;
-  transition: opacity 0.15s ease;
+  transition: opacity var(--admin-transition-hover);
 }
 
 .tableCard:hover .quickActions {
@@ -526,7 +526,7 @@
   border-radius: var(--admin-radius-md);
   color: var(--admin-text-tertiary);
   cursor: pointer;
-  transition: all 0.1s ease;
+  transition: all var(--admin-transition-fast);
 }
 
 .quickAction:hover {
@@ -570,11 +570,11 @@
   background: var(--admin-interactive-primary);
   border: none;
   border-radius: var(--admin-radius-md);
-  color: white;
+  color: var(--admin-interactive-primary-text);
   font-size: var(--admin-text-sm);
   font-weight: var(--admin-font-medium);
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background var(--admin-transition-hover);
 }
 
 .resetBtn:hover {
@@ -586,10 +586,10 @@
   align-items: center;
   gap: var(--admin-space-2);
   padding: var(--admin-space-3) var(--admin-space-4);
-  background: #FEE2E2;
-  border: 1px solid #FECACA;
+  background: var(--admin-status-error-muted);
+  border: 1px solid var(--admin-status-error-border);
   border-radius: var(--admin-radius-lg);
-  color: #B91C1C;
+  color: var(--admin-status-error-text);
   font-size: var(--admin-text-sm);
   margin-bottom: var(--admin-space-4);
 }
@@ -614,17 +614,17 @@
   align-items: flex-start;
   gap: var(--admin-space-3);
   padding: var(--admin-space-4);
-  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
-  border: 1px solid #FCD34D;
+  background: var(--admin-status-warning-gradient);
+  border: 1px solid var(--admin-status-warning-border);
   border-radius: var(--admin-radius-xl);
-  color: #92400E;
+  color: var(--admin-status-warning-text);
   font-size: var(--admin-text-sm);
   margin-top: var(--admin-space-8);
   line-height: 1.5;
 }
 
 .warningBanner strong {
-  color: #78350F;
+  color: var(--admin-status-warning-text-strong);
 }
 
 /* ========================================

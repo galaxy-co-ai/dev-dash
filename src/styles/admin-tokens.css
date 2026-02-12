@@ -1,51 +1,103 @@
 /* =================================================
    ADMIN DESIGN SYSTEM - Core Tokens
 
-   Palette: Blue / Charcoal / White
-   Philosophy: Strict, minimal, intentional
+   Palette: Warm Stone / Blue Accent
+   Philosophy: Warm, refined, not gimmicky, not flat.
+   Apple-inspired surface depth with Rauno-level precision.
 
-   NO gradients. NO decorative elements.
-   Every color earns its place.
+   Color direction:
+   - Light: subtle warmth (not polar white)
+   - Dark: warm slate (not black)
    ================================================= */
 
 :root {
   /* ========================================
-     COLOR PRIMITIVES
+     COLOR PRIMITIVES — Warm Stone Scale
      ======================================== */
 
-  /* Blue Scale - Primary brand accent */
+  --admin-gray-0:   #FEFDFB;
+  --admin-gray-50:  #FAF9F6;
+  --admin-gray-100: #F3F2EF;
+  --admin-gray-200: #E8E6E1;
+  --admin-gray-300: #D4D1CB;
+  --admin-gray-400: #A8A49C;
+  --admin-gray-500: #7A766E;
+  --admin-gray-600: #57534E;
+  --admin-gray-700: #3F3B36;
+  --admin-gray-800: #292524;
+  --admin-gray-900: #1C1917;
+
+  /* Dark Mode — Warm Slate */
+  --admin-slate-900: #1A1918;
+  --admin-slate-800: #242220;
+  --admin-slate-700: #302D2A;
+  --admin-slate-600: #3D3935;
+  --admin-slate-500: #57524C;
+  --admin-slate-400: #78736C;
+  --admin-slate-300: #A09A92;
+  --admin-slate-200: #D4D0CA;
+  --admin-slate-100: #EDEBE8;
+
+  /* Blue Scale — Primary accent */
   --admin-blue-600: #1554CC;
   --admin-blue-500: #1E6CFF;
   --admin-blue-400: #4D8CFF;
   --admin-blue-100: #E8F1FF;
-  --admin-blue-50: #F5F8FF;
+  --admin-blue-50:  #F5F8FF;
 
-  /* Charcoal Scale */
-  --admin-charcoal-900: #0F1115;
-  --admin-charcoal-800: #1E2329;
-  --admin-charcoal-700: #2A3038;
+  /* HSL primitives for shadcn bridge — warm gray */
+  --admin-hsl-gray-0:   40 50% 99.6%;
+  --admin-hsl-gray-50:  40 20% 97.3%;
+  --admin-hsl-gray-100: 36 11% 94.5%;
+  --admin-hsl-gray-200: 36 10% 89.8%;
+  --admin-hsl-gray-300: 33 6% 81%;
+  --admin-hsl-gray-400: 32 5% 63.5%;
+  --admin-hsl-gray-500: 32 4% 45.5%;
+  --admin-hsl-gray-600: 28 5% 32.5%;
+  --admin-hsl-gray-700: 27 7% 23%;
+  --admin-hsl-gray-800: 20 6% 15%;
+  --admin-hsl-gray-900: 20 8% 10%;
 
-  /* Gray Scale */
-  --admin-gray-900: #1E2329;
-  --admin-gray-700: #374151;
-  --admin-gray-600: #4A5568;
-  --admin-gray-500: #6B7A94;
-  --admin-gray-400: #9BA8BD;
-  --admin-gray-300: #D1D9E6;
-  --admin-gray-200: #E8EDF5;
-  --admin-gray-100: #F2F4F8;
-  --admin-gray-50: #F7F9FC;
-  --admin-gray-0: #FFFFFF;
+  /* HSL primitives for shadcn bridge — warm slate (dark mode) */
+  --admin-hsl-slate-900: 30 4% 10%;
+  --admin-hsl-slate-800: 30 6% 13%;
+  --admin-hsl-slate-700: 30 7% 18%;
+  --admin-hsl-slate-600: 30 7% 22%;
+  --admin-hsl-slate-500: 33 7% 32%;
+  --admin-hsl-slate-400: 35 5% 45%;
+  --admin-hsl-slate-300: 34 6% 60%;
+  --admin-hsl-slate-200: 36 10% 81%;
+  --admin-hsl-slate-100: 36 11% 92%;
+
+  /* HSL primitives — accent blue */
+  --admin-hsl-blue-500: 216 100% 56%;
+  --admin-hsl-blue-600: 216 81% 44%;
 
   /* Status Colors */
   --admin-status-success: #22C55E;
   --admin-status-success-muted: #DCFCE7;
+  --admin-status-success-text: #15803D;
   --admin-status-warning: #F59E0B;
   --admin-status-warning-muted: #FEF3C7;
+  --admin-status-warning-text: #92400E;
   --admin-status-error: #EF4444;
   --admin-status-error-muted: #FEE2E2;
+  --admin-status-error-text: #B91C1C;
   --admin-status-info: #3B82F6;
   --admin-status-info-muted: #DBEAFE;
+  --admin-status-info-text: #1E40AF;
+
+  /* Status border tones (for banner/alert borders) */
+  --admin-status-success-border: #BBF7D0;
+  --admin-status-warning-border: #FCD34D;
+  --admin-status-warning-text-strong: #78350F;
+  --admin-status-warning-gradient: linear-gradient(135deg, var(--admin-status-warning-muted) 0%, #FDE68A 100%);
+  --admin-status-error-border: #FECACA;
+
+  /* Status glow (health indicators, status dots) */
+  --admin-glow-success: 0 0 6px rgba(34, 197, 94, 0.4);
+  --admin-glow-info: 0 0 6px rgba(59, 130, 246, 0.4);
+  --admin-glow-warning: 0 0 6px rgba(245, 158, 11, 0.4);
 
   /* ========================================
      SEMANTIC TOKENS
@@ -57,7 +109,7 @@
   --admin-bg-elevated: var(--admin-gray-0);
   --admin-bg-muted: var(--admin-gray-100);
   --admin-bg-subtle: var(--admin-gray-50);
-  --admin-bg-inverse: var(--admin-charcoal-800);
+  --admin-bg-inverse: var(--admin-gray-800);
 
   /* Interactive Backgrounds */
   --admin-bg-hover: var(--admin-gray-100);
@@ -66,7 +118,7 @@
   --admin-bg-selected-strong: var(--admin-blue-100);
 
   /* Text */
-  --admin-text-primary: var(--admin-charcoal-800);
+  --admin-text-primary: var(--admin-gray-800);
   --admin-text-secondary: var(--admin-gray-500);
   --admin-text-tertiary: var(--admin-gray-400);
   --admin-text-disabled: var(--admin-gray-300);
@@ -81,23 +133,23 @@
   --admin-border-error: var(--admin-status-error);
   --admin-border-success: var(--admin-status-success);
 
-  /* Interactive - Primary */
+  /* Interactive — Primary */
   --admin-interactive-primary: var(--admin-blue-500);
   --admin-interactive-primary-hover: var(--admin-blue-600);
   --admin-interactive-primary-text: var(--admin-gray-0);
 
-  /* Interactive - Secondary */
+  /* Interactive — Secondary */
   --admin-interactive-secondary: transparent;
   --admin-interactive-secondary-hover: var(--admin-gray-100);
   --admin-interactive-secondary-border: var(--admin-gray-200);
   --admin-interactive-secondary-text: var(--admin-gray-600);
 
-  /* Interactive - Ghost */
+  /* Interactive — Ghost */
   --admin-interactive-ghost: transparent;
   --admin-interactive-ghost-hover: var(--admin-gray-100);
   --admin-interactive-ghost-text: var(--admin-gray-500);
 
-  /* Interactive - Destructive */
+  /* Interactive — Destructive */
   --admin-interactive-destructive: var(--admin-status-error);
   --admin-interactive-destructive-hover: #DC2626;
   --admin-interactive-destructive-text: var(--admin-gray-0);
@@ -107,6 +159,56 @@
   --admin-focus-ring: var(--admin-blue-500);
   --admin-focus-ring-offset: var(--admin-gray-0);
   --admin-focus-ring-alpha: rgba(30, 108, 255, 0.15);
+
+  /* ========================================
+     SURFACE / ELEVATION SYSTEM
+     5 levels of depth via shadow quality
+     ======================================== */
+
+  /* Level 0 — Base (page background) */
+  --admin-surface-0-bg: var(--admin-gray-50);
+
+  /* Level 1 — Card (content containers) */
+  --admin-surface-1-bg: var(--admin-gray-0);
+  --admin-surface-1-border: 1px solid rgba(41, 37, 36, 0.06);
+  --admin-surface-1-shadow:
+    0 1px 2px rgba(28, 25, 23, 0.03),
+    0 0 0 1px rgba(28, 25, 23, 0.02);
+
+  /* Level 2 — Raised (hover states, sidebar) */
+  --admin-surface-2-bg: var(--admin-gray-0);
+  --admin-surface-2-border: 1px solid rgba(41, 37, 36, 0.08);
+  --admin-surface-2-shadow:
+    0 2px 4px rgba(28, 25, 23, 0.04),
+    0 1px 2px rgba(28, 25, 23, 0.03),
+    0 0 0 1px rgba(28, 25, 23, 0.02);
+
+  /* Level 3 — Float (dropdowns, popovers, tooltips) */
+  --admin-surface-3-bg: rgba(254, 253, 251, 0.95);
+  --admin-surface-3-border: 1px solid rgba(41, 37, 36, 0.1);
+  --admin-surface-3-shadow:
+    0 4px 8px rgba(28, 25, 23, 0.06),
+    0 2px 4px rgba(28, 25, 23, 0.04),
+    0 0 0 1px rgba(28, 25, 23, 0.02);
+  --admin-surface-3-backdrop: blur(8px);
+
+  /* Level 4 — Modal (modals, command bar, overlays) */
+  --admin-surface-4-bg: rgba(254, 253, 251, 0.92);
+  --admin-surface-4-border: 1px solid rgba(41, 37, 36, 0.12);
+  --admin-surface-4-shadow:
+    0 16px 32px rgba(28, 25, 23, 0.1),
+    0 8px 16px rgba(28, 25, 23, 0.06),
+    0 4px 8px rgba(28, 25, 23, 0.04),
+    0 0 0 1px rgba(28, 25, 23, 0.02);
+  --admin-surface-4-backdrop: blur(16px);
+
+  /* Overlay scrim */
+  --admin-overlay-scrim: rgba(28, 25, 23, 0.6);
+  --admin-overlay-scrim-light: rgba(28, 25, 23, 0.2);
+
+  /* Inverse overlay (white-on-accent overlays) */
+  --admin-overlay-inverse: rgba(255, 255, 255, 0.2);
+  --admin-overlay-inverse-strong: rgba(255, 255, 255, 0.3);
 
   /* ========================================
      SPACING SCALE (4px base)
@@ -159,22 +261,53 @@
   --admin-radius-full: 9999px;
 
   /* ========================================
-     SHADOWS
+     SHADOWS (legacy — prefer surface tokens)
      ======================================== */
-  --admin-shadow-sm: 0 1px 2px rgba(30, 35, 41, 0.04);
-  --admin-shadow-md: 0 2px 4px rgba(30, 35, 41, 0.06),
-                     0 1px 2px rgba(30, 35, 41, 0.04);
-  --admin-shadow-lg: 0 4px 8px rgba(30, 35, 41, 0.08),
-                     0 2px 4px rgba(30, 35, 41, 0.04);
-  --admin-shadow-xl: 0 8px 16px rgba(30, 35, 41, 0.1),
-                     0 4px 8px rgba(30, 35, 41, 0.06);
-  --admin-shadow-2xl: 0 16px 32px rgba(30, 35, 41, 0.12),
-                      0 8px 16px rgba(30, 35, 41, 0.08);
+  --admin-shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.04);
+  --admin-shadow-md: 0 2px 4px rgba(28, 25, 23, 0.06),
+                     0 1px 2px rgba(28, 25, 23, 0.04);
+  --admin-shadow-lg: 0 4px 8px rgba(28, 25, 23, 0.08),
+                     0 2px 4px rgba(28, 25, 23, 0.04);
+  --admin-shadow-xl: 0 8px 16px rgba(28, 25, 23, 0.1),
+                     0 4px 8px rgba(28, 25, 23, 0.06);
+  --admin-shadow-2xl: 0 16px 32px rgba(28, 25, 23, 0.12),
+                      0 8px 16px rgba(28, 25, 23, 0.08);
   --admin-shadow-focus: 0 0 0 3px var(--admin-focus-ring-alpha);
 
   /* ========================================
-     TRANSITIONS
+     MOTION TOKENS (constitution-aligned)
      ======================================== */
+
+  /* Durations */
+  --admin-duration-instant: 100ms;
+  --admin-duration-fast: 150ms;
+  --admin-duration-normal: 200ms;
+  --admin-duration-smooth: 300ms;
+  --admin-duration-slow: 500ms;
+
+  /* Exit = 30% faster than enter */
+  --admin-duration-hover: 150ms;
+  --admin-duration-enter: 300ms;
+  --admin-duration-exit: 210ms;
+  --admin-duration-modal: 300ms;
+
+  /* Easings */
+  --admin-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --admin-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --admin-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --admin-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Scale */
+  --admin-scale-press: 0.98;
+  --admin-scale-hover: 1.01;
+
+  /* Composed transitions */
+  --admin-transition-hover: var(--admin-duration-fast) var(--admin-ease-out);
+  --admin-transition-enter: var(--admin-duration-smooth) var(--admin-ease-out);
+  --admin-transition-exit: var(--admin-duration-exit) var(--admin-ease-in);
+  --admin-transition-move: var(--admin-duration-normal) var(--admin-ease-in-out);
+
+  /* Legacy transition aliases */
   --admin-transition-fast: 100ms ease;
   --admin-transition-base: 150ms ease;
   --admin-transition-slow: 250ms ease;
@@ -190,6 +323,22 @@
   --admin-z-modal: 50;
   --admin-z-popover: 60;
   --admin-z-toast: 70;
+
+  /* ========================================
+     PAGE ACCENT SYSTEM
+     Each page sets --page-accent-h/s/l,
+     shared CSS handles gradient + glow.
+     ======================================== */
+  --page-accent-h: 25;
+  --page-accent-s: 10%;
+  --page-accent-l: 24%;
+
+  --page-accent: hsl(var(--page-accent-h) var(--page-accent-s) var(--page-accent-l));
+  --page-accent-light: hsl(var(--page-accent-h) var(--page-accent-s) calc(var(--page-accent-l) + 10%));
+  --page-accent-dark: hsl(var(--page-accent-h) var(--page-accent-s) calc(var(--page-accent-l) - 10%));
+  --page-accent-muted: hsl(var(--page-accent-h) var(--page-accent-s) 95%);
+  --page-accent-gradient: linear-gradient(135deg, var(--page-accent) 0%, var(--page-accent-dark) 100%);
+  --page-accent-glow: 0 4px 12px hsl(var(--page-accent-h) var(--page-accent-s) var(--page-accent-l) / 0.3);
 
   /* ========================================
      OPS CATEGORY ACCENTS
@@ -208,15 +357,43 @@
   --ops-accent-documents-muted: #CFFAFE;
 
   /* ========================================
-     MOTION CONSTANTS
+     CHANGELOG TYPE BADGE COLORS
      ======================================== */
-  --admin-duration-hover: 150ms;
-  --admin-duration-modal: 300ms;
-  --admin-duration-exit: 210ms;
-  --admin-ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --admin-ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --admin-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --admin-scale-press: 0.98;
+  --admin-type-milestone-bg: #EDE9FE;
+  --admin-type-milestone-text: #7C3AED;
+  --admin-type-feature-bg: #D1FAE5;
+  --admin-type-feature-text: #059669;
+  --admin-type-update-bg: #DBEAFE;
+  --admin-type-update-text: #2563EB;
+  --admin-type-fix-bg: #FEF3C7;
+  --admin-type-fix-text: #D97706;
+  --admin-type-blocker-bg: #FEE2E2;
+  --admin-type-blocker-text: #DC2626;
+  --admin-type-decision-bg: #CFFAFE;
+  --admin-type-decision-text: #0891B2;
+  --admin-type-note-bg: var(--admin-gray-100);
+  --admin-type-note-text: var(--admin-gray-500);
+
+  /* ========================================
+     DARK-SCOPED TOKENS (login, admin trigger)
+     ======================================== */
+  --admin-dark-bg-page: #0a0a0a;
+  --admin-dark-bg-card: #1a1a1a;
+  --admin-dark-bg-elevated: #2a2a2a;
+  --admin-dark-bg-input: #0f0f0f;
+  --admin-dark-border: #333;
+  --admin-dark-text-primary: #F5F0E8;
+  --admin-dark-text-secondary: #888;
+  --admin-dark-text-muted: #555;
+  --admin-dark-text-error: #ef4444;
+  --admin-dark-accent: #C4A77D;
+  --admin-dark-accent-hover: #d4b78d;
+  --admin-dark-icon-gradient-from: #2a2a2a;
+  --admin-dark-icon-gradient-to: #1f1f1f;
+  --admin-dark-overlay: rgba(0, 0, 0, 0.85);
+  --admin-dark-hover: #2a2a2a;
+  --admin-dark-text-hint: #666;
+  --admin-dark-focus-ring: var(--admin-dark-accent);
 
   /* ========================================
      FLUID TYPOGRAPHY
@@ -229,4 +406,30 @@
      ======================================== */
   --admin-trend-positive: var(--admin-status-success);
   --admin-trend-negative: var(--admin-status-error);
+
+  /* Code / Syntax */
+  --admin-syntax-highlight: #22D3EE;
+
+  /* ========================================
+     LEGACY ALIASES (from deleted admin-theme.css)
+     Kept until Phase 2-3 sweep migrates all refs.
+     ======================================== */
+  --admin-primary: var(--admin-interactive-primary);
+  --admin-white: var(--admin-gray-0);
+  --admin-blue-primary: var(--admin-blue-500);
+  --admin-blue-highlight: var(--admin-blue-400);
+  --admin-blue-shadow: var(--admin-blue-600);
+  --admin-blue-dark: #0D3D99;
+  --admin-charcoal-base: var(--admin-gray-800);
+  --admin-charcoal-highlight: var(--admin-gray-700);
+  --admin-charcoal-shadow: var(--admin-gray-900);
+  --admin-charcoal-deep: #0A0D10;
+  --admin-success: var(--admin-status-success);
+  --admin-success-bg: var(--admin-status-success-muted);
+  --admin-warning: var(--admin-status-warning);
+  --admin-warning-bg: var(--admin-status-warning-muted);
+  --admin-error: var(--admin-status-error);
+  --admin-error-bg: var(--admin-status-error-muted);
+  --admin-info: var(--admin-status-info);
+  --admin-info-bg: var(--admin-status-info-muted);
 }

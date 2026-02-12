@@ -80,7 +80,22 @@ const config: Config = {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
-  			}
+  			},
+  			/* Admin token colors — shorthand for Tailwind classes */
+  			admin: {
+  				page: 'var(--admin-bg-page)',
+  				card: 'var(--admin-bg-card)',
+  				muted: 'var(--admin-bg-muted)',
+  				subtle: 'var(--admin-bg-subtle)',
+  				hover: 'var(--admin-bg-hover)',
+  				selected: 'var(--admin-bg-selected)',
+  				interactive: 'var(--admin-interactive-primary)',
+  				'interactive-hover': 'var(--admin-interactive-primary-hover)',
+  				success: 'var(--admin-status-success)',
+  				warning: 'var(--admin-status-warning)',
+  				error: 'var(--admin-status-error)',
+  				info: 'var(--admin-status-info)',
+  			},
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -97,7 +112,14 @@ const config: Config = {
   			'4': '1rem',
   			'5': '1.25rem',
   			'6': '1.5rem'
-  		}
+  		},
+  		boxShadow: {
+  			'surface-1': 'var(--admin-surface-1-shadow)',
+  			'surface-2': 'var(--admin-surface-2-shadow)',
+  			'surface-3': 'var(--admin-surface-3-shadow)',
+  			'surface-4': 'var(--admin-surface-4-shadow)',
+  			'admin-focus': 'var(--admin-shadow-focus)',
+  		},
   	}
   },
   plugins: [require("tailwindcss-animate")],

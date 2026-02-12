@@ -1,9 +1,9 @@
 /* =================================================
-   TABLE VIEWER - Framer-inspired brand system
+   TABLE VIEWER - Token-driven design system
    ================================================= */
 
 .page {
-  padding: 24px;
+  padding: var(--admin-space-6);
   max-width: 100%;
   margin: 0 auto;
 }
@@ -12,15 +12,15 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 24px;
-  gap: 16px;
+  margin-bottom: var(--admin-space-6);
+  gap: var(--admin-space-4);
   flex-wrap: wrap;
 }
 
 .headerLeft {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: var(--admin-space-3);
 }
 
 .backButton {
@@ -29,51 +29,51 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: var(--admin-white, #FFFFFF);
-  border: 1px solid var(--admin-gray-200, #E8EDF5);
-  border-radius: 8px;
-  color: var(--admin-gray-600, #4A5568);
-  transition: all 0.15s ease;
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  color: var(--admin-text-secondary);
+  transition: all var(--admin-transition-hover);
   flex-shrink: 0;
   margin-top: 2px;
 }
 
 .backButton:hover {
-  background: var(--admin-gray-100, #F2F4F8);
-  color: var(--admin-charcoal-base, #1E2329);
+  background: var(--admin-bg-hover);
+  color: var(--admin-text-primary);
 }
 
 .title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--admin-charcoal-base, #1E2329);
+  color: var(--admin-text-primary);
   margin: 0;
 }
 
 .subtitle {
   font-size: 0.875rem;
-  color: var(--admin-gray-500, #6B7A94);
+  color: var(--admin-text-tertiary);
   margin: 4px 0 0 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--admin-space-2);
 }
 
 .readOnlyBadge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 2px 8px;
-  background: var(--admin-gray-100, #F2F4F8);
-  border: 1px solid var(--admin-gray-200, #E8EDF5);
-  border-radius: 9999px;
+  gap: var(--admin-space-1);
+  padding: 2px var(--admin-space-2);
+  background: var(--admin-bg-muted);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-full);
   font-size: 0.75rem;
-  color: var(--admin-gray-600, #4A5568);
+  color: var(--admin-text-secondary);
 }
 
 .headerActions {
   display: flex;
-  gap: 8px;
+  gap: var(--admin-space-2);
 }
 
 .refreshButton {
@@ -82,16 +82,16 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: var(--admin-white, #FFFFFF);
-  border: 1px solid var(--admin-gray-200, #E8EDF5);
-  border-radius: 8px;
-  color: var(--admin-gray-600, #4A5568);
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  color: var(--admin-text-secondary);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .refreshButton:hover:not(:disabled) {
-  background: var(--admin-gray-100, #F2F4F8);
+  background: var(--admin-bg-hover);
 }
 
 .refreshButton:disabled {
@@ -102,20 +102,20 @@
 .createButton {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: var(--admin-blue-primary, #1E6CFF);
+  gap: var(--admin-space-2);
+  padding: var(--admin-space-2) var(--admin-space-4);
+  background: var(--admin-interactive-primary);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--admin-radius-lg);
   font-size: 0.875rem;
   font-weight: 500;
-  color: white;
+  color: var(--admin-interactive-primary-text);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .createButton:hover:not(:disabled) {
-  background: var(--admin-blue-shadow, #1554CC);
+  background: var(--admin-interactive-primary-hover);
 }
 
 .createButton:disabled {
@@ -136,14 +136,14 @@
 .errorBanner {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
-  background: #FEF2F2;
-  border: 1px solid #FECACA;
-  border-radius: 8px;
-  color: #B91C1C;
+  gap: var(--admin-space-2);
+  padding: var(--admin-space-3) var(--admin-space-4);
+  background: var(--admin-status-error-muted);
+  border: 1px solid var(--admin-status-error);
+  border-radius: var(--admin-radius-lg);
+  color: var(--admin-status-error-text);
   font-size: 0.875rem;
-  margin-bottom: 16px;
+  margin-bottom: var(--admin-space-4);
 }
 
 /* Loading State */
@@ -152,103 +152,103 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 48px 16px;
-  color: var(--admin-gray-500, #6B7A94);
+  gap: var(--admin-space-3);
+  padding: var(--admin-space-12) var(--admin-space-4);
+  color: var(--admin-text-tertiary);
 }
 
 /* Create Form */
 .createForm {
-  background: var(--admin-white, #FFFFFF);
-  border: 1px solid var(--admin-gray-200, #E8EDF5);
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 1px 3px rgba(30, 35, 41, 0.04);
+  background: var(--admin-surface-1-bg);
+  border: var(--admin-surface-1-border);
+  border-radius: var(--admin-radius-xl);
+  padding: var(--admin-space-4);
+  margin-bottom: var(--admin-space-4);
+  box-shadow: var(--admin-surface-1-shadow);
 }
 
 .formTitle {
   font-size: 1.125rem;
   font-weight: 600;
-  color: var(--admin-charcoal-base, #1E2329);
-  margin: 0 0 16px 0;
+  color: var(--admin-text-primary);
+  margin: 0 0 var(--admin-space-4) 0;
 }
 
 .formGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: var(--admin-space-3);
+  margin-bottom: var(--admin-space-4);
 }
 
 .formField {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--admin-space-1);
 }
 
 .formField label {
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--admin-gray-600, #4A5568);
+  color: var(--admin-text-secondary);
 }
 
 .formField input {
-  padding: 8px 12px;
-  border: 1px solid var(--admin-gray-200, #E8EDF5);
-  border-radius: 8px;
+  padding: var(--admin-space-2) var(--admin-space-3);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
   font-size: 0.875rem;
-  background: var(--admin-white, #FFFFFF);
-  color: var(--admin-charcoal-base, #1E2329);
+  background: var(--admin-bg-card);
+  color: var(--admin-text-primary);
 }
 
 .formField input:focus {
   outline: none;
-  border-color: var(--admin-blue-primary, #1E6CFF);
-  box-shadow: 0 0 0 3px rgba(30, 108, 255, 0.15);
+  border-color: var(--admin-border-focus);
+  box-shadow: var(--admin-shadow-focus);
 }
 
 .formActions {
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
-  padding-top: 12px;
-  border-top: 1px solid var(--admin-gray-100, #F2F4F8);
+  gap: var(--admin-space-2);
+  padding-top: var(--admin-space-3);
+  border-top: 1px solid var(--admin-gray-100);
 }
 
 .cancelButton {
-  padding: 8px 16px;
-  background: var(--admin-gray-100, #F2F4F8);
-  border: 1px solid var(--admin-gray-200, #E8EDF5);
-  border-radius: 8px;
+  padding: var(--admin-space-2) var(--admin-space-4);
+  background: var(--admin-bg-muted);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--admin-gray-600, #4A5568);
+  color: var(--admin-text-secondary);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .cancelButton:hover:not(:disabled) {
-  background: var(--admin-gray-200, #E8EDF5);
+  background: var(--admin-bg-active);
 }
 
 .saveButton {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: var(--admin-blue-primary, #1E6CFF);
+  gap: var(--admin-space-2);
+  padding: var(--admin-space-2) var(--admin-space-4);
+  background: var(--admin-interactive-primary);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--admin-radius-lg);
   font-size: 0.875rem;
   font-weight: 500;
-  color: white;
+  color: var(--admin-interactive-primary-text);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .saveButton:hover:not(:disabled) {
-  background: var(--admin-blue-shadow, #1554CC);
+  background: var(--admin-interactive-primary-hover);
 }
 
 .saveButton:disabled,
@@ -259,11 +259,11 @@
 
 /* Table */
 .tableWrapper {
-  background: var(--admin-white, #FFFFFF);
-  border: 1px solid var(--admin-gray-200, #E8EDF5);
-  border-radius: 12px;
+  background: var(--admin-surface-1-bg);
+  border: var(--admin-surface-1-border);
+  border-radius: var(--admin-radius-xl);
   overflow-x: auto;
-  box-shadow: 0 1px 3px rgba(30, 35, 41, 0.04);
+  box-shadow: var(--admin-surface-1-shadow);
 }
 
 .dataTable {
@@ -274,18 +274,18 @@
 
 .dataTable th {
   text-align: left;
-  padding: 12px 16px;
-  background: var(--admin-gray-50, #F7F9FC);
+  padding: var(--admin-space-3) var(--admin-space-4);
+  background: var(--admin-bg-subtle);
   font-weight: 600;
-  color: var(--admin-gray-600, #4A5568);
-  border-bottom: 1px solid var(--admin-gray-200, #E8EDF5);
+  color: var(--admin-text-secondary);
+  border-bottom: 1px solid var(--admin-border-default);
   white-space: nowrap;
 }
 
 .dataTable td {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--admin-gray-100, #F2F4F8);
-  color: var(--admin-charcoal-base, #1E2329);
+  padding: var(--admin-space-3) var(--admin-space-4);
+  border-bottom: 1px solid var(--admin-gray-100);
+  color: var(--admin-text-primary);
   max-width: 250px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -293,7 +293,7 @@
 }
 
 .dataTable tbody tr:hover {
-  background: var(--admin-gray-50, #F7F9FC);
+  background: var(--admin-bg-subtle);
 }
 
 .dataTable tbody tr:last-child td {
@@ -301,9 +301,9 @@
 }
 
 .idCell {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--admin-font-mono);
   font-size: 0.75rem;
-  color: var(--admin-gray-500, #6B7A94);
+  color: var(--admin-text-tertiary);
   cursor: help;
 }
 
@@ -314,7 +314,7 @@
 
 .actionsCell {
   display: flex;
-  gap: 4px;
+  gap: var(--admin-space-1);
   justify-content: center;
 }
 
@@ -324,16 +324,16 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  background: var(--admin-gray-100, #F2F4F8);
-  border: 1px solid var(--admin-gray-200, #E8EDF5);
-  border-radius: 8px;
-  color: var(--admin-gray-600, #4A5568);
+  background: var(--admin-bg-muted);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  color: var(--admin-text-secondary);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .iconButton:hover:not(:disabled) {
-  background: var(--admin-gray-200, #E8EDF5);
+  background: var(--admin-bg-active);
 }
 
 .iconButton:disabled {
@@ -342,31 +342,31 @@
 }
 
 .deleteButton:hover:not(:disabled) {
-  background: #FEF2F2;
-  border-color: #FECACA;
-  color: #EF4444;
+  background: var(--admin-interactive-destructive-muted);
+  border-color: var(--admin-status-error);
+  color: var(--admin-status-error);
 }
 
 .editInput {
   width: 100%;
-  padding: 4px 8px;
-  border: 1px solid var(--admin-blue-primary, #1E6CFF);
-  border-radius: 4px;
+  padding: var(--admin-space-1) var(--admin-space-2);
+  border: 1px solid var(--admin-border-focus);
+  border-radius: var(--admin-radius-sm);
   font-size: 0.875rem;
-  background: rgba(30, 108, 255, 0.04);
-  color: var(--admin-charcoal-base, #1E2329);
+  background: var(--admin-bg-selected);
+  color: var(--admin-text-primary);
 }
 
 .editInput:focus {
   outline: none;
-  border-color: var(--admin-blue-primary, #1E6CFF);
-  box-shadow: 0 0 0 3px rgba(30, 108, 255, 0.15);
+  border-color: var(--admin-border-focus);
+  box-shadow: var(--admin-shadow-focus);
 }
 
 .emptyRow {
   text-align: center;
-  padding: 32px !important;
-  color: var(--admin-gray-500, #6B7A94);
+  padding: var(--admin-space-8) !important;
+  color: var(--admin-text-tertiary);
 }
 
 /* Pagination */
@@ -374,8 +374,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  margin-top: 16px;
+  gap: var(--admin-space-4);
+  margin-top: var(--admin-space-4);
 }
 
 .paginationButton {
@@ -384,16 +384,16 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: var(--admin-white, #FFFFFF);
-  border: 1px solid var(--admin-gray-200, #E8EDF5);
-  border-radius: 8px;
-  color: var(--admin-gray-600, #4A5568);
+  background: var(--admin-bg-card);
+  border: 1px solid var(--admin-border-default);
+  border-radius: var(--admin-radius-lg);
+  color: var(--admin-text-secondary);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all var(--admin-transition-hover);
 }
 
 .paginationButton:hover:not(:disabled) {
-  background: var(--admin-gray-100, #F2F4F8);
+  background: var(--admin-bg-hover);
 }
 
 .paginationButton:disabled {
@@ -403,13 +403,13 @@
 
 .paginationInfo {
   font-size: 0.875rem;
-  color: var(--admin-gray-500, #6B7A94);
+  color: var(--admin-text-tertiary);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .page {
-    padding: 16px;
+    padding: var(--admin-space-4);
   }
 
   .header {
