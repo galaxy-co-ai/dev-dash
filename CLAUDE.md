@@ -28,9 +28,11 @@ pnpm db:studio    # Drizzle Studio
 
 | File | Purpose |
 |------|---------|
-| `admin.config.ts` | Single config — branding, AI, phases, blockers, DB tables |
-| `src/db/schema/` | Drizzle schema files (5 admin tables) |
-| `src/app/admin/` | All admin pages |
+| `admin.config.ts` | Single config — branding, AI, DB tables, cursor prompts |
+| `src/db/schema/` | Drizzle schema files (6 tables including `projects`) |
+| `src/app/admin/page.tsx` | Projects list (entry point) |
+| `src/app/admin/[slug]/` | Project-scoped pages (dashboard, tasks, notes, etc.) |
+| `src/app/admin/[slug]/ProjectContext.tsx` | React context — provides `{ project, basePath }` |
 | `src/app/api/admin/` | API routes (auth, CRUD, AI endpoints) |
 | `src/components/features/admin/` | Admin-specific components |
 | `src/components/ui/` | shadcn/ui primitives |
@@ -46,9 +48,12 @@ pnpm db:studio    # Drizzle Studio
 
 ## Architecture
 
-- **Config-driven:** `admin.config.ts` is the single source of project-specific content. All pages read from it.
-- **Auth:** Cookie-based (`admin_session`). Layout checks cookie on every request.
+- **Multi-project:** `/admin` shows a projects list. Each project lives at `/admin/[slug]/` with isolated data. SOW phases and blockers are per-project JSONB, not shared config.
+- **Project context:** `[slug]/layout.tsx` fetches the project by slug (server-side), then wraps children in `ProjectContext`. All page components read `project.id` from context and pass it as `projectId` to API calls.
+- **Config-driven:** `admin.config.ts` holds branding, AI config, DB table registry, and cursor prompts. Per-project data (phases, blockers) lives in the DB.
+- **Auth:** Cookie-based (`admin_session`). Root layout checks cookie on every request.
 - **DB init:** Lazy via Proxy pattern — no connection until first query.
+- **API scoping:** All CRUD and stats endpoints accept optional `projectId` query param (GET) or body field (POST). Nullable FK for backward compat.
 - **Path alias:** `@/admin.config` maps to root `admin.config.ts`.
 
 ## Styling Architecture
