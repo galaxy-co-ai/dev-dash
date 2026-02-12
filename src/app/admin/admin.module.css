@@ -74,7 +74,7 @@
 
 .navItem.active {
   background: var(--admin-bg-selected);
-  color: var(--admin-interactive-primary);
+  color: var(--admin-text-primary);
 }
 
 .navItem.active::before {
@@ -85,7 +85,7 @@
   transform: translateY(-50%);
   width: 3px;
   height: 1.25rem;
-  background: var(--admin-interactive-primary);
+  background: var(--admin-gray-800);
   border-radius: 0 2px 2px 0;
 }
 
@@ -100,7 +100,7 @@
 }
 
 .navItem.active .navIcon {
-  color: var(--admin-interactive-primary);
+  color: var(--admin-text-primary);
 }
 
 /* Section Divider */
