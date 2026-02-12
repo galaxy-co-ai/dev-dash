@@ -1,7 +1,7 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { db, desc, eq } from '@/db';
+import { db, desc, eq, and } from '@/db';
 import { devTasks, type NewDevTask } from '@/db/schema';
 import { logTaskCreated } from '@/lib/changelog';
 
@@ -29,11 +29,18 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
     const priority = searchParams.get('priority');
     const category = searchParams.get('category');
+    const projectId = searchParams.get('projectId');
+
+    const conditions = [];
+    if (projectId) conditions.push(eq(devTasks.projectId, projectId));
+    if (status && ['backlog', 'todo', 'in_progress', 'review', 'done'].includes(status)) {
+      conditions.push(eq(devTasks.status, status as typeof devTasks.status.enumValues[number]));
+    }
 
     let query = db.select().from(devTasks);
-
-    if (status && ['backlog', 'todo', 'in_progress', 'review', 'done'].includes(status)) {
-      query = query.where(eq(devTasks.status, status as typeof devTasks.status.enumValues[number])) as typeof query;
+    if (conditions.length > 0) {
+      const where = conditions.length === 1 ? conditions[0] : and(...conditions);
+      query = query.where(where) as typeof query;
     }
 
     const results = await query.orderBy(desc(devTasks.createdAt));
@@ -76,6 +83,7 @@ export async function POST(request: NextRequest) {
       category: z.enum(['feature', 'bug', 'refactor', 'design', 'docs', 'test', 'chore']).optional(),
       feedbackId: z.string().uuid().optional(),
       dueDate: z.string().datetime().optional(),
+      projectId: z.string().uuid().optional(),
     });
 
     const validated = schema.parse(body);
@@ -88,12 +96,13 @@ export async function POST(request: NextRequest) {
       category: validated.category || 'feature',
       feedbackId: validated.feedbackId || null,
       dueDate: validated.dueDate ? new Date(validated.dueDate) : null,
+      projectId: validated.projectId || null,
     };
 
     const [created] = await db.insert(devTasks).values(newTask).returning();
 
     // Log to changelog (async, non-blocking)
-    logTaskCreated(created.title).catch((err) => {
+    logTaskCreated(created.title, validated.projectId).catch((err) => {
       console.error('Failed to log task creation to changelog', err);
     });
 

@@ -13,6 +13,7 @@ import {
   FileText,
   StickyNote,
 } from 'lucide-react';
+import { useProject } from '../ProjectContext';
 import styles from './page.module.css';
 
 interface Note {
@@ -44,6 +45,7 @@ function formatDate(dateString: string): string {
 }
 
 export default function NotesPage() {
+  const { project } = useProject();
   const [notes, setNotes] = useState<Note[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -64,8 +66,9 @@ export default function NotesPage() {
     
     try {
       const params = new URLSearchParams();
+      if (project.id) params.set('projectId', project.id);
       if (categoryFilter) params.set('category', categoryFilter);
-      
+
       const response = await fetch(`/api/admin/notes?${params}`);
       if (!response.ok) throw new Error('Failed to fetch');
       
@@ -76,7 +79,7 @@ export default function NotesPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [categoryFilter]);
+  }, [categoryFilter, project.id]);
 
   useEffect(() => {
     fetchNotes();
@@ -92,7 +95,7 @@ export default function NotesPage() {
       const response = await fetch('/api/admin/notes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newNote),
+        body: JSON.stringify({ ...newNote, projectId: project.id }),
       });
       
       if (response.ok) {

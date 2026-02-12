@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { 
-  CheckCircle2, 
-  Circle, 
-  Clock, 
+import {
+  CheckCircle2,
+  Circle,
+  Clock,
   AlertTriangle,
   FileText,
   RefreshCw,
@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { SegmentedProgress } from '@/components/ui/segmented-progress';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogBody } from '@/components/ui/dialog';
+import { useProject } from '../ProjectContext';
 import styles from './page.module.css';
 
 type TaskStatus = 'backlog' | 'todo' | 'in_progress' | 'review' | 'done';
@@ -61,22 +62,18 @@ function taskStatusToSOWStatus(status: TaskStatus): SOWStatus {
 
 function getPhaseStatus(tasks: Task[]): SOWStatus {
   if (tasks.length === 0) return 'pending';
-  
+
   const allComplete = tasks.every(t => t.status === 'done' || t.status === 'review');
   if (allComplete) return 'complete';
-  
+
   const anyInProgress = tasks.some(t => t.status === 'in_progress');
   if (anyInProgress) return 'in_progress';
-  
+
   const anyBlocked = tasks.some(t => t.status === 'backlog' && t.priority === 'high');
   if (anyBlocked) return 'blocked';
-  
+
   return 'pending';
 }
-
-// Blockers loaded from config — customize in admin.config.ts
-import config from '@/admin.config';
-const BLOCKERS: Blocker[] = config.blockers;
 
 function getStatusIcon(status: SOWStatus) {
   switch (status) {
@@ -105,12 +102,15 @@ function getStatusLabel(status: SOWStatus) {
 }
 
 export default function SOWPage() {
+  const { project } = useProject();
+  const BLOCKERS: Blocker[] = (project.blockers as Blocker[]) || [];
+
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showSowDialog, setShowSowDialog] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const shareUrl = typeof window !== 'undefined' 
+  const shareUrl = typeof window !== 'undefined'
     ? `${window.location.origin}/sow/progress`
     : '/sow/progress';
 
@@ -139,7 +139,9 @@ export default function SOWPage() {
   const fetchTasks = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/admin/tasks');
+      const params = new URLSearchParams();
+      if (project.id) params.set('projectId', project.id);
+      const response = await fetch(`/api/admin/tasks?${params}`);
       if (!response.ok) throw new Error('Failed to fetch');
       const data = await response.json();
       setTasks(data.tasks || []);
@@ -148,7 +150,7 @@ export default function SOWPage() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [project.id]);
 
   useEffect(() => {
     fetchTasks();
@@ -160,10 +162,10 @@ export default function SOWPage() {
   // Group tasks by phase
   const phases = useMemo(() => {
     const phaseMap = new Map<string, Phase>();
-    
+
     // Only include tasks that have phase information
     const sowTasks = tasks.filter(t => t.phaseId && t.phaseName);
-    
+
     sowTasks.forEach(task => {
       const phaseId = task.phaseId!;
       if (!phaseMap.has(phaseId)) {
@@ -177,7 +179,7 @@ export default function SOWPage() {
     });
 
     // Sort phases by ID and return as array
-    return Array.from(phaseMap.values()).sort((a, b) => 
+    return Array.from(phaseMap.values()).sort((a, b) =>
       parseInt(a.id) - parseInt(b.id)
     );
   }, [tasks]);
@@ -253,7 +255,7 @@ export default function SOWPage() {
           <DialogHeader className="border-b pb-4">
             <div className="flex items-start justify-between w-full">
               <div>
-                <DialogTitle className="text-xl">{config.project.name} — Scope of Work</DialogTitle>
+                <DialogTitle className="text-xl">{project.name} — Scope of Work</DialogTitle>
                 <p className="text-sm text-muted-foreground mt-1">Scope of Work - MVP B</p>
               </div>
               <div className={styles.shareButtons}>
@@ -285,7 +287,7 @@ export default function SOWPage() {
                   const phaseTotal = phase.tasks.length;
                   const phaseProgress = phaseTotal > 0 ? Math.round((phaseComplete / phaseTotal) * 100) : 0;
                   const phaseStatus = getPhaseStatus(phase.tasks);
-                  
+
                   return (
                     <div key={phase.id} className="border rounded-lg overflow-hidden">
                       {/* Phase Header */}
@@ -296,7 +298,7 @@ export default function SOWPage() {
                         </div>
                         <div className="flex items-center gap-3">
                           <div className="w-24 h-2 bg-muted rounded-full overflow-hidden">
-                            <div 
+                            <div
                               className="h-full bg-primary rounded-full transition-all"
                               style={{ width: `${phaseProgress}%` }}
                             />
@@ -314,13 +316,13 @@ export default function SOWPage() {
                           </span>
                         </div>
                       </div>
-                      
+
                       {/* Tasks as Deliverables */}
                       <div className="divide-y">
                         {phase.tasks.map((task) => {
                           const sowStatus = taskStatusToSOWStatus(task.status);
                           return (
-                            <div 
+                            <div
                               key={task.id}
                               className="px-4 py-2.5 flex items-center gap-3 hover:bg-muted/30 transition-colors"
                             >
@@ -394,11 +396,11 @@ export default function SOWPage() {
       <div className={styles.phasesGrid}>
         {phases.map((phase) => {
           const phaseComplete = phase.tasks.filter(t => t.status === 'done' || t.status === 'review').length;
-          const phaseProgress = phase.tasks.length > 0 
-            ? Math.round((phaseComplete / phase.tasks.length) * 100) 
+          const phaseProgress = phase.tasks.length > 0
+            ? Math.round((phaseComplete / phase.tasks.length) * 100)
             : 0;
           const phaseStatus = getPhaseStatus(phase.tasks);
-          
+
           return (
             <div key={phase.id} className={`${styles.phaseCard} ${styles[`phase_${phaseStatus}`]}`}>
               <div className={styles.phaseHeader}>
@@ -408,13 +410,13 @@ export default function SOWPage() {
                   {getStatusLabel(phaseStatus)}
                 </span>
               </div>
-              
+
               <h3 className={styles.phaseName}>{phase.name}</h3>
-              
+
               <div className={styles.phaseProgress}>
                 <div className={styles.phaseProgressBar}>
-                  <div 
-                    className={styles.phaseProgressFill} 
+                  <div
+                    className={styles.phaseProgressFill}
                     style={{ width: `${phaseProgress}%` }}
                   />
                 </div>
@@ -422,13 +424,13 @@ export default function SOWPage() {
                   {phaseComplete}/{phase.tasks.length}
                 </span>
               </div>
-              
+
               <ul className={styles.deliverablesList}>
                 {phase.tasks.map((task) => {
                   const sowStatus = taskStatusToSOWStatus(task.status);
                   return (
-                    <li 
-                      key={task.id} 
+                    <li
+                      key={task.id}
                       className={`${styles.deliverable} ${styles[`deliverable_${sowStatus}`]}`}
                     >
                       <span className={styles.deliverableIcon}>

@@ -8,3 +8,4 @@ export * from './dev-tasks';
 export * from './dev-notes';
 export * from './changelog';
 export * from './ai-memories';
+export * from './projects';

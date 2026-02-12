@@ -1,7 +1,7 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { db, desc } from '@/db';
+import { db, desc, eq } from '@/db';
 import { devNotes, type NewDevNote } from '@/db/schema';
 
 /**
@@ -27,11 +27,13 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category');
     const pinnedOnly = searchParams.get('pinned') === 'true';
+    const projectId = searchParams.get('projectId');
 
-    let results = await db
-      .select()
-      .from(devNotes)
-      .orderBy(desc(devNotes.isPinned), desc(devNotes.createdAt));
+    let query = db.select().from(devNotes);
+    if (projectId) {
+      query = query.where(eq(devNotes.projectId, projectId)) as typeof query;
+    }
+    let results = await query.orderBy(desc(devNotes.isPinned), desc(devNotes.createdAt));
 
     // Filter in JS for simplicity
     if (category && ['architecture', 'decision', 'idea', 'reference', 'todo', 'meeting', 'general'].includes(category)) {
@@ -67,6 +69,7 @@ export async function POST(request: NextRequest) {
       content: z.string().min(1),
       category: z.enum(['architecture', 'decision', 'idea', 'reference', 'todo', 'meeting', 'general']).optional(),
       isPinned: z.boolean().optional(),
+      projectId: z.string().uuid().optional(),
     });
 
     const validated = schema.parse(body);
@@ -76,6 +79,7 @@ export async function POST(request: NextRequest) {
       content: validated.content,
       category: validated.category || 'general',
       isPinned: validated.isPinned || false,
+      projectId: validated.projectId || null,
     };
 
     const [created] = await db.insert(devNotes).values(newNote).returning();

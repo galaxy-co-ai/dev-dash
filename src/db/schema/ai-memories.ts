@@ -16,12 +16,15 @@ export const aiMemories = pgTable('ai_memories', {
   category: memoryCategory('category').notNull().default('insight'),
   source: text('source').default('chat'),
   importance: text('importance').default('normal'),
+  // Project scoping — nullable for backward compat
+  projectId: uuid('project_id'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   expiresAt: timestamp('expires_at'),
 }, (table) => ({
   categoryIdx: index('ai_memories_category_idx').on(table.category),
   importanceIdx: index('ai_memories_importance_idx').on(table.importance),
   createdAtIdx: index('ai_memories_created_at_idx').on(table.createdAt),
+  projectIdx: index('ai_memories_project_idx').on(table.projectId),
 }));
 
 export type AIMemory = typeof aiMemories.$inferSelect;

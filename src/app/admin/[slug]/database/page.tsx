@@ -20,6 +20,7 @@ import {
   Package,
   type LucideIcon,
 } from 'lucide-react';
+import { useProject } from '../ProjectContext';
 import styles from './page.module.css';
 
 interface TableInfo {
@@ -86,6 +87,7 @@ function getHealthStatus(count: number): 'healthy' | 'empty' | 'active' {
 }
 
 export default function DatabasePage() {
+  const { basePath } = useProject();
   const [tables, setTables] = useState<TableInfo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -125,7 +127,7 @@ export default function DatabasePage() {
   // Filter and search tables
   const filteredTables = useMemo(() => {
     return tables.filter(table => {
-      const matchesSearch = searchQuery === '' || 
+      const matchesSearch = searchQuery === '' ||
         table.displayName.toLowerCase().includes(searchQuery.toLowerCase()) ||
         table.description.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesFilter = activeFilter === 'all' || table.category === activeFilter;
@@ -184,7 +186,7 @@ export default function DatabasePage() {
   }, []);
 
   return (
-    <motion.div 
+    <motion.div
       className={styles.page}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -201,8 +203,8 @@ export default function DatabasePage() {
             <p className={styles.subtitle}>Manage application data</p>
           </div>
         </div>
-        <button 
-          onClick={fetchTableCounts} 
+        <button
+          onClick={fetchTableCounts}
           disabled={loading}
           className={styles.refreshButton}
         >
@@ -213,7 +215,7 @@ export default function DatabasePage() {
 
       {/* Stats Row */}
       <div className={styles.statsRow}>
-        <motion.div 
+        <motion.div
           className={styles.statCard}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -227,8 +229,8 @@ export default function DatabasePage() {
             <span className={styles.statLabel}>Tables</span>
           </div>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className={styles.statCard}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -242,8 +244,8 @@ export default function DatabasePage() {
             <span className={styles.statLabel}>Total Records</span>
           </div>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className={styles.statCard}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -257,8 +259,8 @@ export default function DatabasePage() {
             <span className={styles.statLabel}>Active Tables</span>
           </div>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className={styles.statCard}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -275,7 +277,7 @@ export default function DatabasePage() {
       </div>
 
       {/* Search & Filter Bar */}
-      <motion.div 
+      <motion.div
         className={styles.searchBar}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -292,7 +294,7 @@ export default function DatabasePage() {
             className={styles.searchInput}
           />
           {searchQuery && (
-            <button 
+            <button
               onClick={() => setSearchQuery('')}
               className={styles.clearSearch}
             >
@@ -307,17 +309,17 @@ export default function DatabasePage() {
           >
             All
           </button>
-          {(Object.entries(CATEGORY_CONFIG) as [CategoryKey, typeof CATEGORY_CONFIG.core][]).map(([key, config]) => {
+          {(Object.entries(CATEGORY_CONFIG) as [CategoryKey, typeof CATEGORY_CONFIG.core][]).map(([key, catConfig]) => {
             const count = groupedTables[key]?.length || 0;
             return (
               <button
                 key={key}
                 onClick={() => setActiveFilter(key)}
                 className={`${styles.filterPill} ${activeFilter === key ? styles.filterPillActive : ''}`}
-                style={activeFilter === key ? { background: config.color, borderColor: config.color } : {}}
+                style={activeFilter === key ? { background: catConfig.color, borderColor: catConfig.color } : {}}
               >
-                <config.icon size={12} />
-                {config.label}
+                <catConfig.icon size={12} />
+                {catConfig.label}
                 <span className={styles.filterCount}>{count}</span>
               </button>
             );
@@ -352,34 +354,34 @@ export default function DatabasePage() {
             const categoryTables = groupedTables[category] || [];
             if (categoryTables.length === 0) return null;
 
-            const config = CATEGORY_CONFIG[category];
+            const catConfig = CATEGORY_CONFIG[category];
             const isCollapsed = collapsedCategories.has(category);
-            const CategoryIcon = config.icon;
+            const CategoryIcon = catConfig.icon;
 
             return (
-              <motion.div 
+              <motion.div
                 key={category}
                 className={styles.categorySection}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + categoryIndex * 0.05 }}
               >
-                <button 
+                <button
                   className={styles.categoryHeader}
                   onClick={() => toggleCategory(category)}
                 >
                   <div className={styles.categoryLeft}>
-                    <div 
+                    <div
                       className={styles.categoryIcon}
-                      style={{ background: `${config.color}15`, color: config.color }}
+                      style={{ background: `${catConfig.color}15`, color: catConfig.color }}
                     >
                       <CategoryIcon size={16} />
                     </div>
-                    <h2 className={styles.categoryTitle}>{config.label}</h2>
+                    <h2 className={styles.categoryTitle}>{catConfig.label}</h2>
                     <span className={styles.categoryCount}>{categoryTables.length}</span>
                   </div>
-                  <ChevronDown 
-                    size={18} 
+                  <ChevronDown
+                    size={18}
                     className={`${styles.collapseIcon} ${isCollapsed ? styles.collapsed : ''}`}
                   />
                 </button>
@@ -405,11 +407,11 @@ export default function DatabasePage() {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: tableIndex * 0.03 }}
                           >
-                            <Link href={`/admin/database/${table.name}`} className={styles.tableCardLink}>
+                            <Link href={`${basePath}/database/${table.name}`} className={styles.tableCardLink}>
                               <div className={styles.tableCardHeader}>
-                                <div 
+                                <div
                                   className={styles.tableIconWrapper}
-                                  style={{ background: `${config.color}10`, color: config.color }}
+                                  style={{ background: `${catConfig.color}10`, color: catConfig.color }}
                                 >
                                   <TableIcon size={18} />
                                 </div>
@@ -459,7 +461,7 @@ export default function DatabasePage() {
       )}
 
       {/* Warning Banner */}
-      <motion.div 
+      <motion.div
         className={styles.warningBanner}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -467,7 +469,7 @@ export default function DatabasePage() {
       >
         <AlertCircle size={18} />
         <div>
-          <strong>Caution:</strong> Editing data here directly affects the live application. 
+          <strong>Caution:</strong> Editing data here directly affects the live application.
           Changes are immediate and cannot be undone.
         </div>
       </motion.div>

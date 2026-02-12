@@ -5,7 +5,7 @@
  * (branding, phases, blockers, AI prompts, database tables) is centralized here.
  */
 
-import { devTasks, devNotes, feedback, changelogEntries, aiMemories } from './src/db/schema';
+import { devTasks, devNotes, feedback, changelogEntries, aiMemories, projects } from './src/db/schema';
 import type { PgTable } from 'drizzle-orm/pg-core';
 
 // ============================================
@@ -39,68 +39,6 @@ Be concise but helpful. When discussing tasks or project status, reference speci
 };
 
 // ============================================
-// SOW Phases (Dashboard page)
-// ============================================
-export interface Deliverable {
-  name: string;
-  status: 'complete' | 'in_progress' | 'pending' | 'blocked';
-  note?: string;
-}
-
-export interface Phase {
-  id: number;
-  name: string;
-  status: 'complete' | 'in_progress' | 'pending' | 'blocked';
-  deliverables: Deliverable[];
-}
-
-export const phases: Phase[] = [
-  {
-    id: 1,
-    name: 'Discovery & Setup',
-    status: 'complete',
-    deliverables: [
-      { name: 'Kickoff meeting', status: 'complete' },
-      { name: 'Tech stack decisions', status: 'complete' },
-      { name: 'Repository setup', status: 'complete' },
-    ],
-  },
-  {
-    id: 2,
-    name: 'Core Build',
-    status: 'in_progress',
-    deliverables: [
-      { name: 'Database schema', status: 'complete' },
-      { name: 'Authentication', status: 'in_progress' },
-      { name: 'Main feature', status: 'pending' },
-    ],
-  },
-  {
-    id: 3,
-    name: 'Launch',
-    status: 'pending',
-    deliverables: [
-      { name: 'Testing & QA', status: 'pending' },
-      { name: 'Deployment', status: 'pending' },
-      { name: 'Documentation', status: 'pending' },
-    ],
-  },
-];
-
-// ============================================
-// Blockers (SOW page)
-// ============================================
-export interface Blocker {
-  item: string;
-  owner: string;
-  impact: string;
-}
-
-export const blockers: Blocker[] = [
-  { item: 'Example blocker', owner: 'Team', impact: 'Feature X delayed' },
-];
-
-// ============================================
 // Database Tables (Database Explorer)
 // ============================================
 export const database = {
@@ -111,6 +49,7 @@ export const database = {
     feedback: feedback,
     changelog_entries: changelogEntries,
     ai_memories: aiMemories,
+    projects: projects,
   } as Record<string, PgTable>,
 
   /** Tables that allow create/update/delete operations */
@@ -201,8 +140,6 @@ Format as an executive summary suitable for stakeholder review, including:
 const config = {
   project,
   ai,
-  phases,
-  blockers,
   database,
   cursorPrompts,
 };

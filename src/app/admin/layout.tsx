@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { Toaster } from 'sonner';
-import { AdminSidebar } from './AdminSidebar';
 import config from '@/admin.config';
 
 export const metadata: Metadata = {
@@ -41,17 +40,9 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="flex h-screen" style={{ background: 'var(--admin-bg-page)' }}>
-      <AdminSidebar />
-
-      {/* Main Content */}
-      <main className="flex-1 overflow-y-auto">
-        <div className="p-6 max-w-[1400px]">
-          {children}
-        </div>
-      </main>
-
+    <>
+      {children}
       <Toaster position="bottom-right" richColors />
-    </div>
+    </>
   );
 }

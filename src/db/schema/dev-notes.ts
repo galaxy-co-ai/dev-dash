@@ -25,6 +25,8 @@ export const devNotes = pgTable(
     content: text('content').notNull(),
     // Classification
     category: noteCategoryEnum('category').default('general').notNull(),
+    // Project scoping — nullable for backward compat
+    projectId: uuid('project_id'),
     // Display
     isPinned: boolean('is_pinned').default(false).notNull(),
     // Timestamps
@@ -35,6 +37,7 @@ export const devNotes = pgTable(
     index('dev_notes_category_idx').on(table.category),
     index('dev_notes_pinned_idx').on(table.isPinned),
     index('dev_notes_created_idx').on(table.createdAt),
+    index('dev_notes_project_idx').on(table.projectId),
   ]
 );
 

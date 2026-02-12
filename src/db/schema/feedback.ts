@@ -86,6 +86,8 @@ export const feedback = pgTable(
     userAgent: text('user_agent'),
     userContext: jsonb('user_context').$type<FeedbackUserContext>(),
     feedbackTimestamp: timestamp('feedback_timestamp', { withTimezone: true }).notNull(),
+    // Project scoping — nullable for backward compat
+    projectId: uuid('project_id'),
     // Admin management
     status: feedbackStatusEnum('status').default('new').notNull(),
     adminNotes: text('admin_notes'),
@@ -102,6 +104,7 @@ export const feedback = pgTable(
     index('feedback_priority_idx').on(table.priority),
     index('feedback_created_idx').on(table.createdAt),
     index('feedback_session_idx').on(table.sessionId),
+    index('feedback_project_idx').on(table.projectId),
   ]
 );
 

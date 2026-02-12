@@ -65,6 +65,8 @@ export const devTasks = pgTable(
     category: taskCategoryEnum('category').default('feature').notNull(),
     // Linking - plain UUID, no foreign key constraint for template portability
     feedbackId: uuid('feedback_id'),
+    // Project scoping — nullable for backward compat
+    projectId: uuid('project_id'),
     // Scheduling
     dueDate: timestamp('due_date', { withTimezone: true }),
     completedAt: timestamp('completed_at', { withTimezone: true }),
@@ -78,6 +80,7 @@ export const devTasks = pgTable(
     index('dev_tasks_category_idx').on(table.category),
     index('dev_tasks_feedback_idx').on(table.feedbackId),
     index('dev_tasks_created_idx').on(table.createdAt),
+    index('dev_tasks_project_idx').on(table.projectId),
   ]
 );
 

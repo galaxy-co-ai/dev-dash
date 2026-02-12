@@ -51,6 +51,7 @@ export async function POST(request: NextRequest) {
       page: z.string().min(1),
       userAgent: z.string().optional(),
       timestamp: z.string().datetime(),
+      projectId: z.string().uuid().optional(),
       // New context fields
       targetElement: z.string().optional(),
       targetElementInfo: targetElementInfoSchema,
@@ -83,6 +84,7 @@ export async function POST(request: NextRequest) {
       priority,
       notes: validated.notes || null,
       page: validated.page,
+      projectId: validated.projectId || null,
       targetElement: validated.targetElement || null,
       targetElementInfo: validated.targetElementInfo || null,
       sessionId: validated.sessionId || null,
@@ -129,11 +131,15 @@ export async function GET(request: NextRequest) {
     const reason = searchParams.get('reason');
     const priority = searchParams.get('priority');
     const search = searchParams.get('search');
+    const projectId = searchParams.get('projectId');
     const limit = Math.min(parseInt(searchParams.get('limit') || '50', 10), 100);
     const offset = parseInt(searchParams.get('offset') || '0', 10);
 
     // Build filter conditions
     const conditions = [];
+    if (projectId) {
+      conditions.push(eq(feedback.projectId, projectId));
+    }
     
     if (status && ['new', 'reviewed', 'in_progress', 'resolved', 'wont_fix'].includes(status)) {
       conditions.push(eq(feedback.status, status as typeof feedback.status.enumValues[number]));

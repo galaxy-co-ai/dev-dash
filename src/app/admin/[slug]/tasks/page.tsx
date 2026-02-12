@@ -41,6 +41,7 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import { staggerContainer, fadeInUp } from '@/lib/animation-variants';
 import { CommandBar } from '@/components/features/admin/CommandBar';
+import { useProject } from '../ProjectContext';
 import styles from './page.module.css';
 
 // ============================================
@@ -711,6 +712,7 @@ function Column({ column, tasks, expandedTaskId, onToggleExpand, onDeleteTask }:
 // Main Tasks Page Component
 // ============================================
 export default function TasksPage() {
+  const { project } = useProject();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -747,11 +749,13 @@ export default function TasksPage() {
   const fetchTasks = useCallback(async () => {
     setIsLoading(true);
     setError(null);
-    
+
     try {
-      const response = await fetch('/api/admin/tasks');
+      const params = new URLSearchParams();
+      if (project.id) params.set('projectId', project.id);
+      const response = await fetch(`/api/admin/tasks?${params}`);
       if (!response.ok) throw new Error('Failed to fetch');
-      
+
       const data = await response.json();
       // Ensure checklist is always an array
       const tasksWithChecklist = (data.tasks || []).map((t: Task) => ({
@@ -764,7 +768,7 @@ export default function TasksPage() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [project.id]);
 
   useEffect(() => {
     fetchTasks();
@@ -780,7 +784,7 @@ export default function TasksPage() {
       const response = await fetch('/api/admin/tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newTask),
+        body: JSON.stringify({ ...newTask, projectId: project.id }),
       });
       
       if (response.ok) {

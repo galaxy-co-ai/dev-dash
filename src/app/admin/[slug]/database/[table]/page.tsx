@@ -18,6 +18,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DataTable } from '@/components/features/admin/DataTable';
+import { useProject } from '../../ProjectContext';
 
 interface TableData {
   table: string;
@@ -46,6 +47,7 @@ const READ_ONLY_COLUMNS = ['id', 'createdAt', 'updatedAt'];
 export default function TableViewerPage() {
   const params = useParams();
   const tableName = params.table as string;
+  const { basePath } = useProject();
   const [data, setData] = useState<TableData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -120,7 +122,7 @@ export default function TableViewerPage() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
-            <Link href="/admin/database">
+            <Link href={`${basePath}/database`}>
               <ArrowLeft className="h-4 w-4" />
             </Link>
           </Button>

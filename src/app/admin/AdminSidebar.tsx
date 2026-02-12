@@ -12,28 +12,36 @@ import {
   Database,
   History,
   ArrowLeft,
+  FolderOpen,
 } from 'lucide-react';
 import config from '@/admin.config';
+import { useProject } from './[slug]/ProjectContext';
 import styles from './admin.module.css';
 
-const NAV_ITEMS = [
-  { id: 'dashboard', label: 'Dashboard', href: '/admin', icon: LayoutDashboard, exact: true },
-  { id: 'database', label: 'Database', href: '/admin/database', icon: Database },
-  { id: 'sow', label: 'SOW Tracker', href: '/admin/sow', icon: ClipboardList },
-  { id: 'changelog', label: 'Changelog', href: '/admin/changelog', icon: History },
-  { id: 'feedback', label: 'Feedback', href: '/admin/feedback', icon: MessageSquareText },
-  { id: 'tasks', label: 'Tasks', href: '/admin/tasks', icon: ListTodo },
-  { id: 'notes', label: 'Notes', href: '/admin/notes', icon: FileText },
-];
+/**
+ * Build nav items scoped to the current project's base path
+ */
+function getNavItems(basePath: string) {
+  return [
+    { id: 'dashboard', label: 'Dashboard', href: basePath, icon: LayoutDashboard, exact: true },
+    { id: 'database', label: 'Database', href: `${basePath}/database`, icon: Database },
+    { id: 'sow', label: 'SOW Tracker', href: `${basePath}/sow`, icon: ClipboardList },
+    { id: 'changelog', label: 'Changelog', href: `${basePath}/changelog`, icon: History },
+    { id: 'feedback', label: 'Feedback', href: `${basePath}/feedback`, icon: MessageSquareText },
+    { id: 'tasks', label: 'Tasks', href: `${basePath}/tasks`, icon: ListTodo },
+    { id: 'notes', label: 'Notes', href: `${basePath}/notes`, icon: FileText },
+  ];
+}
 
 async function handleLogout() {
-  // Server-side session invalidation
   await fetch('/api/admin/auth', { method: 'DELETE' });
   window.location.href = '/';
 }
 
 export function AdminSidebar() {
   const pathname = usePathname();
+  const { project, basePath } = useProject();
+  const NAV_ITEMS = getNavItems(basePath);
 
   const isActive = (href: string, exact?: boolean) => {
     if (exact) {
@@ -46,7 +54,7 @@ export function AdminSidebar() {
     <aside className={styles.sidebar} aria-label="Admin navigation">
       {/* Logo */}
       <div className={styles.logoArea}>
-        <Link href="/admin" className={styles.logoLink}>
+        <Link href={basePath} className={styles.logoLink}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={config.project.logoPath}
@@ -79,6 +87,10 @@ export function AdminSidebar() {
 
       {/* Footer */}
       <div className={styles.sidebarFooter}>
+        <Link href="/admin" className={styles.footerLink}>
+          <FolderOpen size={14} />
+          <span>All Projects</span>
+        </Link>
         <Link href="/" className={styles.footerLink}>
           <ArrowLeft size={14} />
           <span>Back to Site</span>

@@ -37,6 +37,7 @@ import { Progress } from '@/components/ui/progress';
 import { DonutChart, BarList } from '@/components/ui/charts';
 import { toast } from 'sonner';
 import { staggerContainer, cardItem, fadeInUp } from '@/lib/animation-variants';
+import { useProject } from '../ProjectContext';
 import styles from './page.module.css';
 
 // =============================================================================
@@ -1050,8 +1051,9 @@ function TicketCard({
 // =============================================================================
 
 export default function FeedbackPage() {
+  const { project } = useProject();
   // toast imported from 'sonner' at module level
-  
+
   // Data state
   const [feedback, setFeedback] = useState<FeedbackItem[]>([]);
   const [pagination, setPagination] = useState<Pagination | null>(null);
@@ -1077,10 +1079,11 @@ export default function FeedbackPage() {
     
     try {
       const params = new URLSearchParams();
+      if (project.id) params.set('projectId', project.id);
       if (statusFilter) params.set('status', statusFilter);
       if (priorityFilter) params.set('priority', priorityFilter);
       if (searchQuery.trim()) params.set('search', searchQuery.trim());
-      
+
       const response = await fetch(`/api/admin/feedback?${params}`);
       if (!response.ok) throw new Error('Failed to fetch');
       

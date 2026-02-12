@@ -23,6 +23,7 @@ import {
   History,
 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogBody } from '@/components/ui/dialog';
+import { useProject } from '../ProjectContext';
 import styles from './page.module.css';
 
 type ChangelogType = 'milestone' | 'feature' | 'update' | 'fix' | 'blocker' | 'decision' | 'note';
@@ -105,6 +106,7 @@ function formatFullDate(dateString: string): string {
 }
 
 export default function ChangelogPage() {
+  const { project } = useProject();
   const [entries, setEntries] = useState<ChangelogEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string>('all');
@@ -134,6 +136,7 @@ export default function ChangelogPage() {
     try {
       setLoading(true);
       const params = new URLSearchParams();
+      if (project.id) params.set('projectId', project.id);
       if (filter !== 'all') params.set('type', filter);
 
       const res = await fetch(`/api/admin/changelog?${params}`);
@@ -144,7 +147,7 @@ export default function ChangelogPage() {
     } finally {
       setLoading(false);
     }
-  }, [filter]);
+  }, [filter, project.id]);
 
   useEffect(() => {
     fetchEntries();
@@ -159,7 +162,7 @@ export default function ChangelogPage() {
       const res = await fetch('/api/admin/changelog', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newEntry),
+        body: JSON.stringify({ ...newEntry, projectId: project.id }),
       });
 
       if (res.ok) {
