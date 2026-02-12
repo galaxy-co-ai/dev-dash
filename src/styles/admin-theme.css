@@ -1,0 +1,126 @@
+/* =================================================
+   ADMIN PANEL THEME
+   Light mode default with dark mode support
+   ================================================= */
+
+:root {
+  /* Brand Colors */
+  --admin-blue-primary: #1E6CFF;
+  --admin-blue-highlight: #4D8CFF;
+  --admin-blue-shadow: #1554CC;
+  --admin-blue-dark: #0D3D99;
+
+  --admin-charcoal-highlight: #2A3038;
+  --admin-charcoal-base: #1E2329;
+  --admin-charcoal-shadow: #14181D;
+  --admin-charcoal-deep: #0A0D10;
+
+  /* White alias */
+  --admin-white: #FFFFFF;
+
+  /* Status Colors */
+  --admin-success: #10B981;
+  --admin-success-bg: #ECFDF5;
+  --admin-warning: #F59E0B;
+  --admin-warning-bg: #FFFBEB;
+  --admin-error: #EF4444;
+  --admin-error-bg: #FEF2F2;
+  --admin-info: #3B82F6;
+  --admin-info-bg: #EFF6FF;
+
+  /* Spacing */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+
+  /* Radius & Shadows */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+}
+
+/* =================================================
+   LIGHT MODE (Default)
+   ================================================= */
+
+:root,
+[data-admin-theme="light"],
+.admin-light {
+  --color-bg-primary: var(--admin-gray-50);
+  --color-bg-secondary: var(--admin-white);
+  --color-bg-tertiary: var(--admin-gray-100);
+  --color-bg-sidebar: var(--admin-white);
+
+  --color-text-primary: var(--admin-charcoal-base);
+  --color-text-secondary: var(--admin-gray-600);
+  --color-text-tertiary: var(--admin-gray-500);
+  --color-text-muted: var(--admin-gray-400);
+
+  --color-border-default: var(--admin-gray-200);
+  --color-border-strong: var(--admin-gray-300);
+  --color-border-focus: var(--admin-blue-primary);
+
+  --color-brand-50: #EFF6FF;
+  --color-brand-100: #DBEAFE;
+  --color-brand-200: #BFDBFE;
+  --color-brand-300: #93C5FD;
+  --color-brand-400: var(--admin-blue-highlight);
+  --color-brand-500: var(--admin-blue-primary);
+  --color-brand-600: var(--admin-blue-primary);
+  --color-brand-700: var(--admin-blue-shadow);
+  --color-brand-800: var(--admin-blue-dark);
+
+  --color-gray-50: var(--admin-gray-50);
+  --color-gray-100: var(--admin-gray-100);
+  --color-gray-200: var(--admin-gray-200);
+  --color-gray-300: var(--admin-gray-300);
+  --color-gray-400: var(--admin-gray-400);
+  --color-gray-500: var(--admin-gray-500);
+  --color-gray-600: var(--admin-gray-600);
+  --color-gray-700: var(--admin-gray-700);
+  --color-gray-800: var(--admin-gray-800);
+  --color-gray-900: var(--admin-gray-900);
+  --color-white: var(--admin-white);
+
+  --color-red-50: var(--admin-error-bg);
+  --color-red-100: #FEE2E2;
+  --color-red-200: #FECACA;
+  --color-red-300: #FCA5A5;
+  --color-red-600: var(--admin-error);
+  --color-red-700: #B91C1C;
+
+  --color-amber-50: var(--admin-warning-bg);
+  --color-amber-100: #FEF3C7;
+  --color-amber-200: #FDE68A;
+  --color-amber-800: #92400E;
+  --color-amber-900: #78350F;
+
+  --color-green-50: var(--admin-success-bg);
+  --color-green-600: var(--admin-success);
+
+  --shadow-sm: 0 1px 2px rgba(30, 35, 41, 0.05);
+  --shadow-md: 0 4px 12px rgba(30, 35, 41, 0.08);
+  --shadow-lg: 0 8px 24px rgba(30, 35, 41, 0.12);
+}

@@ -1,0 +1,232 @@
+/* =================================================
+   ADMIN DESIGN SYSTEM - Core Tokens
+
+   Palette: Blue / Charcoal / White
+   Philosophy: Strict, minimal, intentional
+
+   NO gradients. NO decorative elements.
+   Every color earns its place.
+   ================================================= */
+
+:root {
+  /* ========================================
+     COLOR PRIMITIVES
+     ======================================== */
+
+  /* Blue Scale - Primary brand accent */
+  --admin-blue-600: #1554CC;
+  --admin-blue-500: #1E6CFF;
+  --admin-blue-400: #4D8CFF;
+  --admin-blue-100: #E8F1FF;
+  --admin-blue-50: #F5F8FF;
+
+  /* Charcoal Scale */
+  --admin-charcoal-900: #0F1115;
+  --admin-charcoal-800: #1E2329;
+  --admin-charcoal-700: #2A3038;
+
+  /* Gray Scale */
+  --admin-gray-900: #1E2329;
+  --admin-gray-700: #374151;
+  --admin-gray-600: #4A5568;
+  --admin-gray-500: #6B7A94;
+  --admin-gray-400: #9BA8BD;
+  --admin-gray-300: #D1D9E6;
+  --admin-gray-200: #E8EDF5;
+  --admin-gray-100: #F2F4F8;
+  --admin-gray-50: #F7F9FC;
+  --admin-gray-0: #FFFFFF;
+
+  /* Status Colors */
+  --admin-status-success: #22C55E;
+  --admin-status-success-muted: #DCFCE7;
+  --admin-status-warning: #F59E0B;
+  --admin-status-warning-muted: #FEF3C7;
+  --admin-status-error: #EF4444;
+  --admin-status-error-muted: #FEE2E2;
+  --admin-status-info: #3B82F6;
+  --admin-status-info-muted: #DBEAFE;
+
+  /* ========================================
+     SEMANTIC TOKENS
+     ======================================== */
+
+  /* Backgrounds */
+  --admin-bg-page: var(--admin-gray-50);
+  --admin-bg-card: var(--admin-gray-0);
+  --admin-bg-elevated: var(--admin-gray-0);
+  --admin-bg-muted: var(--admin-gray-100);
+  --admin-bg-subtle: var(--admin-gray-50);
+  --admin-bg-inverse: var(--admin-charcoal-800);
+
+  /* Interactive Backgrounds */
+  --admin-bg-hover: var(--admin-gray-100);
+  --admin-bg-active: var(--admin-gray-200);
+  --admin-bg-selected: var(--admin-blue-50);
+  --admin-bg-selected-strong: var(--admin-blue-100);
+
+  /* Text */
+  --admin-text-primary: var(--admin-charcoal-800);
+  --admin-text-secondary: var(--admin-gray-500);
+  --admin-text-tertiary: var(--admin-gray-400);
+  --admin-text-disabled: var(--admin-gray-300);
+  --admin-text-inverse: var(--admin-gray-0);
+  --admin-text-link: var(--admin-blue-500);
+  --admin-text-link-hover: var(--admin-blue-600);
+
+  /* Borders */
+  --admin-border-default: var(--admin-gray-200);
+  --admin-border-strong: var(--admin-gray-300);
+  --admin-border-focus: var(--admin-blue-500);
+  --admin-border-error: var(--admin-status-error);
+  --admin-border-success: var(--admin-status-success);
+
+  /* Interactive - Primary */
+  --admin-interactive-primary: var(--admin-blue-500);
+  --admin-interactive-primary-hover: var(--admin-blue-600);
+  --admin-interactive-primary-text: var(--admin-gray-0);
+
+  /* Interactive - Secondary */
+  --admin-interactive-secondary: transparent;
+  --admin-interactive-secondary-hover: var(--admin-gray-100);
+  --admin-interactive-secondary-border: var(--admin-gray-200);
+  --admin-interactive-secondary-text: var(--admin-gray-600);
+
+  /* Interactive - Ghost */
+  --admin-interactive-ghost: transparent;
+  --admin-interactive-ghost-hover: var(--admin-gray-100);
+  --admin-interactive-ghost-text: var(--admin-gray-500);
+
+  /* Interactive - Destructive */
+  --admin-interactive-destructive: var(--admin-status-error);
+  --admin-interactive-destructive-hover: #DC2626;
+  --admin-interactive-destructive-text: var(--admin-gray-0);
+  --admin-interactive-destructive-muted: var(--admin-status-error-muted);
+
+  /* Focus */
+  --admin-focus-ring: var(--admin-blue-500);
+  --admin-focus-ring-offset: var(--admin-gray-0);
+  --admin-focus-ring-alpha: rgba(30, 108, 255, 0.15);
+
+  /* ========================================
+     SPACING SCALE (4px base)
+     ======================================== */
+  --admin-space-0: 0;
+  --admin-space-1: 4px;
+  --admin-space-2: 8px;
+  --admin-space-3: 12px;
+  --admin-space-4: 16px;
+  --admin-space-5: 20px;
+  --admin-space-6: 24px;
+  --admin-space-8: 32px;
+  --admin-space-10: 40px;
+  --admin-space-12: 48px;
+  --admin-space-16: 64px;
+
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+  --admin-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --admin-font-mono: 'SF Mono', 'Fira Code', 'Roboto Mono', ui-monospace, monospace;
+
+  --admin-text-xs: 0.6875rem;
+  --admin-text-sm: 0.75rem;
+  --admin-text-base: 0.8125rem;
+  --admin-text-md: 0.875rem;
+  --admin-text-lg: 1rem;
+  --admin-text-xl: 1.125rem;
+  --admin-text-2xl: 1.5rem;
+  --admin-text-3xl: 1.75rem;
+
+  --admin-font-normal: 400;
+  --admin-font-medium: 500;
+  --admin-font-semibold: 600;
+  --admin-font-bold: 700;
+
+  --admin-leading-none: 1;
+  --admin-leading-tight: 1.25;
+  --admin-leading-snug: 1.375;
+  --admin-leading-normal: 1.5;
+  --admin-leading-relaxed: 1.625;
+
+  /* ========================================
+     BORDER RADIUS
+     ======================================== */
+  --admin-radius-sm: 4px;
+  --admin-radius-md: 6px;
+  --admin-radius-lg: 8px;
+  --admin-radius-xl: 12px;
+  --admin-radius-full: 9999px;
+
+  /* ========================================
+     SHADOWS
+     ======================================== */
+  --admin-shadow-sm: 0 1px 2px rgba(30, 35, 41, 0.04);
+  --admin-shadow-md: 0 2px 4px rgba(30, 35, 41, 0.06),
+                     0 1px 2px rgba(30, 35, 41, 0.04);
+  --admin-shadow-lg: 0 4px 8px rgba(30, 35, 41, 0.08),
+                     0 2px 4px rgba(30, 35, 41, 0.04);
+  --admin-shadow-xl: 0 8px 16px rgba(30, 35, 41, 0.1),
+                     0 4px 8px rgba(30, 35, 41, 0.06);
+  --admin-shadow-2xl: 0 16px 32px rgba(30, 35, 41, 0.12),
+                      0 8px 16px rgba(30, 35, 41, 0.08);
+  --admin-shadow-focus: 0 0 0 3px var(--admin-focus-ring-alpha);
+
+  /* ========================================
+     TRANSITIONS
+     ======================================== */
+  --admin-transition-fast: 100ms ease;
+  --admin-transition-base: 150ms ease;
+  --admin-transition-slow: 250ms ease;
+
+  /* ========================================
+     Z-INDEX SCALE
+     ======================================== */
+  --admin-z-base: 0;
+  --admin-z-dropdown: 10;
+  --admin-z-sticky: 20;
+  --admin-z-fixed: 30;
+  --admin-z-overlay: 40;
+  --admin-z-modal: 50;
+  --admin-z-popover: 60;
+  --admin-z-toast: 70;
+
+  /* ========================================
+     OPS CATEGORY ACCENTS
+     ======================================== */
+  --ops-accent-crm: var(--admin-status-info);
+  --ops-accent-crm-muted: var(--admin-status-info-muted);
+  --ops-accent-messaging: #8B5CF6;
+  --ops-accent-messaging-muted: #EDE9FE;
+  --ops-accent-pipeline: var(--admin-status-success);
+  --ops-accent-pipeline-muted: var(--admin-status-success-muted);
+  --ops-accent-analytics: var(--admin-status-warning);
+  --ops-accent-analytics-muted: var(--admin-status-warning-muted);
+  --ops-accent-support: var(--admin-status-error);
+  --ops-accent-support-muted: var(--admin-status-error-muted);
+  --ops-accent-documents: #06B6D4;
+  --ops-accent-documents-muted: #CFFAFE;
+
+  /* ========================================
+     MOTION CONSTANTS
+     ======================================== */
+  --admin-duration-hover: 150ms;
+  --admin-duration-modal: 300ms;
+  --admin-duration-exit: 210ms;
+  --admin-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --admin-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --admin-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --admin-scale-press: 0.98;
+
+  /* ========================================
+     FLUID TYPOGRAPHY
+     ======================================== */
+  --admin-text-display: clamp(1.5rem, 3vw, 1.75rem);
+  --admin-text-page-title: clamp(1.125rem, 2.5vw, 1.25rem);
+
+  /* ========================================
+     TREND INDICATORS
+     ======================================== */
+  --admin-trend-positive: var(--admin-status-success);
+  --admin-trend-negative: var(--admin-status-error);
+}
