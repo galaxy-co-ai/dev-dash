@@ -36,6 +36,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from '@/components/ui/command';
+import { useProject } from '@/app/admin/[slug]/ProjectContext';
 import styles from './CommandBar.module.css';
 
 type ExecutionMode = 'api' | 'cursor';
@@ -54,8 +55,8 @@ interface CommandResult {
 }
 
 interface CommandBarProps {
-  onRefreshTasks: () => void;
-  onAddTask: () => void;
+  onRefreshTasks?: () => void;
+  onAddTask?: () => void;
 }
 
 // Pre-built prompts for Cursor Agent mode — loaded from config
@@ -70,6 +71,7 @@ const QUICK_PROMPTS = [
 ];
 
 export function CommandBar({ onRefreshTasks, onAddTask }: CommandBarProps) {
+  const { project } = useProject();
   const [open, setOpen] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [result, setResult] = useState<CommandResult | null>(null);
@@ -143,6 +145,7 @@ export function CommandBar({ onRefreshTasks, onAddTask }: CommandBarProps) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          projectId: project.id,
           messages: [...chatMessages, userMessage].map(m => ({
             role: m.role,
             content: m.content,
@@ -220,7 +223,7 @@ export function CommandBar({ onRefreshTasks, onAddTask }: CommandBarProps) {
 
   const handleAddTask = () => {
     setOpen(false);
-    onAddTask();
+    onAddTask?.();
   };
 
   const toggleMode = () => {
@@ -463,7 +466,7 @@ export function CommandBar({ onRefreshTasks, onAddTask }: CommandBarProps) {
               <span>Add New Task</span>
               <CommandShortcut>N</CommandShortcut>
             </CommandItem>
-            <CommandItem onSelect={() => { setOpen(false); onRefreshTasks(); }}>
+            <CommandItem onSelect={() => { setOpen(false); onRefreshTasks?.(); }}>
               <RefreshCw className="mr-2 h-4 w-4" />
               <span>Refresh Tasks</span>
               <CommandShortcut>R</CommandShortcut>

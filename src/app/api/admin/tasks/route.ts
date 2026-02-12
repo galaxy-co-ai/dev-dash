@@ -84,6 +84,9 @@ export async function POST(request: NextRequest) {
       feedbackId: z.string().uuid().optional(),
       dueDate: z.string().datetime().optional(),
       projectId: z.string().uuid().optional(),
+      phaseId: z.string().optional(),
+      phaseName: z.string().optional(),
+      sowDeliverable: z.string().optional(),
     });
 
     const validated = schema.parse(body);
@@ -97,6 +100,9 @@ export async function POST(request: NextRequest) {
       feedbackId: validated.feedbackId || null,
       dueDate: validated.dueDate ? new Date(validated.dueDate) : null,
       projectId: validated.projectId || null,
+      phaseId: validated.phaseId || null,
+      phaseName: validated.phaseName || null,
+      sowDeliverable: validated.sowDeliverable || null,
     };
 
     const [created] = await db.insert(devTasks).values(newTask).returning();

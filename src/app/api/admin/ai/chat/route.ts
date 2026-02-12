@@ -1,49 +1,61 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 import type { MessageParam } from '@anthropic-ai/sdk/resources/messages';
-import { db } from '@/db';
-import { devTasks, aiMemories } from '@/db/schema';
-import { desc, isNull, or, gt } from 'drizzle-orm';
+import { db, eq, or, isNull } from '@/db';
+import { projects, aiMemories } from '@/db/schema';
+import { desc, gt } from 'drizzle-orm';
 import { ai } from '@/admin.config';
+import { aiTools } from '@/lib/ai/tools';
+import { executeTool } from '@/lib/ai/tool-executor';
+import { buildSystemPrompt } from '@/lib/ai/system-prompt';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
-// System prompt from config
-const SYSTEM_PROMPT = `${ai.projectContext}
-
-IMPORTANT: You have access to "memories" - key facts and decisions from past conversations. Use these to maintain context and avoid asking questions that have already been answered.
-
-Current project context and memories will be provided with each message.`;
+const MAX_TOOL_ITERATIONS = 10;
 
 export async function POST(request: NextRequest) {
   try {
-    // Check for API key
     if (!process.env.ANTHROPIC_API_KEY) {
-      return NextResponse.json({
-        success: false,
-        error: 'ANTHROPIC_API_KEY not configured. Add it to your .env.local file.',
-      }, { status: 500 });
+      return NextResponse.json(
+        { success: false, error: 'ANTHROPIC_API_KEY not configured. Add it to your .env.local file.' },
+        { status: 500 }
+      );
     }
 
-    const { messages } = await request.json();
+    const body = await request.json();
+    const { messages, projectId } = body;
 
     if (!messages || !Array.isArray(messages)) {
-      return NextResponse.json({
-        success: false,
-        error: 'Messages array is required',
-      }, { status: 400 });
+      return NextResponse.json(
+        { success: false, error: 'Messages array is required' },
+        { status: 400 }
+      );
     }
 
-    // Fetch current project context
-    const tasks = await db
-      .select()
-      .from(devTasks)
-      .orderBy(desc(devTasks.createdAt))
-      .limit(50);
+    if (!projectId) {
+      return NextResponse.json(
+        { success: false, error: 'projectId is required' },
+        { status: 400 }
+      );
+    }
 
-    // Fetch active memories (not expired)
+    // Fetch project record
+    const [project] = await db
+      .select()
+      .from(projects)
+      .where(eq(projects.id, projectId))
+      .limit(1);
+
+    if (!project) {
+      return NextResponse.json(
+        { success: false, error: 'Project not found' },
+        { status: 404 }
+      );
+    }
+
+    // Fetch active memories (small, always relevant — included in system prompt)
     const memories = await db
       .select()
       .from(aiMemories)
@@ -56,102 +68,102 @@ export async function POST(request: NextRequest) {
       .orderBy(desc(aiMemories.createdAt))
       .limit(50);
 
-    const tasksByStatus = {
-      backlog: tasks.filter(t => t.status === 'backlog').length,
-      todo: tasks.filter(t => t.status === 'todo').length,
-      in_progress: tasks.filter(t => t.status === 'in_progress').length,
-      review: tasks.filter(t => t.status === 'review').length,
-      done: tasks.filter(t => t.status === 'done').length,
-    };
+    const systemPrompt = buildSystemPrompt(
+      project,
+      memories.map((m) => ({ content: m.content, category: m.category }))
+    );
 
-    const activeTasks = tasks
-      .filter(t => t.status === 'in_progress')
-      .slice(0, 5)
-      .map(t => `- ${t.title} (${t.priority})`);
+    // Build messages — no more injected context, Claude fetches via tools
+    const apiMessages: MessageParam[] = messages.map(
+      (msg: { role: 'user' | 'assistant'; content: string }) => ({
+        role: msg.role,
+        content: msg.content,
+      })
+    );
 
-    const blockedTasks = tasks
-      .filter(t => t.status === 'backlog' && t.priority === 'high')
-      .slice(0, 3)
-      .map(t => `- ${t.title}`);
+    // ── Tool Use Loop ──────────────────────────────────────
+    let currentMessages = apiMessages;
+    let finalText = '';
 
-    // Format memories by category
-    const memoriesByCategory = memories.reduce((acc, m) => {
-      if (!acc[m.category]) acc[m.category] = [];
-      acc[m.category].push(m);
-      return acc;
-    }, {} as Record<string, typeof memories>);
+    for (let i = 0; i < MAX_TOOL_ITERATIONS; i++) {
+      const response = await anthropic.messages.create({
+        model: ai.model,
+        max_tokens: 4096,
+        system: systemPrompt,
+        tools: aiTools,
+        messages: currentMessages,
+      });
 
-    const formatMemorySection = (category: string, label: string) => {
-      const mems = memoriesByCategory[category];
-      if (!mems || mems.length === 0) return '';
-      return `### ${label}\n${mems.map(m => `- ${m.content}`).join('\n')}`;
-    };
-
-    const memoriesContext = memories.length > 0 ? `
-## Persistent Memories (from past conversations)
-${formatMemorySection('decision', 'Decisions')}
-${formatMemorySection('preference', 'Preferences')}
-${formatMemorySection('context', 'Project Context')}
-${formatMemorySection('blocker', 'Known Blockers')}
-${formatMemorySection('insight', 'Insights')}
-${formatMemorySection('todo', 'Pending Items')}
-`.trim() : '';
-
-    const projectContext = `
-## Current Project Status
-- Total tasks: ${tasks.length}
-- Backlog: ${tasksByStatus.backlog}, Todo: ${tasksByStatus.todo}, In Progress: ${tasksByStatus.in_progress}, Review: ${tasksByStatus.review}, Done: ${tasksByStatus.done}
-
-## Active Tasks
-${activeTasks.length > 0 ? activeTasks.join('\n') : '- None currently'}
-
-## High Priority Backlog Items
-${blockedTasks.length > 0 ? blockedTasks.join('\n') : '- None'}
-
-${memoriesContext}
-`;
-
-    // Prepend project context to the first user message
-    const messagesWithContext: MessageParam[] = messages.map((msg: { role: 'user' | 'assistant'; content: string }, idx: number) => {
-      if (idx === 0 && msg.role === 'user') {
-        return {
-          role: msg.role,
-          content: `${projectContext}\n\n---\n\nUser question: ${msg.content}`,
-        };
+      // Collect any text from this response
+      for (const block of response.content) {
+        if (block.type === 'text') {
+          finalText += block.text;
+        }
       }
-      return { role: msg.role, content: msg.content };
-    });
 
-    // Call Anthropic API
-    const response = await anthropic.messages.create({
-      model: ai.model,
-      max_tokens: 1024,
-      system: SYSTEM_PROMPT,
-      messages: messagesWithContext,
-    });
+      // If Claude is done (no more tool use), break
+      if (response.stop_reason !== 'tool_use') {
+        break;
+      }
 
-    // Extract text content
-    const textContent = response.content.find(block => block.type === 'text');
-    const assistantMessage = textContent ? textContent.text : 'No response generated.';
+      // Process tool calls
+      const toolUseBlocks = response.content.filter(
+        (block): block is Anthropic.ToolUseBlock => block.type === 'tool_use'
+      );
 
-    return NextResponse.json({
-      success: true,
-      message: assistantMessage,
-    });
+      if (toolUseBlocks.length === 0) break;
 
-  } catch (error) {
-    console.error('Chat API error:', error);
-    
-    if (error instanceof Anthropic.AuthenticationError) {
-      return NextResponse.json({
-        success: false,
-        error: 'Invalid API key. Please check your ANTHROPIC_API_KEY.',
-      }, { status: 401 });
+      // Build tool results
+      const toolResults: Anthropic.ToolResultBlockParam[] = [];
+      for (const toolUse of toolUseBlocks) {
+        try {
+          const result = await executeTool(
+            toolUse.name,
+            toolUse.input as Record<string, unknown>,
+            projectId
+          );
+          toolResults.push({
+            type: 'tool_result',
+            tool_use_id: toolUse.id,
+            content: JSON.stringify(result),
+          });
+        } catch (error) {
+          toolResults.push({
+            type: 'tool_result',
+            tool_use_id: toolUse.id,
+            content: JSON.stringify({
+              error: error instanceof Error ? error.message : 'Tool execution failed',
+            }),
+            is_error: true,
+          });
+        }
+      }
+
+      // Append assistant response + tool results for next iteration
+      currentMessages = [
+        ...currentMessages,
+        { role: 'assistant' as const, content: response.content },
+        { role: 'user' as const, content: toolResults },
+      ];
     }
 
     return NextResponse.json({
-      success: false,
-      error: error instanceof Error ? error.message : 'An error occurred',
-    }, { status: 500 });
+      success: true,
+      message: finalText || 'No response generated.',
+    });
+  } catch (error) {
+    console.error('Chat API error:', error);
+
+    if (error instanceof Anthropic.AuthenticationError) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid API key. Please check your ANTHROPIC_API_KEY.' },
+        { status: 401 }
+      );
+    }
+
+    return NextResponse.json(
+      { success: false, error: error instanceof Error ? error.message : 'An error occurred' },
+      { status: 500 }
+    );
   }
 }

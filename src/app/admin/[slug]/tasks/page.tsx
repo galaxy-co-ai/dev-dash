@@ -40,7 +40,6 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { staggerContainer, fadeInUp } from '@/lib/animation-variants';
-import { CommandBar } from '@/components/features/admin/CommandBar';
 import { useProject } from '../ProjectContext';
 import styles from './page.module.css';
 
@@ -946,7 +945,19 @@ export default function TasksPage() {
           </div>
         </div>
         <div className={styles.headerControls}>
-          <CommandBar onRefreshTasks={fetchTasks} onAddTask={() => setShowAddForm(true)} />
+          <button
+            onClick={() => setShowAddForm(true)}
+            className={styles.submitButton}
+          >
+            <Plus size={16} />
+            Add Task
+          </button>
+          <button
+            onClick={fetchTasks}
+            className={styles.cancelButton}
+          >
+            <RefreshCw size={16} />
+          </button>
         </div>
       </motion.header>
 
