@@ -41,11 +41,11 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen" style={{ background: 'var(--admin-bg-page)' }}>
       <AdminSidebar />
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto bg-muted/30">
+      <main className="flex-1 overflow-y-auto">
         <div className="p-6 max-w-[1400px]">
           {children}
         </div>
