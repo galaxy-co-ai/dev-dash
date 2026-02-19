@@ -1,8 +1,197 @@
 @import '../styles/admin-tokens.css';
+@import '../styles/notebook-textures.css';
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ========================================
+   TAILWIND V4 THEME
+   Migrated from tailwind.config.ts
+   ======================================== */
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Fonts */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Roboto Mono', ui-monospace, monospace;
+
+  /* Font sizes (custom scale) */
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 0.875rem;
+  --text-base--line-height: 1.25rem;
+  --text-md: 1rem;
+  --text-md--line-height: 1.5rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 2rem;
+  --text-3xl--line-height: 2.25rem;
+
+  /* shadcn semantic colors */
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  /* Sidebar colors */
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  /* Admin shorthand colors */
+  --color-admin-page: var(--admin-bg-page);
+  --color-admin-card: var(--admin-bg-card);
+  --color-admin-muted: var(--admin-bg-muted);
+  --color-admin-subtle: var(--admin-bg-subtle);
+  --color-admin-hover: var(--admin-bg-hover);
+  --color-admin-selected: var(--admin-bg-selected);
+  --color-admin-interactive: var(--admin-interactive-primary);
+  --color-admin-interactive-hover: var(--admin-interactive-primary-hover);
+  --color-admin-success: var(--admin-status-success);
+  --color-admin-warning: var(--admin-status-warning);
+  --color-admin-error: var(--admin-status-error);
+  --color-admin-info: var(--admin-status-info);
+
+  /* Border radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Box shadows */
+  --shadow-surface-1: var(--admin-surface-1-shadow);
+  --shadow-surface-2: var(--admin-surface-2-shadow);
+  --shadow-surface-3: var(--admin-surface-3-shadow);
+  --shadow-surface-4: var(--admin-surface-4-shadow);
+  --shadow-admin-focus: var(--admin-shadow-focus);
+}
+
+/* ========================================
+   ANIMATION SYSTEM (replaces tailwindcss-animate)
+   ======================================== */
+
+@keyframes enter {
+  from {
+    opacity: var(--tw-enter-opacity, 1);
+    transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0)
+      scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), var(--tw-enter-scale, 1))
+      rotate(var(--tw-enter-rotate, 0));
+  }
+}
+
+@keyframes exit {
+  to {
+    opacity: var(--tw-exit-opacity, 1);
+    transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0)
+      scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1))
+      rotate(var(--tw-exit-rotate, 0));
+  }
+}
+
+@utility animate-in {
+  animation-name: enter;
+  animation-duration: 150ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+  --tw-enter-opacity: initial;
+  --tw-enter-scale: initial;
+  --tw-enter-rotate: initial;
+  --tw-enter-translate-x: initial;
+  --tw-enter-translate-y: initial;
+}
+
+@utility animate-out {
+  animation-name: exit;
+  animation-duration: 150ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+  --tw-exit-opacity: initial;
+  --tw-exit-scale: initial;
+  --tw-exit-rotate: initial;
+  --tw-exit-translate-x: initial;
+  --tw-exit-translate-y: initial;
+}
+
+@utility fade-in-* {
+  --tw-enter-opacity: calc(--value(integer) * 0.01);
+}
+
+@utility fade-out-* {
+  --tw-exit-opacity: calc(--value(integer) * 0.01);
+}
+
+@utility zoom-in-* {
+  --tw-enter-scale: calc(--value(integer) * 0.01);
+}
+
+@utility zoom-out-* {
+  --tw-exit-scale: calc(--value(integer) * 0.01);
+}
+
+@utility slide-in-from-top-* {
+  --tw-enter-translate-y: calc(--value(--spacing, percentage) * -1);
+}
+
+@utility slide-in-from-bottom-* {
+  --tw-enter-translate-y: --value(--spacing, percentage);
+}
+
+@utility slide-in-from-left-* {
+  --tw-enter-translate-x: calc(--value(--spacing, percentage) * -1);
+}
+
+@utility slide-in-from-right-* {
+  --tw-enter-translate-x: --value(--spacing, percentage);
+}
+
+@utility slide-out-to-top-* {
+  --tw-exit-translate-y: calc(--value(--spacing, percentage) * -1);
+}
+
+@utility slide-out-to-bottom-* {
+  --tw-exit-translate-y: --value(--spacing, percentage);
+}
+
+@utility slide-out-to-left-* {
+  --tw-exit-translate-x: calc(--value(--spacing, percentage) * -1);
+}
+
+@utility slide-out-to-right-* {
+  --tw-exit-translate-x: --value(--spacing, percentage);
+}
 
 /* ========================================
    SHADCN/UI CSS VARIABLES
@@ -25,7 +214,7 @@
     --muted-foreground: var(--admin-hsl-gray-500);
     --accent: var(--admin-hsl-gray-100);
     --accent-foreground: var(--admin-hsl-gray-800);
-    --destructive: 0 84.2% 60.2%;
+    --destructive: var(--admin-hsl-gray-800);
     --destructive-foreground: var(--admin-hsl-gray-0);
     --border: var(--admin-hsl-gray-200);
     --input: var(--admin-hsl-gray-200);
@@ -60,8 +249,8 @@
     --muted-foreground: var(--admin-hsl-slate-400);
     --accent: var(--admin-hsl-slate-700);
     --accent-foreground: var(--admin-hsl-slate-100);
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: var(--admin-hsl-slate-100);
+    --destructive: var(--admin-hsl-slate-200);
+    --destructive-foreground: var(--admin-hsl-slate-900);
     --border: var(--admin-hsl-slate-700);
     --input: var(--admin-hsl-slate-700);
     --ring: var(--admin-hsl-slate-200);
@@ -97,6 +286,10 @@
     background-color: hsl(var(--background));
   }
 }
+
+/* ========================================
+   TYPOGRAPHY UTILITIES
+   ======================================== */
 
 @layer utilities {
   .text-heading-32 {
@@ -253,6 +446,10 @@
     letter-spacing: 0.02em;
   }
 }
+
+/* ========================================
+   GLOBAL STYLES
+   ======================================== */
 
 ::-webkit-scrollbar {
   width: 8px;

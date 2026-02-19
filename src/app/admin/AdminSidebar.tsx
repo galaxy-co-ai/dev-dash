@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import config from '@/admin.config';
 import { useProject } from './[slug]/ProjectContext';
+import { TextureToggle } from '@/components/features/admin/TextureToggle';
 import styles from './admin.module.css';
 
 /**
@@ -87,6 +88,7 @@ export function AdminSidebar() {
 
       {/* Footer */}
       <div className={styles.sidebarFooter}>
+        <TextureToggle />
         <Link href="/admin" className={styles.footerLink}>
           <FolderOpen size={14} />
           <span>All Projects</span>

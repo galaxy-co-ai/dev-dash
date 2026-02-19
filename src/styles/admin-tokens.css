@@ -1,103 +1,108 @@
 /* =================================================
    ADMIN DESIGN SYSTEM - Core Tokens
 
-   Palette: Warm Stone / Blue Accent
-   Philosophy: Warm, refined, not gimmicky, not flat.
-   Apple-inspired surface depth with Rauno-level precision.
+   Palette: Notebook Paper / Slate Charcoal
+   Philosophy: Soft, tactile, considered.
+   Like quality stationery — cream paper, slate ink,
+   neumorphic depth.
 
    Color direction:
-   - Light: subtle warmth (not polar white)
-   - Dark: warm slate (not black)
+   - Light: warm notebook paper → cool slate ink
+   - Dark: deep cool slate
    ================================================= */
 
 :root {
   /* ========================================
-     COLOR PRIMITIVES — Warm Stone Scale
+     COLOR PRIMITIVES — Paper → Graphite → Slate Ink
      ======================================== */
 
-  --admin-gray-0:   #FEFDFB;
-  --admin-gray-50:  #FAF9F6;
-  --admin-gray-100: #F3F2EF;
-  --admin-gray-200: #E8E6E1;
-  --admin-gray-300: #D4D1CB;
-  --admin-gray-400: #A8A49C;
-  --admin-gray-500: #7A766E;
-  --admin-gray-600: #57534E;
-  --admin-gray-700: #3F3B36;
-  --admin-gray-800: #292524;
-  --admin-gray-900: #1C1917;
+  --admin-gray-0:   #FDFCF9;   /* Cream paper (card bg) */
+  --admin-gray-50:  #F8F7F3;   /* Warm paper (page bg) */
+  --admin-gray-100: #F0EEE9;   /* Aged paper (muted bg) */
+  --admin-gray-200: #E1DFD9;   /* Paper border */
+  --admin-gray-300: #C9C6C0;   /* Graphite light */
+  --admin-gray-400: #949199;   /* Graphite (pivot point) */
+  --admin-gray-500: #6B6D78;   /* Cool ink emerges */
+  --admin-gray-600: #50525E;   /* Slate body */
+  --admin-gray-700: #3B3D48;   /* Deep slate */
+  --admin-gray-800: #2A2C36;   /* Charcoal (primary text) */
+  --admin-gray-900: #1E2028;   /* Ink well */
 
-  /* Dark Mode — Warm Slate */
-  --admin-slate-900: #1A1918;
-  --admin-slate-800: #242220;
-  --admin-slate-700: #302D2A;
-  --admin-slate-600: #3D3935;
-  --admin-slate-500: #57524C;
-  --admin-slate-400: #78736C;
-  --admin-slate-300: #A09A92;
-  --admin-slate-200: #D4D0CA;
-  --admin-slate-100: #EDEBE8;
+  /* Dark Mode — Cool Slate */
+  --admin-slate-900: #151720;
+  --admin-slate-800: #1E2029;
+  --admin-slate-700: #282A35;
+  --admin-slate-600: #333541;
+  --admin-slate-500: #484A58;
+  --admin-slate-400: #6B6D7A;
+  --admin-slate-300: #9496A3;
+  --admin-slate-200: #CCCDD5;
+  --admin-slate-100: #E8E8ED;
 
-  /* Blue Scale — Primary accent */
-  --admin-blue-600: #1554CC;
-  --admin-blue-500: #1E6CFF;
-  --admin-blue-400: #4D8CFF;
-  --admin-blue-100: #E8F1FF;
-  --admin-blue-50:  #F5F8FF;
+  /* Steel Ink Accent — One accent only */
+  --admin-blue-50:  #F3F5F8;
+  --admin-blue-100: #E2E7EF;
+  --admin-blue-400: #6B84A8;
+  --admin-blue-500: #4A6B8A;
+  --admin-blue-600: #3A5775;
 
-  /* HSL primitives for shadcn bridge — warm gray */
-  --admin-hsl-gray-0:   40 50% 99.6%;
-  --admin-hsl-gray-50:  40 20% 97.3%;
-  --admin-hsl-gray-100: 36 11% 94.5%;
-  --admin-hsl-gray-200: 36 10% 89.8%;
-  --admin-hsl-gray-300: 33 6% 81%;
-  --admin-hsl-gray-400: 32 5% 63.5%;
-  --admin-hsl-gray-500: 32 4% 45.5%;
-  --admin-hsl-gray-600: 28 5% 32.5%;
-  --admin-hsl-gray-700: 27 7% 23%;
-  --admin-hsl-gray-800: 20 6% 15%;
-  --admin-hsl-gray-900: 20 8% 10%;
+  /* HSL primitives for shadcn bridge — paper → slate */
+  --admin-hsl-gray-0:   45 40% 98.4%;
+  --admin-hsl-gray-50:  43 25% 96.5%;
+  --admin-hsl-gray-100: 38 16% 93%;
+  --admin-hsl-gray-200: 35 12% 87%;
+  --admin-hsl-gray-300: 30 7% 77%;
+  --admin-hsl-gray-400: 265 3% 59%;
+  --admin-hsl-gray-500: 223 5% 44.5%;
+  --admin-hsl-gray-600: 225 8% 34%;
+  --admin-hsl-gray-700: 222 10% 26%;
+  --admin-hsl-gray-800: 224 12% 19%;
+  --admin-hsl-gray-900: 220 15% 14%;
 
-  /* HSL primitives for shadcn bridge — warm slate (dark mode) */
-  --admin-hsl-slate-900: 30 4% 10%;
-  --admin-hsl-slate-800: 30 6% 13%;
-  --admin-hsl-slate-700: 30 7% 18%;
-  --admin-hsl-slate-600: 30 7% 22%;
-  --admin-hsl-slate-500: 33 7% 32%;
-  --admin-hsl-slate-400: 35 5% 45%;
-  --admin-hsl-slate-300: 34 6% 60%;
-  --admin-hsl-slate-200: 36 10% 81%;
-  --admin-hsl-slate-100: 36 11% 92%;
+  /* HSL primitives — cool slate (dark mode) */
+  --admin-hsl-slate-900: 228 17% 10.5%;
+  --admin-hsl-slate-800: 226 14% 14%;
+  --admin-hsl-slate-700: 225 12% 18.5%;
+  --admin-hsl-slate-600: 224 10% 23%;
+  --admin-hsl-slate-500: 224 8% 31%;
+  --admin-hsl-slate-400: 224 6% 45%;
+  --admin-hsl-slate-300: 225 7% 61%;
+  --admin-hsl-slate-200: 228 8% 81%;
+  --admin-hsl-slate-100: 232 10% 92%;
 
-  /* HSL primitives — accent blue */
-  --admin-hsl-blue-500: 216 100% 56%;
-  --admin-hsl-blue-600: 216 81% 44%;
+  /* HSL primitives — steel accent */
+  --admin-hsl-blue-50:  216 22% 96.5%;
+  --admin-hsl-blue-100: 215 20% 91%;
+  --admin-hsl-blue-400: 215 25% 54%;
+  --admin-hsl-blue-500: 210 30% 42%;
+  --admin-hsl-blue-600: 210 33% 34%;
 
-  /* Status Colors */
-  --admin-status-success: #22C55E;
-  --admin-status-success-muted: #DCFCE7;
-  --admin-status-success-text: #15803D;
-  --admin-status-warning: #F59E0B;
-  --admin-status-warning-muted: #FEF3C7;
-  --admin-status-warning-text: #92400E;
-  --admin-status-error: #EF4444;
-  --admin-status-error-muted: #FEE2E2;
-  --admin-status-error-text: #B91C1C;
-  --admin-status-info: #3B82F6;
-  --admin-status-info-muted: #DBEAFE;
-  --admin-status-info-text: #1E40AF;
+  /* Status — derived from two-tone palette */
+  --admin-status-success:         var(--admin-gray-700);
+  --admin-status-success-muted:   var(--admin-gray-100);
+  --admin-status-success-text:    var(--admin-gray-700);
+  --admin-status-success-border:  var(--admin-gray-200);
 
-  /* Status border tones (for banner/alert borders) */
-  --admin-status-success-border: #BBF7D0;
-  --admin-status-warning-border: #FCD34D;
-  --admin-status-warning-text-strong: #78350F;
-  --admin-status-warning-gradient: linear-gradient(135deg, var(--admin-status-warning-muted) 0%, #FDE68A 100%);
-  --admin-status-error-border: #FECACA;
+  --admin-status-warning:         var(--admin-gray-500);
+  --admin-status-warning-muted:   var(--admin-gray-50);
+  --admin-status-warning-text:    var(--admin-gray-600);
+  --admin-status-warning-border:  var(--admin-gray-200);
+  --admin-status-warning-text-strong: var(--admin-gray-800);
+  --admin-status-warning-gradient: linear-gradient(135deg, var(--admin-gray-50) 0%, var(--admin-gray-100) 100%);
 
-  /* Status glow (health indicators, status dots) */
-  --admin-glow-success: 0 0 6px rgba(34, 197, 94, 0.4);
-  --admin-glow-info: 0 0 6px rgba(59, 130, 246, 0.4);
-  --admin-glow-warning: 0 0 6px rgba(245, 158, 11, 0.4);
+  --admin-status-error:           var(--admin-gray-800);
+  --admin-status-error-muted:     var(--admin-gray-200);
+  --admin-status-error-text:      var(--admin-gray-800);
+  --admin-status-error-border:    var(--admin-gray-300);
+
+  --admin-status-info:            var(--admin-blue-500);
+  --admin-status-info-muted:      var(--admin-blue-50);
+  --admin-status-info-text:       var(--admin-blue-600);
+
+  /* Status glow — subtle slate */
+  --admin-glow-success: 0 0 6px rgba(59, 61, 72, 0.2);
+  --admin-glow-info:    0 0 6px rgba(74, 107, 138, 0.25);
+  --admin-glow-warning: 0 0 6px rgba(107, 109, 120, 0.2);
 
   /* ========================================
      SEMANTIC TOKENS
@@ -133,7 +138,7 @@
   --admin-border-error: var(--admin-status-error);
   --admin-border-success: var(--admin-status-success);
 
-  /* Interactive — Primary */
+  /* Interactive — Primary (steel ink) */
   --admin-interactive-primary: var(--admin-blue-500);
   --admin-interactive-primary-hover: var(--admin-blue-600);
   --admin-interactive-primary-text: var(--admin-gray-0);
@@ -149,20 +154,20 @@
   --admin-interactive-ghost-hover: var(--admin-gray-100);
   --admin-interactive-ghost-text: var(--admin-gray-500);
 
-  /* Interactive — Destructive */
-  --admin-interactive-destructive: var(--admin-status-error);
-  --admin-interactive-destructive-hover: #DC2626;
+  /* Interactive — Destructive (heavy slate) */
+  --admin-interactive-destructive: var(--admin-gray-800);
+  --admin-interactive-destructive-hover: var(--admin-gray-900);
   --admin-interactive-destructive-text: var(--admin-gray-0);
-  --admin-interactive-destructive-muted: var(--admin-status-error-muted);
+  --admin-interactive-destructive-muted: var(--admin-gray-200);
 
   /* Focus */
   --admin-focus-ring: var(--admin-blue-500);
   --admin-focus-ring-offset: var(--admin-gray-0);
-  --admin-focus-ring-alpha: rgba(30, 108, 255, 0.15);
+  --admin-focus-ring-alpha: rgba(74, 107, 138, 0.15);
 
   /* ========================================
-     SURFACE / ELEVATION SYSTEM
-     5 levels of depth via shadow quality
+     SURFACE / ELEVATION — Neumorphic
+     Paired highlight + shade for embossed paper feel
      ======================================== */
 
   /* Level 0 — Base (page background) */
@@ -170,43 +175,43 @@
 
   /* Level 1 — Card (content containers) */
   --admin-surface-1-bg: var(--admin-gray-0);
-  --admin-surface-1-border: 1px solid rgba(41, 37, 36, 0.06);
+  --admin-surface-1-border: 1px solid rgba(30, 32, 40, 0.06);
   --admin-surface-1-shadow:
-    0 1px 2px rgba(28, 25, 23, 0.03),
-    0 0 0 1px rgba(28, 25, 23, 0.02);
+    2px 2px 6px rgba(30, 32, 40, 0.06),
+    -1px -1px 4px rgba(255, 255, 250, 0.7),
+    0 0 0 1px rgba(30, 32, 40, 0.03);
 
   /* Level 2 — Raised (hover states, sidebar) */
   --admin-surface-2-bg: var(--admin-gray-0);
-  --admin-surface-2-border: 1px solid rgba(41, 37, 36, 0.08);
+  --admin-surface-2-border: 1px solid rgba(30, 32, 40, 0.08);
   --admin-surface-2-shadow:
-    0 2px 4px rgba(28, 25, 23, 0.04),
-    0 1px 2px rgba(28, 25, 23, 0.03),
-    0 0 0 1px rgba(28, 25, 23, 0.02);
+    3px 3px 8px rgba(30, 32, 40, 0.08),
+    -2px -2px 6px rgba(255, 255, 250, 0.8),
+    0 0 0 1px rgba(30, 32, 40, 0.03);
 
   /* Level 3 — Float (dropdowns, popovers, tooltips) */
-  --admin-surface-3-bg: rgba(254, 253, 251, 0.95);
-  --admin-surface-3-border: 1px solid rgba(41, 37, 36, 0.1);
+  --admin-surface-3-bg: rgba(253, 252, 249, 0.95);
+  --admin-surface-3-border: 1px solid rgba(30, 32, 40, 0.1);
   --admin-surface-3-shadow:
-    0 4px 8px rgba(28, 25, 23, 0.06),
-    0 2px 4px rgba(28, 25, 23, 0.04),
-    0 0 0 1px rgba(28, 25, 23, 0.02);
+    4px 4px 12px rgba(30, 32, 40, 0.1),
+    -2px -2px 8px rgba(255, 255, 250, 0.75),
+    0 0 0 1px rgba(30, 32, 40, 0.04);
   --admin-surface-3-backdrop: blur(8px);
 
   /* Level 4 — Modal (modals, command bar, overlays) */
-  --admin-surface-4-bg: rgba(254, 253, 251, 0.92);
-  --admin-surface-4-border: 1px solid rgba(41, 37, 36, 0.12);
+  --admin-surface-4-bg: rgba(253, 252, 249, 0.92);
+  --admin-surface-4-border: 1px solid rgba(30, 32, 40, 0.12);
   --admin-surface-4-shadow:
-    0 16px 32px rgba(28, 25, 23, 0.1),
-    0 8px 16px rgba(28, 25, 23, 0.06),
-    0 4px 8px rgba(28, 25, 23, 0.04),
-    0 0 0 1px rgba(28, 25, 23, 0.02);
+    8px 8px 24px rgba(30, 32, 40, 0.12),
+    -4px -4px 16px rgba(255, 255, 250, 0.7),
+    0 0 0 1px rgba(30, 32, 40, 0.04);
   --admin-surface-4-backdrop: blur(16px);
 
-  /* Overlay scrim */
-  --admin-overlay-scrim: rgba(28, 25, 23, 0.6);
-  --admin-overlay-scrim-light: rgba(28, 25, 23, 0.2);
+  /* Overlay scrim — slate */
+  --admin-overlay-scrim: rgba(30, 32, 40, 0.6);
+  --admin-overlay-scrim-light: rgba(30, 32, 40, 0.2);
 
-  /* Inverse overlay (white-on-accent overlays) */
+  /* Inverse overlay */
   --admin-overlay-inverse: rgba(255, 255, 255, 0.2);
   --admin-overlay-inverse-strong: rgba(255, 255, 255, 0.3);
 
@@ -261,17 +266,23 @@
   --admin-radius-full: 9999px;
 
   /* ========================================
-     SHADOWS (legacy — prefer surface tokens)
+     SHADOWS (legacy — neumorphic paired)
      ======================================== */
-  --admin-shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.04);
-  --admin-shadow-md: 0 2px 4px rgba(28, 25, 23, 0.06),
-                     0 1px 2px rgba(28, 25, 23, 0.04);
-  --admin-shadow-lg: 0 4px 8px rgba(28, 25, 23, 0.08),
-                     0 2px 4px rgba(28, 25, 23, 0.04);
-  --admin-shadow-xl: 0 8px 16px rgba(28, 25, 23, 0.1),
-                     0 4px 8px rgba(28, 25, 23, 0.06);
-  --admin-shadow-2xl: 0 16px 32px rgba(28, 25, 23, 0.12),
-                      0 8px 16px rgba(28, 25, 23, 0.08);
+  --admin-shadow-sm:
+    1px 1px 3px rgba(30, 32, 40, 0.04),
+    -1px -1px 2px rgba(255, 255, 250, 0.6);
+  --admin-shadow-md:
+    2px 2px 6px rgba(30, 32, 40, 0.06),
+    -1px -1px 4px rgba(255, 255, 250, 0.7);
+  --admin-shadow-lg:
+    3px 3px 8px rgba(30, 32, 40, 0.08),
+    -2px -2px 6px rgba(255, 255, 250, 0.75);
+  --admin-shadow-xl:
+    4px 4px 12px rgba(30, 32, 40, 0.1),
+    -2px -2px 8px rgba(255, 255, 250, 0.7);
+  --admin-shadow-2xl:
+    8px 8px 24px rgba(30, 32, 40, 0.12),
+    -4px -4px 16px rgba(255, 255, 250, 0.65);
   --admin-shadow-focus: 0 0 0 3px var(--admin-focus-ring-alpha);
 
   /* ========================================
@@ -325,13 +336,11 @@
   --admin-z-toast: 70;
 
   /* ========================================
-     PAGE ACCENT SYSTEM
-     Each page sets --page-accent-h/s/l,
-     shared CSS handles gradient + glow.
+     PAGE ACCENT SYSTEM — Steel ink
      ======================================== */
-  --page-accent-h: 25;
-  --page-accent-s: 10%;
-  --page-accent-l: 24%;
+  --page-accent-h: 215;
+  --page-accent-s: 20%;
+  --page-accent-l: 30%;
 
   --page-accent: hsl(var(--page-accent-h) var(--page-accent-s) var(--page-accent-l));
   --page-accent-light: hsl(var(--page-accent-h) var(--page-accent-s) calc(var(--page-accent-l) + 10%));
@@ -341,58 +350,59 @@
   --page-accent-glow: 0 4px 12px hsl(var(--page-accent-h) var(--page-accent-s) var(--page-accent-l) / 0.3);
 
   /* ========================================
-     OPS CATEGORY ACCENTS
+     OPS CATEGORY ACCENTS — Slate-only
      ======================================== */
-  --ops-accent-crm: var(--admin-status-info);
-  --ops-accent-crm-muted: var(--admin-status-info-muted);
-  --ops-accent-messaging: #8B5CF6;
-  --ops-accent-messaging-muted: #EDE9FE;
-  --ops-accent-pipeline: var(--admin-status-success);
-  --ops-accent-pipeline-muted: var(--admin-status-success-muted);
-  --ops-accent-analytics: var(--admin-status-warning);
-  --ops-accent-analytics-muted: var(--admin-status-warning-muted);
-  --ops-accent-support: var(--admin-status-error);
-  --ops-accent-support-muted: var(--admin-status-error-muted);
-  --ops-accent-documents: #06B6D4;
-  --ops-accent-documents-muted: #CFFAFE;
+  --ops-accent-crm:             var(--admin-blue-500);
+  --ops-accent-crm-muted:       var(--admin-blue-50);
+  --ops-accent-messaging:       var(--admin-gray-600);
+  --ops-accent-messaging-muted: var(--admin-gray-100);
+  --ops-accent-pipeline:        var(--admin-gray-700);
+  --ops-accent-pipeline-muted:  var(--admin-gray-100);
+  --ops-accent-analytics:       var(--admin-gray-500);
+  --ops-accent-analytics-muted: var(--admin-gray-50);
+  --ops-accent-support:         var(--admin-gray-800);
+  --ops-accent-support-muted:   var(--admin-gray-200);
+  --ops-accent-documents:       var(--admin-blue-400);
+  --ops-accent-documents-muted: var(--admin-blue-50);
 
   /* ========================================
-     CHANGELOG TYPE BADGE COLORS
+     CHANGELOG TYPE BADGES — Slate weight scale
      ======================================== */
-  --admin-type-milestone-bg: #EDE9FE;
-  --admin-type-milestone-text: #7C3AED;
-  --admin-type-feature-bg: #D1FAE5;
-  --admin-type-feature-text: #059669;
-  --admin-type-update-bg: #DBEAFE;
-  --admin-type-update-text: #2563EB;
-  --admin-type-fix-bg: #FEF3C7;
-  --admin-type-fix-text: #D97706;
-  --admin-type-blocker-bg: #FEE2E2;
-  --admin-type-blocker-text: #DC2626;
-  --admin-type-decision-bg: #CFFAFE;
-  --admin-type-decision-text: #0891B2;
-  --admin-type-note-bg: var(--admin-gray-100);
-  --admin-type-note-text: var(--admin-gray-500);
+  --admin-type-milestone-bg:   var(--admin-gray-800);
+  --admin-type-milestone-text: var(--admin-gray-0);
+  --admin-type-feature-bg:     var(--admin-gray-200);
+  --admin-type-feature-text:   var(--admin-gray-700);
+  --admin-type-update-bg:      var(--admin-gray-100);
+  --admin-type-update-text:    var(--admin-gray-600);
+  --admin-type-fix-bg:         var(--admin-gray-100);
+  --admin-type-fix-text:       var(--admin-gray-500);
+  --admin-type-blocker-bg:     var(--admin-gray-800);
+  --admin-type-blocker-text:   var(--admin-gray-0);
+  --admin-type-decision-bg:    var(--admin-blue-100);
+  --admin-type-decision-text:  var(--admin-blue-600);
+  --admin-type-note-bg:        var(--admin-gray-50);
+  --admin-type-note-text:      var(--admin-gray-400);
 
   /* ========================================
      DARK-SCOPED TOKENS (login, admin trigger)
+     Deep slate + steel
      ======================================== */
-  --admin-dark-bg-page: #0a0a0a;
-  --admin-dark-bg-card: #1a1a1a;
-  --admin-dark-bg-elevated: #2a2a2a;
-  --admin-dark-bg-input: #0f0f0f;
-  --admin-dark-border: #333;
-  --admin-dark-text-primary: #F5F0E8;
-  --admin-dark-text-secondary: #888;
-  --admin-dark-text-muted: #555;
-  --admin-dark-text-error: #ef4444;
-  --admin-dark-accent: #C4A77D;
-  --admin-dark-accent-hover: #d4b78d;
-  --admin-dark-icon-gradient-from: #2a2a2a;
-  --admin-dark-icon-gradient-to: #1f1f1f;
-  --admin-dark-overlay: rgba(0, 0, 0, 0.85);
-  --admin-dark-hover: #2a2a2a;
-  --admin-dark-text-hint: #666;
+  --admin-dark-bg-page: #12141C;
+  --admin-dark-bg-card: #1A1C26;
+  --admin-dark-bg-elevated: #252734;
+  --admin-dark-bg-input: #10121A;
+  --admin-dark-border: #333545;
+  --admin-dark-text-primary: #EDEEF2;
+  --admin-dark-text-secondary: #8688A0;
+  --admin-dark-text-muted: #4A4C60;
+  --admin-dark-text-error: var(--admin-gray-300);
+  --admin-dark-accent: #6B84A8;
+  --admin-dark-accent-hover: #7E98BA;
+  --admin-dark-icon-gradient-from: #252734;
+  --admin-dark-icon-gradient-to: #1A1C26;
+  --admin-dark-overlay: rgba(18, 20, 28, 0.88);
+  --admin-dark-hover: #252734;
+  --admin-dark-text-hint: #4A4C60;
   --admin-dark-focus-ring: var(--admin-dark-accent);
 
   /* ========================================
@@ -402,28 +412,27 @@
   --admin-text-page-title: clamp(1.125rem, 2.5vw, 1.25rem);
 
   /* ========================================
-     TREND INDICATORS
+     TREND INDICATORS — Slate weight
      ======================================== */
-  --admin-trend-positive: var(--admin-status-success);
-  --admin-trend-negative: var(--admin-status-error);
+  --admin-trend-positive: var(--admin-gray-700);
+  --admin-trend-negative: var(--admin-gray-800);
 
-  /* Code / Syntax */
-  --admin-syntax-highlight: #22D3EE;
+  /* Code / Syntax — Steel light */
+  --admin-syntax-highlight: #7E98BA;
 
   /* ========================================
-     LEGACY ALIASES (from deleted admin-theme.css)
-     Kept until Phase 2-3 sweep migrates all refs.
+     LEGACY ALIASES
      ======================================== */
   --admin-primary: var(--admin-interactive-primary);
   --admin-white: var(--admin-gray-0);
   --admin-blue-primary: var(--admin-blue-500);
   --admin-blue-highlight: var(--admin-blue-400);
   --admin-blue-shadow: var(--admin-blue-600);
-  --admin-blue-dark: #0D3D99;
+  --admin-blue-dark: var(--admin-blue-600);
   --admin-charcoal-base: var(--admin-gray-800);
   --admin-charcoal-highlight: var(--admin-gray-700);
   --admin-charcoal-shadow: var(--admin-gray-900);
-  --admin-charcoal-deep: #0A0D10;
+  --admin-charcoal-deep: var(--admin-gray-900);
   --admin-success: var(--admin-status-success);
   --admin-success-bg: var(--admin-status-success-muted);
   --admin-warning: var(--admin-status-warning);

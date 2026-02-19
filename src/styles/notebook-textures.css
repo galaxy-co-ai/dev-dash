@@ -1,0 +1,35 @@
+/* =================================================
+   NOTEBOOK TEXTURES
+   Applied via data-texture attribute on <html>
+   Targets <main> element for content-area-only effect
+   ================================================= */
+
+/* College ruled lines — 24px spacing, steel ink at 4.5% opacity */
+[data-texture="ruled"] main {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 23px,
+    rgba(74, 107, 138, 0.045) 23px,
+    rgba(74, 107, 138, 0.045) 24px
+  );
+}
+
+/* Graph paper grid — 20px cells, steel ink at 3.5% opacity */
+[data-texture="grid"] main {
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent 19px,
+      rgba(74, 107, 138, 0.035) 19px,
+      rgba(74, 107, 138, 0.035) 20px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 19px,
+      rgba(74, 107, 138, 0.035) 19px,
+      rgba(74, 107, 138, 0.035) 20px
+    );
+}

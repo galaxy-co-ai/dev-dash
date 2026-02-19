@@ -6,7 +6,7 @@ Reusable developer admin dashboard template. Drop into any Next.js project.
 
 - **Framework:** Next.js 14 (App Router)
 - **Database:** Neon PostgreSQL + Drizzle ORM
-- **Styling:** Tailwind CSS v3 + CSS Modules
+- **Styling:** Tailwind CSS v4 (CSS-first config) + CSS Modules
 - **UI:** shadcn/ui + Radix primitives
 - **AI:** Anthropic Claude (optional)
 - **Motion:** Motion (Framer Motion)
@@ -70,7 +70,7 @@ pnpm db:studio    # Drizzle Studio
 
 ### Token Categories
 
-- **Colors:** `--admin-gray-*` (warm stone), `--admin-slate-*` (dark mode), `--admin-blue-*` (accent)
+- **Colors:** `--admin-gray-*` (notebook paper → slate ink), `--admin-slate-*` (dark mode), `--admin-blue-*` (steel ink accent)
 - **Semantic:** `--admin-bg-*`, `--admin-text-*`, `--admin-border-*`, `--admin-interactive-*`
 - **Status:** `--admin-status-{success|warning|error|info}` + `-muted`, `-text`, `-border` variants
 - **Surfaces:** `--admin-surface-{1-4}-{bg|border|shadow|backdrop}` (5-level elevation system)
@@ -91,6 +91,12 @@ pnpm db:studio    # Drizzle Studio
 ### Deleted Files
 
 - `admin-theme.css` — removed. All `--color-*` vars were internal-only. Replaced by admin-tokens.
+- `tailwind.config.ts` — removed. All config migrated to CSS-first (`globals.css` `@theme` block).
+
+### Notebook Textures
+
+- `src/styles/notebook-textures.css` — college ruled + graph paper overlays via `data-texture` attr on `<html>`
+- `TextureToggle` component in sidebar footer — cycles off → ruled → grid, persists in `localStorage`
 
 ## Gotchas
 
@@ -99,3 +105,6 @@ pnpm db:studio    # Drizzle Studio
 - CSS Modules are used alongside Tailwind — check for `.module.css` files before refactoring styles.
 - Package manager: `pnpm` preferred, `npm` works fine.
 - `:focus-visible` states exist on login, layout nav, AdminAccessTrigger. Other interactive elements should add them as they're touched.
+- Tailwind v4 uses CSS-first config (`@theme` in globals.css). No `tailwind.config.ts`. Animation utilities defined via `@utility` in globals.css (replaces `tailwindcss-animate`).
+- Status colors are two-tone (slate weight), NOT rainbow. Differentiation via weight/opacity/icons, not hue.
+- Shadows are neumorphic (paired highlight + shade). Don't add flat drop-shadows.

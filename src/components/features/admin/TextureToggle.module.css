@@ -1,0 +1,26 @@
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--admin-radius-md);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--admin-text-tertiary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--admin-transition-base);
+}
+
+.toggle:hover {
+  background: var(--admin-bg-hover);
+  color: var(--admin-text-primary);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--admin-focus-ring);
+  outline-offset: -2px;
+}
