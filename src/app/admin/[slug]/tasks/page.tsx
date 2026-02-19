@@ -109,18 +109,18 @@ interface Task {
 }
 
 const COLUMNS = [
-  { id: 'backlog', label: 'Backlog', color: '#64748B' },
-  { id: 'todo', label: 'To Do', color: '#3B82F6' },
-  { id: 'in_progress', label: 'In Progress', color: '#F59E0B' },
-  { id: 'review', label: 'Review', color: '#A855F7' },
-  { id: 'done', label: 'Done', color: '#22C55E' },
+  { id: 'backlog', label: 'Backlog', color: '#8E919B' },
+  { id: 'todo', label: 'To Do', color: '#4D5060' },
+  { id: 'in_progress', label: 'In Progress', color: '#D4541E' },
+  { id: 'review', label: 'Review', color: '#383B4A' },
+  { id: 'done', label: 'Done', color: '#272A36' },
 ] as const;
 
 const PRIORITY_COLORS = {
-  low: '#64748B',
-  medium: '#3B82F6',
-  high: '#F59E0B',
-  urgent: '#EF4444',
+  low: '#8E919B',
+  medium: '#686B78',
+  high: '#D4541E',
+  urgent: '#B84718',
 };
 
 const CATEGORY_LABELS = {
@@ -484,21 +484,21 @@ function SprintView({ tasks, onChecklistChange, onAddChecklistItem, onStatusChan
       {/* Sprint Stats */}
       <div className={styles.sprintStats}>
         <div className={styles.sprintStatCard}>
-          <Clock size={20} className="text-amber-500" />
+          <Clock size={20} className="text-orange-600" />
           <div>
             <span className={styles.sprintStatValue}>{inProgressTasks.length}</span>
             <span className={styles.sprintStatLabel}>In Progress</span>
           </div>
         </div>
         <div className={styles.sprintStatCard}>
-          <List size={20} className="text-blue-500" />
+          <List size={20} className="text-gray-500" />
           <div>
             <span className={styles.sprintStatValue}>{todoTasks.length}</span>
             <span className={styles.sprintStatLabel}>To Do</span>
           </div>
         </div>
         <div className={styles.sprintStatCard}>
-          <CheckCircle2 size={20} className="text-emerald-500" />
+          <CheckCircle2 size={20} className="text-gray-700" />
           <div>
             <span className={styles.sprintStatValue}>{overallProgress}%</span>
             <span className={styles.sprintStatLabel}>Complete</span>
@@ -510,7 +510,7 @@ function SprintView({ tasks, onChecklistChange, onAddChecklistItem, onStatusChan
       {inProgressTasks.length > 0 && (
         <div className={styles.sprintSection}>
           <h3 className={styles.sprintSectionTitle}>
-            <Clock size={16} className="text-amber-500" />
+            <Clock size={16} className="text-orange-600" />
             In Progress ({inProgressTasks.length})
           </h3>
           <div className={styles.sprintTaskGrid}>
@@ -561,7 +561,7 @@ function SprintView({ tasks, onChecklistChange, onAddChecklistItem, onStatusChan
                         onClick={() => handleToggleItem(task, item.id)}
                       >
                         {item.completed ? (
-                          <CheckSquare size={14} className="text-emerald-500 flex-shrink-0" />
+                          <CheckSquare size={14} className="text-gray-700 flex-shrink-0" />
                         ) : (
                           <Square size={14} className="text-muted-foreground flex-shrink-0" />
                         )}
@@ -620,7 +620,7 @@ function SprintView({ tasks, onChecklistChange, onAddChecklistItem, onStatusChan
       {todoTasks.length > 0 && (
         <div className={styles.sprintSection}>
           <h3 className={styles.sprintSectionTitle}>
-            <List size={16} className="text-blue-500" />
+            <List size={16} className="text-gray-500" />
             Up Next ({todoTasks.length})
           </h3>
           <div className={styles.sprintTaskGrid}>

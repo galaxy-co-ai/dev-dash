@@ -117,18 +117,18 @@ type TabType = 'insights' | 'todos' | 'tickets';
 // =============================================================================
 
 const STATUS_OPTIONS = [
-  { value: 'new', label: 'New', color: '#EF4444', icon: AlertCircle },
-  { value: 'reviewed', label: 'Reviewed', color: '#3B82F6', icon: CheckCircle2 },
-  { value: 'in_progress', label: 'In Progress', color: '#F59E0B', icon: Clock },
-  { value: 'resolved', label: 'Resolved', color: '#22C55E', icon: CheckCircle2 },
-  { value: 'wont_fix', label: "Won't Fix", color: '#6B7280', icon: XCircle },
+  { value: 'new', label: 'New', color: '#D4541E', icon: AlertCircle },
+  { value: 'reviewed', label: 'Reviewed', color: '#4D5060', icon: CheckCircle2 },
+  { value: 'in_progress', label: 'In Progress', color: '#E06B35', icon: Clock },
+  { value: 'resolved', label: 'Resolved', color: '#272A36', icon: CheckCircle2 },
+  { value: 'wont_fix', label: "Won't Fix", color: '#8E919B', icon: XCircle },
 ];
 
 const PRIORITY_OPTIONS = [
-  { value: 'critical', label: 'Critical', color: '#DC2626' },
-  { value: 'high', label: 'High', color: '#F97316' },
-  { value: 'medium', label: 'Medium', color: '#EAB308' },
-  { value: 'low', label: 'Low', color: '#22C55E' },
+  { value: 'critical', label: 'Critical', color: '#B84718' },
+  { value: 'high', label: 'High', color: '#D4541E' },
+  { value: 'medium', label: 'Medium', color: '#686B78' },
+  { value: 'low', label: 'Low', color: '#8E919B' },
 ];
 
 const REASON_ICONS = {
@@ -144,9 +144,9 @@ const REASON_LABELS = {
 };
 
 const REASON_COLORS = {
-  bug: { bg: 'rgba(239, 68, 68, 0.1)', text: '#EF4444', border: 'rgba(239, 68, 68, 0.2)' },
-  suggestion: { bg: 'rgba(168, 85, 247, 0.1)', text: '#A855F7', border: 'rgba(168, 85, 247, 0.2)' },
-  general: { bg: 'rgba(59, 130, 246, 0.1)', text: '#3B82F6', border: 'rgba(59, 130, 246, 0.2)' },
+  bug: { bg: 'rgba(212, 84, 30, 0.1)', text: '#D4541E', border: 'rgba(212, 84, 30, 0.2)' },
+  suggestion: { bg: 'rgba(77, 80, 96, 0.1)', text: '#4D5060', border: 'rgba(77, 80, 96, 0.2)' },
+  general: { bg: 'rgba(104, 107, 120, 0.1)', text: '#686B78', border: 'rgba(104, 107, 120, 0.2)' },
 };
 
 // =============================================================================
@@ -368,7 +368,7 @@ function InsightsTab({ feedback }: { feedback: FeedbackItem[] }) {
           title="Total Feedback"
           value={analytics.total}
           icon={MessageCircle}
-          color="#3B82F6"
+          color="#686B78"
         />
         <MetricCard
           title="Needs Attention"
@@ -376,7 +376,7 @@ function InsightsTab({ feedback }: { feedback: FeedbackItem[] }) {
           change={analytics.byStatus.new > 0 ? `${analytics.byStatus.new} new` : undefined}
           changeType={analytics.byStatus.new > 3 ? 'negative' : 'neutral'}
           icon={AlertCircle}
-          color="#EF4444"
+          color="#D4541E"
         />
         <MetricCard
           title="Resolution Rate"
@@ -384,13 +384,13 @@ function InsightsTab({ feedback }: { feedback: FeedbackItem[] }) {
           change="+5%"
           changeType="positive"
           icon={Target}
-          color="#22C55E"
+          color="#272A36"
         />
         <MetricCard
           title="Avg Response"
           value={analytics.avgResponseTime}
           icon={Zap}
-          color="#8B5CF6"
+          color="#4D5060"
         />
       </div>
 
@@ -503,25 +503,25 @@ function InsightsTab({ feedback }: { feedback: FeedbackItem[] }) {
             <div className={styles.quickStats}>
               <div className={styles.quickStat}>
                 <span className={styles.quickStatLabel}>Bugs</span>
-                <span className={styles.quickStatValue} style={{ color: '#EF4444' }}>
+                <span className={styles.quickStatValue} style={{ color: '#D4541E' }}>
                   {analytics.byReason.bug}
                 </span>
               </div>
               <div className={styles.quickStat}>
                 <span className={styles.quickStatLabel}>Features</span>
-                <span className={styles.quickStatValue} style={{ color: '#A855F7' }}>
+                <span className={styles.quickStatValue} style={{ color: '#4D5060' }}>
                   {analytics.byReason.suggestion}
                 </span>
               </div>
               <div className={styles.quickStat}>
                 <span className={styles.quickStatLabel}>In Progress</span>
-                <span className={styles.quickStatValue} style={{ color: '#F59E0B' }}>
+                <span className={styles.quickStatValue} style={{ color: '#E06B35' }}>
                   {analytics.byStatus.in_progress}
                 </span>
               </div>
               <div className={styles.quickStat}>
                 <span className={styles.quickStatLabel}>Critical</span>
-                <span className={styles.quickStatValue} style={{ color: '#DC2626' }}>
+                <span className={styles.quickStatValue} style={{ color: '#B84718' }}>
                   {analytics.byPriority.critical}
                 </span>
               </div>

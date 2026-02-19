@@ -10,8 +10,8 @@
     to bottom,
     transparent,
     transparent 23px,
-    rgba(74, 107, 138, 0.045) 23px,
-    rgba(74, 107, 138, 0.045) 24px
+    rgba(104, 107, 120, 0.045) 23px,
+    rgba(104, 107, 120, 0.045) 24px
   );
 }
 
@@ -22,14 +22,14 @@
       to right,
       transparent,
       transparent 19px,
-      rgba(74, 107, 138, 0.035) 19px,
-      rgba(74, 107, 138, 0.035) 20px
+      rgba(104, 107, 120, 0.035) 19px,
+      rgba(104, 107, 120, 0.035) 20px
     ),
     repeating-linear-gradient(
       to bottom,
       transparent,
       transparent 19px,
-      rgba(74, 107, 138, 0.035) 19px,
-      rgba(74, 107, 138, 0.035) 20px
+      rgba(104, 107, 120, 0.035) 19px,
+      rgba(104, 107, 120, 0.035) 20px
     );
 }

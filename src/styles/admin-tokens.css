@@ -1,81 +1,82 @@
 /* =================================================
    ADMIN DESIGN SYSTEM - Core Tokens
 
-   Palette: Notebook Paper / Slate Charcoal
-   Philosophy: Soft, tactile, considered.
-   Like quality stationery — cream paper, slate ink,
-   neumorphic depth.
+   Palette: Blueprint / Schematic
+   Philosophy: Precise, technical, cool.
+   Like engineering drawings — cool white field,
+   precise gridlines, single warm orange accent.
 
    Color direction:
-   - Light: warm notebook paper → cool slate ink
+   - Light: cool white → slate ink
    - Dark: deep cool slate
+   - Accent: burnt orange (kept in --admin-blue-* names)
    ================================================= */
 
 :root {
   /* ========================================
-     COLOR PRIMITIVES — Paper → Graphite → Slate Ink
+     COLOR PRIMITIVES — Cool White → Slate Ink
      ======================================== */
 
-  --admin-gray-0:   #FDFCF9;   /* Cream paper (card bg) */
-  --admin-gray-50:  #F8F7F3;   /* Warm paper (page bg) */
-  --admin-gray-100: #F0EEE9;   /* Aged paper (muted bg) */
-  --admin-gray-200: #E1DFD9;   /* Paper border */
-  --admin-gray-300: #C9C6C0;   /* Graphite light */
-  --admin-gray-400: #949199;   /* Graphite (pivot point) */
-  --admin-gray-500: #6B6D78;   /* Cool ink emerges */
-  --admin-gray-600: #50525E;   /* Slate body */
-  --admin-gray-700: #3B3D48;   /* Deep slate */
-  --admin-gray-800: #2A2C36;   /* Charcoal (primary text) */
-  --admin-gray-900: #1E2028;   /* Ink well */
+  --admin-gray-0:   #FAFBFC;   /* Cool white (card bg) */
+  --admin-gray-50:  #F5F6F8;   /* Cool field (page bg) */
+  --admin-gray-100: #ECEEF2;   /* Muted bg */
+  --admin-gray-200: #DFE1E7;   /* Cool border */
+  --admin-gray-300: #C4C7CF;   /* Gridline light */
+  --admin-gray-400: #8E919B;   /* Midtone */
+  --admin-gray-500: #686B78;   /* Cool ink */
+  --admin-gray-600: #4D5060;   /* Slate body */
+  --admin-gray-700: #383B4A;   /* Deep slate */
+  --admin-gray-800: #272A36;   /* Charcoal (primary text) */
+  --admin-gray-900: #1C1F2B;   /* Ink well */
 
   /* Dark Mode — Cool Slate */
-  --admin-slate-900: #151720;
-  --admin-slate-800: #1E2029;
-  --admin-slate-700: #282A35;
-  --admin-slate-600: #333541;
-  --admin-slate-500: #484A58;
-  --admin-slate-400: #6B6D7A;
-  --admin-slate-300: #9496A3;
-  --admin-slate-200: #CCCDD5;
-  --admin-slate-100: #E8E8ED;
+  --admin-slate-900: #141722;
+  --admin-slate-800: #1C1F2B;
+  --admin-slate-700: #272A36;
+  --admin-slate-600: #323544;
+  --admin-slate-500: #474A5A;
+  --admin-slate-400: #6A6D7C;
+  --admin-slate-300: #9395A4;
+  --admin-slate-200: #CBCDD6;
+  --admin-slate-100: #E7E8EE;
 
-  /* Steel Ink Accent — One accent only */
-  --admin-blue-50:  #F3F5F8;
-  --admin-blue-100: #E2E7EF;
-  --admin-blue-400: #6B84A8;
-  --admin-blue-500: #4A6B8A;
-  --admin-blue-600: #3A5775;
+  /* Burnt Orange Accent — One accent only (kept as --admin-blue-*) */
+  --admin-blue-50:  #FEF3EE;
+  --admin-blue-100: #FCDDD0;
+  --admin-blue-400: #E06B35;
+  --admin-blue-500: #D4541E;
+  --admin-blue-600: #B84718;
 
-  /* HSL primitives for shadcn bridge — paper → slate */
-  --admin-hsl-gray-0:   45 40% 98.4%;
-  --admin-hsl-gray-50:  43 25% 96.5%;
-  --admin-hsl-gray-100: 38 16% 93%;
-  --admin-hsl-gray-200: 35 12% 87%;
-  --admin-hsl-gray-300: 30 7% 77%;
-  --admin-hsl-gray-400: 265 3% 59%;
-  --admin-hsl-gray-500: 223 5% 44.5%;
-  --admin-hsl-gray-600: 225 8% 34%;
-  --admin-hsl-gray-700: 222 10% 26%;
-  --admin-hsl-gray-800: 224 12% 19%;
-  --admin-hsl-gray-900: 220 15% 14%;
+  /* HSL primitives for shadcn bridge — cool white → slate */
+  --admin-hsl-gray-0:   210 20% 98.4%;
+  --admin-hsl-gray-50:  216 14% 96.5%;
+  --admin-hsl-gray-100: 224 14% 93.7%;
+  --admin-hsl-gray-200: 220 12% 88.2%;
+  --admin-hsl-gray-300: 222 8% 79%;
+  --admin-hsl-gray-400: 224 5% 58%;
+  --admin-hsl-gray-500: 226 7% 44%;
+  --admin-hsl-gray-600: 226 10% 34%;
+  --admin-hsl-gray-700: 226 12% 25.5%;
+  --admin-hsl-gray-800: 226 14% 18.2%;
+  --admin-hsl-gray-900: 228 17% 14%;
 
   /* HSL primitives — cool slate (dark mode) */
-  --admin-hsl-slate-900: 228 17% 10.5%;
-  --admin-hsl-slate-800: 226 14% 14%;
-  --admin-hsl-slate-700: 225 12% 18.5%;
-  --admin-hsl-slate-600: 224 10% 23%;
-  --admin-hsl-slate-500: 224 8% 31%;
-  --admin-hsl-slate-400: 224 6% 45%;
-  --admin-hsl-slate-300: 225 7% 61%;
+  --admin-hsl-slate-900: 228 20% 10.5%;
+  --admin-hsl-slate-800: 228 17% 14%;
+  --admin-hsl-slate-700: 226 14% 18.2%;
+  --admin-hsl-slate-600: 225 12% 23%;
+  --admin-hsl-slate-500: 225 9% 31.5%;
+  --admin-hsl-slate-400: 225 7% 45%;
+  --admin-hsl-slate-300: 226 8% 61%;
   --admin-hsl-slate-200: 228 8% 81%;
-  --admin-hsl-slate-100: 232 10% 92%;
+  --admin-hsl-slate-100: 230 10% 92%;
 
-  /* HSL primitives — steel accent */
-  --admin-hsl-blue-50:  216 22% 96.5%;
-  --admin-hsl-blue-100: 215 20% 91%;
-  --admin-hsl-blue-400: 215 25% 54%;
-  --admin-hsl-blue-500: 210 30% 42%;
-  --admin-hsl-blue-600: 210 33% 34%;
+  /* HSL primitives — orange accent (kept as --admin-hsl-blue-*) */
+  --admin-hsl-blue-50:  18 90% 96%;
+  --admin-hsl-blue-100: 16 88% 90%;
+  --admin-hsl-blue-400: 16 72% 54%;
+  --admin-hsl-blue-500: 16 77% 47%;
+  --admin-hsl-blue-600: 16 79% 41%;
 
   /* Status — derived from two-tone palette */
   --admin-status-success:         var(--admin-gray-700);
@@ -99,10 +100,10 @@
   --admin-status-info-muted:      var(--admin-blue-50);
   --admin-status-info-text:       var(--admin-blue-600);
 
-  /* Status glow — subtle slate */
-  --admin-glow-success: 0 0 6px rgba(59, 61, 72, 0.2);
-  --admin-glow-info:    0 0 6px rgba(74, 107, 138, 0.25);
-  --admin-glow-warning: 0 0 6px rgba(107, 109, 120, 0.2);
+  /* Status glow — cool slate + orange accent */
+  --admin-glow-success: 0 0 6px rgba(56, 59, 74, 0.2);
+  --admin-glow-info:    0 0 6px rgba(212, 84, 30, 0.25);
+  --admin-glow-warning: 0 0 6px rgba(104, 107, 120, 0.2);
 
   /* ========================================
      SEMANTIC TOKENS
@@ -163,7 +164,7 @@
   /* Focus */
   --admin-focus-ring: var(--admin-blue-500);
   --admin-focus-ring-offset: var(--admin-gray-0);
-  --admin-focus-ring-alpha: rgba(74, 107, 138, 0.15);
+  --admin-focus-ring-alpha: rgba(212, 84, 30, 0.15);
 
   /* ========================================
      SURFACE / ELEVATION — Neumorphic
@@ -175,41 +176,41 @@
 
   /* Level 1 — Card (content containers) */
   --admin-surface-1-bg: var(--admin-gray-0);
-  --admin-surface-1-border: 1px solid rgba(30, 32, 40, 0.06);
+  --admin-surface-1-border: 1px solid rgba(28, 31, 43, 0.05);
   --admin-surface-1-shadow:
-    2px 2px 6px rgba(30, 32, 40, 0.06),
-    -1px -1px 4px rgba(255, 255, 250, 0.7),
-    0 0 0 1px rgba(30, 32, 40, 0.03);
+    2px 2px 4px rgba(28, 31, 43, 0.04),
+    -1px -1px 3px rgba(255, 255, 255, 0.7),
+    0 0 0 1px rgba(28, 31, 43, 0.02);
 
   /* Level 2 — Raised (hover states, sidebar) */
   --admin-surface-2-bg: var(--admin-gray-0);
-  --admin-surface-2-border: 1px solid rgba(30, 32, 40, 0.08);
+  --admin-surface-2-border: 1px solid rgba(28, 31, 43, 0.06);
   --admin-surface-2-shadow:
-    3px 3px 8px rgba(30, 32, 40, 0.08),
-    -2px -2px 6px rgba(255, 255, 250, 0.8),
-    0 0 0 1px rgba(30, 32, 40, 0.03);
+    3px 3px 5px rgba(28, 31, 43, 0.05),
+    -2px -2px 4px rgba(255, 255, 255, 0.75),
+    0 0 0 1px rgba(28, 31, 43, 0.02);
 
   /* Level 3 — Float (dropdowns, popovers, tooltips) */
-  --admin-surface-3-bg: rgba(253, 252, 249, 0.95);
-  --admin-surface-3-border: 1px solid rgba(30, 32, 40, 0.1);
+  --admin-surface-3-bg: rgba(250, 251, 252, 0.95);
+  --admin-surface-3-border: 1px solid rgba(28, 31, 43, 0.08);
   --admin-surface-3-shadow:
-    4px 4px 12px rgba(30, 32, 40, 0.1),
-    -2px -2px 8px rgba(255, 255, 250, 0.75),
-    0 0 0 1px rgba(30, 32, 40, 0.04);
+    4px 4px 8px rgba(28, 31, 43, 0.07),
+    -2px -2px 5px rgba(255, 255, 255, 0.7),
+    0 0 0 1px rgba(28, 31, 43, 0.03);
   --admin-surface-3-backdrop: blur(8px);
 
   /* Level 4 — Modal (modals, command bar, overlays) */
-  --admin-surface-4-bg: rgba(253, 252, 249, 0.92);
-  --admin-surface-4-border: 1px solid rgba(30, 32, 40, 0.12);
+  --admin-surface-4-bg: rgba(250, 251, 252, 0.92);
+  --admin-surface-4-border: 1px solid rgba(28, 31, 43, 0.1);
   --admin-surface-4-shadow:
-    8px 8px 24px rgba(30, 32, 40, 0.12),
-    -4px -4px 16px rgba(255, 255, 250, 0.7),
-    0 0 0 1px rgba(30, 32, 40, 0.04);
+    8px 8px 16px rgba(28, 31, 43, 0.08),
+    -4px -4px 10px rgba(255, 255, 255, 0.65),
+    0 0 0 1px rgba(28, 31, 43, 0.03);
   --admin-surface-4-backdrop: blur(16px);
 
   /* Overlay scrim — slate */
-  --admin-overlay-scrim: rgba(30, 32, 40, 0.6);
-  --admin-overlay-scrim-light: rgba(30, 32, 40, 0.2);
+  --admin-overlay-scrim: rgba(28, 31, 43, 0.6);
+  --admin-overlay-scrim-light: rgba(28, 31, 43, 0.2);
 
   /* Inverse overlay */
   --admin-overlay-inverse: rgba(255, 255, 255, 0.2);
@@ -269,20 +270,20 @@
      SHADOWS (legacy — neumorphic paired)
      ======================================== */
   --admin-shadow-sm:
-    1px 1px 3px rgba(30, 32, 40, 0.04),
-    -1px -1px 2px rgba(255, 255, 250, 0.6);
+    1px 1px 2px rgba(28, 31, 43, 0.03),
+    -1px -1px 2px rgba(255, 255, 255, 0.6);
   --admin-shadow-md:
-    2px 2px 6px rgba(30, 32, 40, 0.06),
-    -1px -1px 4px rgba(255, 255, 250, 0.7);
+    2px 2px 4px rgba(28, 31, 43, 0.04),
+    -1px -1px 3px rgba(255, 255, 255, 0.7);
   --admin-shadow-lg:
-    3px 3px 8px rgba(30, 32, 40, 0.08),
-    -2px -2px 6px rgba(255, 255, 250, 0.75);
+    3px 3px 5px rgba(28, 31, 43, 0.05),
+    -2px -2px 4px rgba(255, 255, 255, 0.7);
   --admin-shadow-xl:
-    4px 4px 12px rgba(30, 32, 40, 0.1),
-    -2px -2px 8px rgba(255, 255, 250, 0.7);
+    4px 4px 8px rgba(28, 31, 43, 0.07),
+    -2px -2px 5px rgba(255, 255, 255, 0.65);
   --admin-shadow-2xl:
-    8px 8px 24px rgba(30, 32, 40, 0.12),
-    -4px -4px 16px rgba(255, 255, 250, 0.65);
+    8px 8px 16px rgba(28, 31, 43, 0.08),
+    -4px -4px 10px rgba(255, 255, 255, 0.6);
   --admin-shadow-focus: 0 0 0 3px var(--admin-focus-ring-alpha);
 
   /* ========================================
@@ -336,11 +337,11 @@
   --admin-z-toast: 70;
 
   /* ========================================
-     PAGE ACCENT SYSTEM — Steel ink
+     PAGE ACCENT SYSTEM — Burnt orange
      ======================================== */
-  --page-accent-h: 215;
-  --page-accent-s: 20%;
-  --page-accent-l: 30%;
+  --page-accent-h: 16;
+  --page-accent-s: 77%;
+  --page-accent-l: 47%;
 
   --page-accent: hsl(var(--page-accent-h) var(--page-accent-s) var(--page-accent-l));
   --page-accent-light: hsl(var(--page-accent-h) var(--page-accent-s) calc(var(--page-accent-l) + 10%));
@@ -385,24 +386,24 @@
 
   /* ========================================
      DARK-SCOPED TOKENS (login, admin trigger)
-     Deep slate + steel
+     Deep slate + orange accent
      ======================================== */
-  --admin-dark-bg-page: #12141C;
-  --admin-dark-bg-card: #1A1C26;
-  --admin-dark-bg-elevated: #252734;
-  --admin-dark-bg-input: #10121A;
-  --admin-dark-border: #333545;
-  --admin-dark-text-primary: #EDEEF2;
-  --admin-dark-text-secondary: #8688A0;
-  --admin-dark-text-muted: #4A4C60;
+  --admin-dark-bg-page: #111422;
+  --admin-dark-bg-card: #191C2B;
+  --admin-dark-bg-elevated: #242736;
+  --admin-dark-bg-input: #0F1220;
+  --admin-dark-border: #323544;
+  --admin-dark-text-primary: #E7E8EE;
+  --admin-dark-text-secondary: #8587A0;
+  --admin-dark-text-muted: #494C62;
   --admin-dark-text-error: var(--admin-gray-300);
-  --admin-dark-accent: #6B84A8;
-  --admin-dark-accent-hover: #7E98BA;
-  --admin-dark-icon-gradient-from: #252734;
-  --admin-dark-icon-gradient-to: #1A1C26;
-  --admin-dark-overlay: rgba(18, 20, 28, 0.88);
-  --admin-dark-hover: #252734;
-  --admin-dark-text-hint: #4A4C60;
+  --admin-dark-accent: #E06B35;
+  --admin-dark-accent-hover: #E8854F;
+  --admin-dark-icon-gradient-from: #242736;
+  --admin-dark-icon-gradient-to: #191C2B;
+  --admin-dark-overlay: rgba(17, 20, 34, 0.88);
+  --admin-dark-hover: #242736;
+  --admin-dark-text-hint: #494C62;
   --admin-dark-focus-ring: var(--admin-dark-accent);
 
   /* ========================================
@@ -417,8 +418,8 @@
   --admin-trend-positive: var(--admin-gray-700);
   --admin-trend-negative: var(--admin-gray-800);
 
-  /* Code / Syntax — Steel light */
-  --admin-syntax-highlight: #7E98BA;
+  /* Code / Syntax — Orange light */
+  --admin-syntax-highlight: #E8854F;
 
   /* ========================================
      LEGACY ALIASES

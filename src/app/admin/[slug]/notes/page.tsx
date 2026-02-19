@@ -27,13 +27,13 @@ interface Note {
 }
 
 const CATEGORY_OPTIONS = [
-  { value: 'general', label: 'General', color: '#666' },
-  { value: 'architecture', label: 'Architecture', color: '#3B82F6' },
-  { value: 'decision', label: 'Decision', color: '#22C55E' },
-  { value: 'idea', label: 'Idea', color: '#F59E0B' },
-  { value: 'reference', label: 'Reference', color: '#A855F7' },
-  { value: 'todo', label: 'Todo', color: '#EF4444' },
-  { value: 'meeting', label: 'Meeting', color: '#06B6D4' },
+  { value: 'general', label: 'General', color: '#8E919B' },
+  { value: 'architecture', label: 'Architecture', color: '#4D5060' },
+  { value: 'decision', label: 'Decision', color: '#272A36' },
+  { value: 'idea', label: 'Idea', color: '#D4541E' },
+  { value: 'reference', label: 'Reference', color: '#686B78' },
+  { value: 'todo', label: 'Todo', color: '#B84718' },
+  { value: 'meeting', label: 'Meeting', color: '#383B4A' },
 ];
 
 function formatDate(dateString: string): string {

@@ -198,10 +198,10 @@ export default function SOWPage() {
   }, [tasks]);
 
   const progressSegments = [
-    { label: 'Complete', value: stats.complete, color: '#10B981' },
-    { label: 'In Progress', value: stats.inProgress, color: '#1E6CFF' },
-    { label: 'Pending', value: stats.pending, color: '#F59E0B' },
-    { label: 'Blocked', value: stats.blocked, color: '#EF4444' },
+    { label: 'Complete', value: stats.complete, color: '#272A36' },
+    { label: 'In Progress', value: stats.inProgress, color: '#D4541E' },
+    { label: 'Pending', value: stats.pending, color: '#8E919B' },
+    { label: 'Blocked', value: stats.blocked, color: '#B84718' },
   ];
 
   if (isLoading) {
@@ -307,9 +307,9 @@ export default function SOWPage() {
                             {phaseComplete}/{phaseTotal}
                           </span>
                           <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                            phaseStatus === 'complete' ? 'bg-emerald-100 text-emerald-700' :
-                            phaseStatus === 'in_progress' ? 'bg-blue-100 text-blue-700' :
-                            phaseStatus === 'blocked' ? 'bg-rose-100 text-rose-700' :
+                            phaseStatus === 'complete' ? 'bg-gray-200 text-gray-800' :
+                            phaseStatus === 'in_progress' ? 'bg-orange-100 text-orange-700' :
+                            phaseStatus === 'blocked' ? 'bg-gray-300 text-gray-900' :
                             'bg-muted text-muted-foreground'
                           }`}>
                             {getStatusLabel(phaseStatus)}
@@ -327,9 +327,9 @@ export default function SOWPage() {
                               className="px-4 py-2.5 flex items-center gap-3 hover:bg-muted/30 transition-colors"
                             >
                               <span className={`flex-shrink-0 ${
-                                sowStatus === 'complete' ? 'text-emerald-500' :
-                                sowStatus === 'in_progress' ? 'text-blue-500' :
-                                sowStatus === 'blocked' ? 'text-rose-500' :
+                                sowStatus === 'complete' ? 'text-gray-700' :
+                                sowStatus === 'in_progress' ? 'text-orange-600' :
+                                sowStatus === 'blocked' ? 'text-gray-900' :
                                 'text-muted-foreground'
                               }`}>
                                 {getStatusIcon(sowStatus)}
@@ -357,7 +357,7 @@ export default function SOWPage() {
             {/* Blockers */}
             <section>
               <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4 flex items-center gap-2">
-                <AlertTriangle size={14} className="text-rose-500" />
+                <AlertTriangle size={14} className="text-orange-600" />
                 Active Blockers
               </h3>
               <div className="border rounded-lg overflow-hidden">
@@ -370,7 +370,7 @@ export default function SOWPage() {
                   {BLOCKERS.map((blocker, idx) => (
                     <div key={idx} className="grid grid-cols-3 gap-4 px-4 py-3 text-sm">
                       <span className="font-medium">{blocker.item}</span>
-                      <span className="text-amber-600">{blocker.owner}</span>
+                      <span className="text-orange-600">{blocker.owner}</span>
                       <span className="text-muted-foreground">{blocker.impact}</span>
                     </div>
                   ))}

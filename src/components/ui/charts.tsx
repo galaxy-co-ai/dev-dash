@@ -21,13 +21,13 @@ import { cn } from '@/lib/utils';
 // Color System - Brand aligned with gradients
 // ============================================
 const COLORS = {
-  blue: { solid: '#1E6CFF', light: '#60A5FA', gradient: ['#1E6CFF', '#60A5FA'] },
-  emerald: { solid: '#10B981', light: '#34D399', gradient: ['#10B981', '#6EE7B7'] },
-  amber: { solid: '#F59E0B', light: '#FBBF24', gradient: ['#F59E0B', '#FCD34D'] },
-  rose: { solid: '#EF4444', light: '#F87171', gradient: ['#EF4444', '#FCA5A5'] },
-  violet: { solid: '#8B5CF6', light: '#A78BFA', gradient: ['#8B5CF6', '#C4B5FD'] },
-  slate: { solid: '#64748B', light: '#94A3B8', gradient: ['#64748B', '#CBD5E1'] },
-  cyan: { solid: '#06B6D4', light: '#22D3EE', gradient: ['#06B6D4', '#67E8F9'] },
+  blue: { solid: '#D4541E', light: '#E06B35', gradient: ['#D4541E', '#E06B35'] },
+  emerald: { solid: '#383B4A', light: '#4D5060', gradient: ['#383B4A', '#686B78'] },
+  amber: { solid: '#686B78', light: '#8E919B', gradient: ['#686B78', '#8E919B'] },
+  rose: { solid: '#272A36', light: '#383B4A', gradient: ['#272A36', '#4D5060'] },
+  violet: { solid: '#4D5060', light: '#686B78', gradient: ['#4D5060', '#8E919B'] },
+  slate: { solid: '#8E919B', light: '#C4C7CF', gradient: ['#8E919B', '#C4C7CF'] },
+  cyan: { solid: '#B84718', light: '#D4541E', gradient: ['#B84718', '#E06B35'] },
 };
 
 type ColorKey = keyof typeof COLORS;
@@ -665,8 +665,8 @@ export function DeltaBadge({ value, className, size = 'default' }: DeltaBadgePro
         isNeutral
           ? 'bg-muted text-muted-foreground'
           : isPositive
-          ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400'
-          : 'bg-rose-50 text-rose-700 dark:bg-rose-950 dark:text-rose-400',
+          ? 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
+          : 'bg-gray-200 text-gray-800 dark:bg-gray-900 dark:text-gray-200',
         className
       )}
     >

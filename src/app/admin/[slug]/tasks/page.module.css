@@ -1069,7 +1069,7 @@
   justify-content: center;
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, var(--admin-status-success) 0%, #10B981 100%);
+  background: linear-gradient(135deg, var(--admin-gray-600) 0%, var(--admin-gray-400) 100%);
   border-radius: 50%;
   color: var(--admin-text-inverse);
   margin-bottom: var(--admin-space-4);

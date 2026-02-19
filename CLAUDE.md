@@ -70,7 +70,7 @@ pnpm db:studio    # Drizzle Studio
 
 ### Token Categories
 
-- **Colors:** `--admin-gray-*` (notebook paper → slate ink), `--admin-slate-*` (dark mode), `--admin-blue-*` (steel ink accent)
+- **Colors:** `--admin-gray-*` (cool white → slate ink), `--admin-slate-*` (dark mode), `--admin-blue-*` (burnt orange accent — **name kept as "blue" for backwards compat, actual hue is orange**)
 - **Semantic:** `--admin-bg-*`, `--admin-text-*`, `--admin-border-*`, `--admin-interactive-*`
 - **Status:** `--admin-status-{success|warning|error|info}` + `-muted`, `-text`, `-border` variants
 - **Surfaces:** `--admin-surface-{1-4}-{bg|border|shadow|backdrop}` (5-level elevation system)
@@ -108,3 +108,4 @@ pnpm db:studio    # Drizzle Studio
 - Tailwind v4 uses CSS-first config (`@theme` in globals.css). No `tailwind.config.ts`. Animation utilities defined via `@utility` in globals.css (replaces `tailwindcss-animate`).
 - Status colors are two-tone (slate weight), NOT rainbow. Differentiation via weight/opacity/icons, not hue.
 - Shadows are neumorphic (paired highlight + shade). Don't add flat drop-shadows.
+- **Blue token naming gotcha:** `--admin-blue-*` tokens hold burnt ORANGE values (`#D4541E` family). The name was kept to avoid mass-renaming. Never assume "blue" = blue — always check the token file.

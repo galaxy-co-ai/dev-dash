@@ -72,10 +72,10 @@ const TABLE_METADATA: Record<string, Omit<TableInfo, 'recordCount'>> = {
 };
 
 const CATEGORY_CONFIG = {
-  core: { label: 'Core Business', icon: Package, color: '#3B82F6' },
-  config: { label: 'Configuration', icon: Layers, color: '#8B5CF6' },
-  events: { label: 'Event Logs', icon: TrendingUp, color: '#10B981' },
-  dev: { label: 'Development', icon: Database, color: '#F59E0B' },
+  core: { label: 'Core Business', icon: Package, color: '#4D5060' },
+  config: { label: 'Configuration', icon: Layers, color: '#686B78' },
+  events: { label: 'Event Logs', icon: TrendingUp, color: '#383B4A' },
+  dev: { label: 'Development', icon: Database, color: '#D4541E' },
 };
 
 type CategoryKey = keyof typeof CATEGORY_CONFIG;
@@ -221,7 +221,7 @@ export default function DatabasePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <div className={styles.statIcon} style={{ background: '#DBEAFE', color: '#2563EB' }}>
+          <div className={styles.statIcon} style={{ background: '#ECEEF2', color: '#4D5060' }}>
             <Layers size={18} />
           </div>
           <div className={styles.statContent}>
@@ -236,7 +236,7 @@ export default function DatabasePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
         >
-          <div className={styles.statIcon} style={{ background: '#D1FAE5', color: '#059669' }}>
+          <div className={styles.statIcon} style={{ background: '#DFE1E7', color: '#383B4A' }}>
             <TrendingUp size={18} />
           </div>
           <div className={styles.statContent}>
@@ -251,7 +251,7 @@ export default function DatabasePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <div className={styles.statIcon} style={{ background: '#FEF3C7', color: '#D97706' }}>
+          <div className={styles.statIcon} style={{ background: '#FEF3EE', color: '#D4541E' }}>
             <Database size={18} />
           </div>
           <div className={styles.statContent}>
@@ -266,7 +266,7 @@ export default function DatabasePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }}
         >
-          <div className={styles.statIcon} style={{ background: '#EDE9FE', color: '#7C3AED' }}>
+          <div className={styles.statIcon} style={{ background: '#F5F6F8', color: '#686B78' }}>
             <HardDrive size={18} />
           </div>
           <div className={styles.statContent}>
