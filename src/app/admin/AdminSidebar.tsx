@@ -17,6 +17,7 @@ import {
 import config from '@/admin.config';
 import { useProject } from './[slug]/ProjectContext';
 import { TextureToggle } from '@/components/features/admin/TextureToggle';
+import { ThemeToggle } from '@/components/features/admin/ThemeToggle';
 import styles from './admin.module.css';
 
 /**
@@ -89,6 +90,7 @@ export function AdminSidebar() {
       {/* Footer */}
       <div className={styles.sidebarFooter}>
         <TextureToggle />
+        <ThemeToggle />
         <Link href="/admin" className={styles.footerLink}>
           <FolderOpen size={14} />
           <span>All Projects</span>

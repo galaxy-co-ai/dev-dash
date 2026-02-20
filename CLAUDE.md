@@ -70,12 +70,14 @@ pnpm db:studio    # Drizzle Studio
 
 ### Token Categories
 
-- **Colors:** `--admin-gray-*` (cool white → slate ink), `--admin-slate-*` (dark mode), `--admin-blue-*` (burnt orange accent — **name kept as "blue" for backwards compat, actual hue is orange**)
+- **Colors:** `--admin-gray-*` (warm paper → pencil graphite → black ink), `--admin-slate-*` (dark mode, warm brown), `--admin-blue-*` (burnt orange accent — **name kept as "blue" for backwards compat, actual hue is orange**)
+- **Writing instruments:** `--admin-pencil-light` (tertiary), `--admin-ink-blue` (Classic links), `--admin-ink-red` (Editorial accent)
+- **Instrument tokens:** `--admin-font-smoothing`, `--admin-heading-font-smoothing`, `--admin-icon-blur`, `--admin-text-shadow-body/heading`, `--admin-paper-grain-opacity`
 - **Semantic:** `--admin-bg-*`, `--admin-text-*`, `--admin-border-*`, `--admin-interactive-*`
 - **Status:** `--admin-status-{success|warning|error|info}` + `-muted`, `-text`, `-border` variants
-- **Surfaces:** `--admin-surface-{1-4}-{bg|border|shadow|backdrop}` (5-level elevation system)
+- **Surfaces:** `--admin-surface-{1-4}-{bg|border|shadow|backdrop}` (5-level elevation, warm paper-calibrated shadows)
 - **Motion:** `--admin-transition-{hover|enter|move|fast}`, `--admin-duration-*`, `--admin-ease-*`
-- **Page accents:** Each page sets `--page-accent-h/s/l` → auto-computes gradient + glow
+- **Page accents:** Default is blue-black ink (`h:220 s:56% l:39%`). Each page can override `--page-accent-h/s/l`
 
 ### Rules
 
@@ -98,6 +100,22 @@ pnpm db:studio    # Drizzle Studio
 - `src/styles/notebook-textures.css` — college ruled + graph paper overlays via `data-texture` attr on `<html>`
 - `TextureToggle` component in sidebar footer — cycles off → ruled → grid, persists in `localStorage`
 
+### Theme System
+
+- 3 toggleable themes: **Classic** (default), **Pastel**, **Editorial**
+- `ThemeToggle` component in sidebar footer — cycles themes, persists in `localStorage('dev-dash-theme')`
+- Applied via `data-theme` attr on `<html>` (same pattern as textures)
+- **Classic:** warm paper + pencil graphite body + black ink headings + blue-black ink links
+- **Pastel:** warmer paper + muted navy text + orange accent links + antialiased everywhere
+- **Editorial:** classic paper + red ink accent + antialiased headings
+- Themes and textures compose independently (e.g., ruled + editorial, grid + pastel)
+
+### Orange Accent Policy
+
+Orange (`--admin-blue-*`) is earned — ~10 uses max:
+- CTAs, focus rings, dark mode accent, `urgent`/`critical` priority, `blocked` status, `bug` reason
+- Everything else uses pencil/ink weight scale for differentiation
+
 ## Gotchas
 
 - `sonner` toast uses `toast.success()` / `toast.error()` — not `toast({ variant })`.
@@ -106,6 +124,8 @@ pnpm db:studio    # Drizzle Studio
 - Package manager: `pnpm` preferred, `npm` works fine.
 - `:focus-visible` states exist on login, layout nav, AdminAccessTrigger. Other interactive elements should add them as they're touched.
 - Tailwind v4 uses CSS-first config (`@theme` in globals.css). No `tailwind.config.ts`. Animation utilities defined via `@utility` in globals.css (replaces `tailwindcss-animate`).
-- Status colors are two-tone (slate weight), NOT rainbow. Differentiation via weight/opacity/icons, not hue.
-- Shadows are neumorphic (paired highlight + shade). Don't add flat drop-shadows.
+- Status colors are two-tone (pencil/ink weight), NOT rainbow. Differentiation via weight/opacity/icons, not hue.
+- Shadows are neumorphic (warm paper-calibrated, paired highlight + shade). Don't add flat drop-shadows.
 - **Blue token naming gotcha:** `--admin-blue-*` tokens hold burnt ORANGE values (`#D4541E` family). The name was kept to avoid mass-renaming. Never assume "blue" = blue — always check the token file.
+- **Orange is earned.** Don't add new orange uses without checking the accent policy (~10 uses max). Use pencil weight scale for new UI elements.
+- **Theme-aware text:** Use `--admin-text-link` for links (auto-switches between blue-black/orange/red per theme). Don't hardcode link colors.

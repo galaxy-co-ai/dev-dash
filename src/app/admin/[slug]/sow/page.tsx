@@ -198,9 +198,9 @@ export default function SOWPage() {
   }, [tasks]);
 
   const progressSegments = [
-    { label: 'Complete', value: stats.complete, color: '#272A36' },
-    { label: 'In Progress', value: stats.inProgress, color: '#D4541E' },
-    { label: 'Pending', value: stats.pending, color: '#8E919B' },
+    { label: 'Complete', value: stats.complete, color: '#1A1814' },
+    { label: 'In Progress', value: stats.inProgress, color: '#504A3D' },
+    { label: 'Pending', value: stats.pending, color: '#B5B0A6' },
     { label: 'Blocked', value: stats.blocked, color: '#B84718' },
   ];
 
@@ -308,7 +308,7 @@ export default function SOWPage() {
                           </span>
                           <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
                             phaseStatus === 'complete' ? 'bg-gray-200 text-gray-800' :
-                            phaseStatus === 'in_progress' ? 'bg-orange-100 text-orange-700' :
+                            phaseStatus === 'in_progress' ? 'bg-[#E8E4DB] text-[#504A3D]' :
                             phaseStatus === 'blocked' ? 'bg-gray-300 text-gray-900' :
                             'bg-muted text-muted-foreground'
                           }`}>
@@ -328,7 +328,7 @@ export default function SOWPage() {
                             >
                               <span className={`flex-shrink-0 ${
                                 sowStatus === 'complete' ? 'text-gray-700' :
-                                sowStatus === 'in_progress' ? 'text-orange-600' :
+                                sowStatus === 'in_progress' ? 'text-[#504A3D]' :
                                 sowStatus === 'blocked' ? 'text-gray-900' :
                                 'text-muted-foreground'
                               }`}>
@@ -357,7 +357,7 @@ export default function SOWPage() {
             {/* Blockers */}
             <section>
               <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4 flex items-center gap-2">
-                <AlertTriangle size={14} className="text-orange-600" />
+                <AlertTriangle size={14} className="text-[#B84718]" />
                 Active Blockers
               </h3>
               <div className="border rounded-lg overflow-hidden">
@@ -370,7 +370,7 @@ export default function SOWPage() {
                   {BLOCKERS.map((blocker, idx) => (
                     <div key={idx} className="grid grid-cols-3 gap-4 px-4 py-3 text-sm">
                       <span className="font-medium">{blocker.item}</span>
-                      <span className="text-orange-600">{blocker.owner}</span>
+                      <span className="text-[#B84718]">{blocker.owner}</span>
                       <span className="text-muted-foreground">{blocker.impact}</span>
                     </div>
                   ))}

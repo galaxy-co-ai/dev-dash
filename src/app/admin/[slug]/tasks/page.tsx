@@ -109,17 +109,17 @@ interface Task {
 }
 
 const COLUMNS = [
-  { id: 'backlog', label: 'Backlog', color: '#8E919B' },
-  { id: 'todo', label: 'To Do', color: '#4D5060' },
-  { id: 'in_progress', label: 'In Progress', color: '#D4541E' },
-  { id: 'review', label: 'Review', color: '#383B4A' },
-  { id: 'done', label: 'Done', color: '#272A36' },
+  { id: 'backlog', label: 'Backlog', color: '#B5B0A6' },
+  { id: 'todo', label: 'To Do', color: '#504A3D' },
+  { id: 'in_progress', label: 'In Progress', color: '#504A3D' },
+  { id: 'review', label: 'Review', color: '#383428' },
+  { id: 'done', label: 'Done', color: '#1A1814' },
 ] as const;
 
 const PRIORITY_COLORS = {
-  low: '#8E919B',
-  medium: '#686B78',
-  high: '#D4541E',
+  low: '#B5B0A6',
+  medium: '#6B6558',
+  high: '#504A3D',
   urgent: '#B84718',
 };
 
@@ -484,7 +484,7 @@ function SprintView({ tasks, onChecklistChange, onAddChecklistItem, onStatusChan
       {/* Sprint Stats */}
       <div className={styles.sprintStats}>
         <div className={styles.sprintStatCard}>
-          <Clock size={20} className="text-orange-600" />
+          <Clock size={20} className="text-[#504A3D]" />
           <div>
             <span className={styles.sprintStatValue}>{inProgressTasks.length}</span>
             <span className={styles.sprintStatLabel}>In Progress</span>
@@ -510,7 +510,7 @@ function SprintView({ tasks, onChecklistChange, onAddChecklistItem, onStatusChan
       {inProgressTasks.length > 0 && (
         <div className={styles.sprintSection}>
           <h3 className={styles.sprintSectionTitle}>
-            <Clock size={16} className="text-orange-600" />
+            <Clock size={16} className="text-[#504A3D]" />
             In Progress ({inProgressTasks.length})
           </h3>
           <div className={styles.sprintTaskGrid}>

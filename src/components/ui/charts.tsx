@@ -21,12 +21,12 @@ import { cn } from '@/lib/utils';
 // Color System - Brand aligned with gradients
 // ============================================
 const COLORS = {
-  blue: { solid: '#D4541E', light: '#E06B35', gradient: ['#D4541E', '#E06B35'] },
-  emerald: { solid: '#383B4A', light: '#4D5060', gradient: ['#383B4A', '#686B78'] },
-  amber: { solid: '#686B78', light: '#8E919B', gradient: ['#686B78', '#8E919B'] },
-  rose: { solid: '#272A36', light: '#383B4A', gradient: ['#272A36', '#4D5060'] },
-  violet: { solid: '#4D5060', light: '#686B78', gradient: ['#4D5060', '#8E919B'] },
-  slate: { solid: '#8E919B', light: '#C4C7CF', gradient: ['#8E919B', '#C4C7CF'] },
+  blue: { solid: '#504A3D', light: '#6B6558', gradient: ['#504A3D', '#6B6558'] },
+  emerald: { solid: '#383428', light: '#504A3D', gradient: ['#383428', '#6B6558'] },
+  amber: { solid: '#6B6558', light: '#908A7E', gradient: ['#6B6558', '#908A7E'] },
+  rose: { solid: '#1A1814', light: '#383428', gradient: ['#1A1814', '#504A3D'] },
+  violet: { solid: '#504A3D', light: '#6B6558', gradient: ['#504A3D', '#908A7E'] },
+  slate: { solid: '#908A7E', light: '#CFC9BC', gradient: ['#908A7E', '#CFC9BC'] },
   cyan: { solid: '#B84718', light: '#D4541E', gradient: ['#B84718', '#E06B35'] },
 };
 

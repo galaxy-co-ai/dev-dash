@@ -117,18 +117,18 @@ type TabType = 'insights' | 'todos' | 'tickets';
 // =============================================================================
 
 const STATUS_OPTIONS = [
-  { value: 'new', label: 'New', color: '#D4541E', icon: AlertCircle },
-  { value: 'reviewed', label: 'Reviewed', color: '#4D5060', icon: CheckCircle2 },
-  { value: 'in_progress', label: 'In Progress', color: '#E06B35', icon: Clock },
-  { value: 'resolved', label: 'Resolved', color: '#272A36', icon: CheckCircle2 },
-  { value: 'wont_fix', label: "Won't Fix", color: '#8E919B', icon: XCircle },
+  { value: 'new', label: 'New', color: '#504A3D', icon: AlertCircle },
+  { value: 'reviewed', label: 'Reviewed', color: '#383428', icon: CheckCircle2 },
+  { value: 'in_progress', label: 'In Progress', color: '#6B6558', icon: Clock },
+  { value: 'resolved', label: 'Resolved', color: '#1A1814', icon: CheckCircle2 },
+  { value: 'wont_fix', label: "Won't Fix", color: '#B5B0A6', icon: XCircle },
 ];
 
 const PRIORITY_OPTIONS = [
   { value: 'critical', label: 'Critical', color: '#B84718' },
-  { value: 'high', label: 'High', color: '#D4541E' },
-  { value: 'medium', label: 'Medium', color: '#686B78' },
-  { value: 'low', label: 'Low', color: '#8E919B' },
+  { value: 'high', label: 'High', color: '#504A3D' },
+  { value: 'medium', label: 'Medium', color: '#6B6558' },
+  { value: 'low', label: 'Low', color: '#B5B0A6' },
 ];
 
 const REASON_ICONS = {
@@ -145,8 +145,8 @@ const REASON_LABELS = {
 
 const REASON_COLORS = {
   bug: { bg: 'rgba(212, 84, 30, 0.1)', text: '#D4541E', border: 'rgba(212, 84, 30, 0.2)' },
-  suggestion: { bg: 'rgba(77, 80, 96, 0.1)', text: '#4D5060', border: 'rgba(77, 80, 96, 0.2)' },
-  general: { bg: 'rgba(104, 107, 120, 0.1)', text: '#686B78', border: 'rgba(104, 107, 120, 0.2)' },
+  suggestion: { bg: 'rgba(80, 74, 61, 0.1)', text: '#504A3D', border: 'rgba(80, 74, 61, 0.2)' },
+  general: { bg: 'rgba(107, 101, 88, 0.1)', text: '#6B6558', border: 'rgba(107, 101, 88, 0.2)' },
 };
 
 // =============================================================================
@@ -509,13 +509,13 @@ function InsightsTab({ feedback }: { feedback: FeedbackItem[] }) {
               </div>
               <div className={styles.quickStat}>
                 <span className={styles.quickStatLabel}>Features</span>
-                <span className={styles.quickStatValue} style={{ color: '#4D5060' }}>
+                <span className={styles.quickStatValue} style={{ color: '#504A3D' }}>
                   {analytics.byReason.suggestion}
                 </span>
               </div>
               <div className={styles.quickStat}>
                 <span className={styles.quickStatLabel}>In Progress</span>
-                <span className={styles.quickStatValue} style={{ color: '#E06B35' }}>
+                <span className={styles.quickStatValue} style={{ color: '#6B6558' }}>
                   {analytics.byStatus.in_progress}
                 </span>
               </div>
