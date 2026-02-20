@@ -3,7 +3,6 @@ import { db, eq } from '@/db';
 import { projects } from '@/db/schema';
 import { ProjectProvider } from './ProjectContext';
 import { AdminSidebar } from '../AdminSidebar';
-import { LayoutCommandBar } from './LayoutCommandBar';
 
 export default async function ProjectLayout({
   params,
@@ -34,7 +33,6 @@ export default async function ProjectLayout({
             {children}
           </div>
         </main>
-        <LayoutCommandBar />
       </ProjectProvider>
     </div>
   );
